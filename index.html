@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Inicia Tu Mejor Versión - INFIT (Mujeres)</title>
+    <title>Inicia Tu Mejor Versión - INFIT Combo (Mujer)</title>
     
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
@@ -32,8 +32,7 @@
                             dark: '#121212',
                             gold: '#FFD700',
                             golddim: '#C5A000',
-                            pink: '#ec4899', /* Tono Rosa INFIT */
-                            pinkdim: '#be185d',
+                            pink: '#ec4899',
                             white: '#ffffff',
                             gray: '#888888',
                         }
@@ -45,11 +44,33 @@
                     animation: {
                         'pulse-slow': 'pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite',
                         'float': 'float 6s ease-in-out infinite',
+                        'glow': 'glow 2s ease-in-out infinite alternate',
+                        'bounce-in': 'bounceIn 0.5s ease-out',
+                        'shimmer': 'shimmer 2s linear infinite',
+                        'wave': 'wave 2s ease-in-out infinite',
                     },
                     keyframes: {
                         float: {
                             '0%, 100%': { transform: 'translateY(0)' },
                             '50%': { transform: 'translateY(-10px)' },
+                        },
+                        glow: {
+                            '0%': { boxShadow: '0 0 20px rgba(236, 72, 153, 0.3)' },
+                            '100%': { boxShadow: '0 0 40px rgba(236, 72, 153, 0.6)' },
+                        },
+                        bounceIn: {
+                            '0%': { transform: 'scale(0.9)', opacity: '0' },
+                            '50%': { transform: 'scale(1.02)' },
+                            '100%': { transform: 'scale(1)', opacity: '1' },
+                        },
+                        shimmer: {
+                            '0%': { backgroundPosition: '-200% 0' },
+                            '100%': { backgroundPosition: '200% 0' },
+                        },
+                        wave: {
+                            '0%, 100%': { transform: 'rotate(0deg)' },
+                            '25%': { transform: 'rotate(10deg)' },
+                            '75%': { transform: 'rotate(-10deg)' },
                         }
                     }
                 }
@@ -59,41 +80,55 @@
     <style>
         body {
             background-color: #050505;
-            /* Fondo con un sutil tinte rosa oscuro en la parte superior en lugar de gris puro */
-            background-image: radial-gradient(circle at 50% 0%, #2D0F18 0%, #050505 80%);
+            background-image: radial-gradient(circle at 50% 0%, #111 0%, #050505 70%);
             color: #f5f5f5;
             overflow-x: hidden;
         }
         .glass-panel {
-            background: rgba(30, 30, 30, 0.6);
+            background: rgba(15, 15, 15, 0.7);
             backdrop-filter: blur(12px);
-            /* Borde sutil rosa en lugar de dorado puro */
-            border: 1px solid rgba(236, 72, 153, 0.2); 
+            border: 1px solid rgba(255, 255, 255, 0.05);
             box-shadow: 0 4px 30px rgba(0, 0, 0, 0.5);
         }
         .combo-card {
-            background: linear-gradient(180deg, rgba(236, 72, 153, 0.15) 0%, rgba(5, 5, 5, 0.9) 100%);
-            border: 2px solid #FFD700; /* Mantenemos el borde dorado por ser "Premium" */
-            /* Glow rosa mezclado con dorado */
-            box-shadow: 0 0 25px rgba(236, 72, 153, 0.3);
+            background: linear-gradient(180deg, rgba(236, 72, 153, 0.08) 0%, rgba(5, 5, 5, 1) 100%);
+            border: 2px solid #ec4899;
+            box-shadow: 0 0 40px rgba(236, 72, 153, 0.2);
             transform: scale(1.02);
             position: relative;
             z-index: 10;
         }
+        .combo-card::before {
+            content: '';
+            position: absolute;
+            top: -2px;
+            left: -2px;
+            right: -2px;
+            bottom: -2px;
+            background: linear-gradient(45deg, #ec4899, #FFD700, #ec4899);
+            border-radius: 1rem;
+            z-index: -1;
+            opacity: 0.3;
+            animation: glow 2s ease-in-out infinite alternate;
+        }
         .input-field {
-            background: rgba(0, 0, 0, 0.5);
+            background: rgba(255, 255, 255, 0.05);
             border: 1px solid #333;
             transition: all 0.3s ease;
             color: white;
         }
         .input-field:focus {
-            border-color: #ec4899; /* Focus rosa */
+            border-color: #ec4899;
             outline: none;
             box-shadow: 0 0 10px rgba(236, 72, 153, 0.2);
         }
+        .input-field::placeholder {
+            color: rgba(255, 255, 255, 0.3);
+        }
+        
         /* Checkbox personalizado para días */
         .day-checkbox:checked + div {
-            background-color: #ec4899; /* Selección rosa */
+            background-color: #ec4899;
             color: white;
             font-weight: bold;
         }
@@ -119,29 +154,172 @@
         .admin-only {
             display: none;
         }
-        
-        .text-glow-pink {
-            text-shadow: 0 0 10px rgba(236, 72, 153, 0.5);
+
+        /* Estilos para tarjetas de objetivo */
+        .goal-card {
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+        .goal-card:hover {
+            transform: translateY(-2px);
+            border-color: rgba(236, 72, 153, 0.5);
+        }
+        .goal-radio:checked + .goal-card {
+            border-color: #ec4899;
+            background: rgba(236, 72, 153, 0.1);
+            box-shadow: 0 0 15px rgba(236, 72, 153, 0.2);
+        }
+        .goal-radio:checked + .goal-card .goal-icon {
+            transform: scale(1.1);
+            color: #ec4899;
+        }
+
+        /* Estilos para tarjetas de tienda */
+        .store-card {
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+        .store-card:hover {
+            transform: translateY(-2px);
+        }
+        .store-radio:checked + .store-card {
+            border-color: #ec4899;
+            background: rgba(236, 72, 153, 0.1);
+            box-shadow: 0 0 15px rgba(236, 72, 153, 0.2);
+        }
+        .store-radio:checked + .store-card .store-icon {
+            transform: scale(1.1);
+        }
+
+        /* Estilos para checkboxes de exclusión de alimentos */
+        .exclude-checkbox {
+            appearance: none;
+            -webkit-appearance: none;
+            width: 18px;
+            height: 18px;
+            border: 2px solid #444;
+            border-radius: 4px;
+            background: rgba(255, 255, 255, 0.05);
+            cursor: pointer;
+            transition: all 0.2s ease;
+            position: relative;
+        }
+        .exclude-checkbox:checked {
+            background: linear-gradient(135deg, #ec4899 0%, #db2777 100%);
+            border-color: #ec4899;
+        }
+        .exclude-checkbox:checked::after {
+            content: '✓';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            color: white;
+            font-size: 12px;
+            font-weight: bold;
+        }
+        .exclude-item {
+            transition: all 0.2s ease;
+        }
+        .exclude-item:hover {
+            background: rgba(255, 255, 255, 0.05);
+        }
+        .exclude-item:has(.exclude-checkbox:checked) {
+            background: rgba(236, 72, 153, 0.1);
+            border-color: rgba(236, 72, 153, 0.3);
+        }
+
+        /* Estilos para método de pago */
+        .payment-card {
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+        .payment-card:hover {
+            transform: translateY(-2px);
+            border-color: rgba(34, 197, 94, 0.5);
+        }
+        .payment-radio:checked + .payment-card {
+            border-color: #22c55e;
+            background: rgba(34, 197, 94, 0.1);
+            box-shadow: 0 0 15px rgba(34, 197, 94, 0.2);
+        }
+
+        /* Scrollbar personalizado */
+        .custom-scrollbar::-webkit-scrollbar {
+            width: 6px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-track {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 3px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background: rgba(236, 72, 153, 0.5);
+            border-radius: 3px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+            background: rgba(236, 72, 153, 0.7);
+        }
+
+        /* Indicador de paso activo */
+        .step-indicator {
+            transition: all 0.3s ease;
+        }
+        .step-indicator.active {
+            background-color: #ec4899;
+            transform: scale(1.2);
+        }
+        .step-indicator.completed {
+            background-color: #22c55e;
+        }
+
+        /* Efecto shimmer en badges */
+        .shimmer-badge {
+            background: linear-gradient(90deg, #ec4899, #f472b6, #ec4899);
+            background-size: 200% 100%;
+            animation: shimmer 2s linear infinite;
+            color: white;
+        }
+
+        /* Emoji bandera wave */
+        .flag-wave {
+            display: inline-block;
+            animation: wave 1s ease-in-out infinite;
+            transform-origin: 70% 70%;
+        }
+
+        /* Plan cards */
+        .plan-card {
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+        .plan-card:hover {
+            transform: translateY(-8px);
+        }
+        .check-icon {
+            background: linear-gradient(135deg, rgba(236, 72, 153, 0.2) 0%, rgba(236, 72, 153, 0.1) 100%);
+            border: 1px solid rgba(236, 72, 153, 0.3);
+        }
+        .price-tag {
+            text-shadow: 0 0 20px rgba(255, 215, 0, 0.5);
         }
     </style>
 </head>
 <body class="min-h-screen flex flex-col font-sans selection:bg-infit-pink selection:text-white">
 
     <!-- Botón Flotante de Edición (SOLO ADMIN) -->
-    <button id="admin-trigger" onclick="toggleEditor()" class="admin-only fixed bottom-4 right-4 z-[90] bg-gray-800 text-gray-400 p-3 rounded-full shadow-lg hover:text-white hover:bg-gray-700 transition-all border border-infit-gold" title="Editar Contenido">
+    <button id="admin-trigger" onclick="toggleEditor()" class="admin-only fixed bottom-4 right-4 z-[90] bg-gray-800 text-gray-400 p-3 rounded-full shadow-lg hover:text-white hover:bg-gray-700 transition-all border border-infit-pink" title="Editar Contenido">
         <i class="fas fa-cog text-xl"></i>
     </button>
 
     <!-- Panel de Edición Lateral (SOLO ADMIN) -->
-    <div id="editor-panel" class="admin-only fixed top-0 right-0 h-full w-80 bg-[#1a1a1a] border-l border-gray-700 z-[100] shadow-2xl p-6 overflow-y-auto">
+    <div id="editor-panel" class="admin-only fixed top-0 right-0 h-full w-80 bg-[#111] border-l border-gray-800 z-[100] shadow-2xl p-6 overflow-y-auto custom-scrollbar">
         <div class="flex justify-between items-center mb-6">
-            <h3 class="text-infit-gold font-heading font-bold uppercase">Editor de Contenido</h3>
+            <h3 class="text-infit-pink font-heading font-bold uppercase">Editor de Contenido</h3>
             <button onclick="toggleEditor()" class="text-gray-400 hover:text-white"><i class="fas fa-times"></i></button>
         </div>
         
         <div class="space-y-4 text-xs">
-            <div class="bg-red-900/20 p-2 rounded border border-red-500/30 mb-4">
-                <p class="text-red-200">🔒 <strong>Modo Administrador Activo</strong><br>Este panel no es visible para los clientes.</p>
+            <div class="bg-pink-900/20 p-2 rounded border border-pink-500/30 mb-4">
+                <p class="text-pink-200">🔒 <strong>Modo Administrador Activo</strong><br>Este panel no es visible para los clientes.</p>
             </div>
 
             <div>
@@ -150,7 +328,7 @@
             </div>
             
             <div class="border-t border-gray-700 pt-4 mt-4">
-                <h4 class="text-white font-bold mb-2">Precios</h4>
+                <h4 class="text-white font-bold mb-2">Precios (USD)</h4>
                 <div class="grid grid-cols-2 gap-2">
                     <div>
                         <label class="block text-gray-500">Nutrición</label>
@@ -176,12 +354,12 @@
                 <textarea id="edit-combo-note" class="input-field w-full p-2 rounded h-20" oninput="updateContent()"></textarea>
             </div>
 
-            <div class="bg-infit-gold/10 p-3 rounded mt-6 border border-infit-gold/20">
+            <div class="bg-infit-pink/10 p-3 rounded mt-6 border border-infit-pink/20">
                 <p class="text-[10px] text-gray-300 mb-2">
-                    <i class="fas fa-info-circle text-infit-gold"></i> 
-                    Los cambios son solo visuales (Vista Previa). Para guardarlos permanentemente en GitHub, copia el código de abajo y reemplaza la sección "CONFIGURACIÓN EDITABLE" en el archivo HTML.
+                    <i class="fas fa-info-circle text-infit-pink"></i> 
+                    Los cambios son solo visuales. Copia el código para guardarlos permanentemente.
                 </p>
-                <button onclick="copyConfig()" class="w-full bg-infit-gold text-black font-bold py-2 rounded text-[10px] uppercase hover:bg-white transition-colors">
+                <button onclick="copyConfig()" class="w-full bg-infit-pink text-white font-bold py-2 rounded text-[10px] uppercase hover:bg-white hover:text-infit-pink transition-colors">
                     Copiar Código de Configuración
                 </button>
             </div>
@@ -189,61 +367,84 @@
     </div>
 
     <!-- Header -->
-    <nav class="fixed top-0 w-full z-50 glass-panel border-b border-gray-800/50">
+    <nav class="fixed top-0 w-full z-50 glass-panel border-b border-white/5">
         <div class="max-w-6xl mx-auto px-4 py-4 flex justify-between items-center">
             <div class="flex items-center gap-2">
-                <!-- Ícono con toque rosa -->
                 <i class="fas fa-bolt text-infit-pink text-xl animate-pulse-slow"></i>
                 <h1 class="text-2xl font-heading font-bold italic tracking-wider text-white">
                     IN<span class="text-infit-gold">FIT</span>
                 </h1>
             </div>
-            <div id="affiliate-badge" class="hidden text-[10px] text-gray-500 uppercase border border-gray-800 rounded-full px-3 py-1 bg-black/50">
-                Asesor: <span id="affiliate-name" class="text-infit-pink font-bold"></span>
+            <div class="flex items-center gap-3">
+                <div class="hidden md:flex items-center gap-2 text-[10px] text-gray-400 border border-gray-800 rounded-full px-3 py-1 bg-black/50">
+                    <span class="flag-wave">🇺🇸</span>
+                    <span>Para paisanas en USA</span>
+                </div>
+                <div id="affiliate-badge" class="hidden text-[10px] text-gray-500 uppercase border border-gray-800 rounded-full px-3 py-1 bg-black/50">
+                    Recomendado por: <span id="affiliate-name" class="text-infit-gold font-bold"></span>
+                </div>
             </div>
         </div>
     </nav>
 
     <!-- Hero Section -->
     <header class="pt-32 pb-12 px-4 text-center max-w-4xl mx-auto relative">
-        <!-- Mancha de luz rosa en lugar de dorada -->
-        <div class="absolute top-20 left-1/2 transform -translate-x-1/2 w-64 h-64 bg-infit-pink opacity-20 blur-[100px] rounded-full pointer-events-none"></div>
+        <div class="absolute top-20 left-1/2 transform -translate-x-1/2 w-64 h-64 bg-infit-pink opacity-5 blur-[100px] rounded-full pointer-events-none"></div>
+        
+        <!-- Badge especial para migrantes -->
+        <div class="inline-flex items-center gap-2 bg-infit-pink/10 border border-infit-pink/30 rounded-full px-4 py-2 mb-6">
+            <span class="text-xl flag-wave">🇺🇸</span>
+            <span class="text-white text-xs font-bold">Desde Santa Ana Hueytlalpan hasta donde estés</span>
+            <span class="text-xl">🇲🇽</span>
+        </div>
         
         <h2 class="text-4xl md:text-6xl font-heading font-bold uppercase italic mb-4 animate-float">
-            Bienvenida al inicio de<br>
-            <span class="text-infit-gold text-glow">Tu Mejor Versión</span>
+            ¡Paisana, inicia<br>
+            <span class="text-infit-pink text-glow">Tu Mejor Versión!</span>
         </h2>
         
-        <!-- Promoción Editable -->
-        <div class="inline-block bg-infit-pink/10 border border-infit-pink/30 rounded-lg px-6 py-2 mb-8">
+        <p class="text-gray-400 text-sm md:text-base mb-6 max-w-2xl mx-auto">
+            El mismo plan que funciona en México, ahora disponible para ti que estás en Estados Unidos. 
+            <span class="text-infit-gold font-bold">Recetas con ingredientes que encuentras allá.</span>
+        </p>
+        
+        <div class="inline-block bg-infit-pink/10 border border-infit-pink/20 rounded-lg px-6 py-2 mb-8 animate-pulse-slow">
             <p class="text-infit-pink text-xs md:text-sm font-bold uppercase tracking-widest">
-                <i class="fas fa-heart mr-2"></i> <span id="display-promo">Promoción válida solo durante Febrero</span>
+                <i class="fas fa-handshake mr-2"></i> <span id="display-promo">Garantía Total: Paga hasta recibir tu plan</span>
             </p>
         </div>
     </header>
 
     <!-- Pricing Plans Section -->
-    <main class="max-w-6xl mx-auto px-4 pb-24 grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8 items-start">
+    <main class="max-w-6xl mx-auto px-4 pb-12 grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8 items-start">
         
         <!-- Plan Nutrición -->
-        <div class="glass-panel rounded-2xl p-6 relative group hover:bg-infit-pink/5 transition-all duration-300 order-2 md:order-1">
-            <div class="absolute -top-6 left-1/2 transform -translate-x-1/2 bg-black border border-infit-pink/50 p-3 rounded-full shadow-[0_0_10px_rgba(236,72,153,0.3)]">
-                <!-- Ícono Rosa para Nutrición -->
+        <div class="plan-card glass-panel rounded-2xl p-6 relative group hover:bg-white/5 transition-all duration-300 order-2 md:order-1">
+            <div class="absolute -top-6 left-1/2 transform -translate-x-1/2 bg-infit-dark border border-white/10 p-3 rounded-full shadow-[0_0_15px_rgba(255,255,255,0.05)]">
                 <i class="fas fa-leaf text-2xl text-infit-pink"></i>
             </div>
             <h3 class="mt-8 text-xl font-heading font-bold text-center text-white uppercase italic">Nutrición</h3>
             <div class="text-center my-4">
-                <span class="text-3xl font-bold text-infit-gold">$<span id="display-price-nutri">59</span></span>
+                <span class="text-3xl font-bold text-infit-gold price-tag">$<span id="display-price-nutri">39</span></span>
                 <span class="text-sm text-gray-500 uppercase">USD / Mes</span>
             </div>
             <!-- Botón Ver Video -->
-            <button onclick="playVideo('nutri')" class="w-full mb-4 py-2 bg-gray-800/50 hover:bg-infit-pink/10 rounded text-xs text-infit-pink border border-gray-700 hover:border-infit-pink transition-all flex items-center justify-center gap-2">
+            <button onclick="playVideo('nutri')" class="w-full mb-4 py-2 bg-gray-800/50 hover:bg-infit-pink/10 rounded text-xs text-infit-pink border border-infit-pink/30 transition-all flex items-center justify-center gap-2">
                 <i class="fas fa-play-circle text-sm"></i> Ver Preview
             </button>
             <ul class="space-y-3 text-sm text-gray-400 mb-8">
-                <li class="flex items-start gap-2"><i class="fas fa-check text-infit-pink mt-1"></i> Plan 100% personalizado</li>
-                <li class="flex items-start gap-2"><i class="fas fa-check text-infit-pink mt-1"></i> Eliminación alimentos dañinos</li>
-                <li class="flex items-start gap-2"><i class="fas fa-check text-infit-pink mt-1"></i> Recetas prácticas</li>
+                <li class="flex items-start gap-2">
+                    <div class="check-icon p-1 rounded text-infit-pink mt-0.5"><i class="fas fa-check text-xs"></i></div>
+                    <span>Plan 100% personalizado</span>
+                </li>
+                <li class="flex items-start gap-2">
+                    <div class="check-icon p-1 rounded text-infit-pink mt-0.5"><i class="fas fa-check text-xs"></i></div>
+                    <span>Eliminación alimentos dañinos</span>
+                </li>
+                <li class="flex items-start gap-2">
+                    <div class="check-icon p-1 rounded text-infit-pink mt-0.5"><i class="fas fa-check text-xs"></i></div>
+                    <span>Recetas prácticas</span>
+                </li>
             </ul>
             <button onclick="selectPlan('Nutrición')" class="w-full py-3 rounded-lg border border-gray-600 hover:border-infit-pink hover:text-infit-pink transition-colors text-sm font-bold uppercase tracking-wider">
                 Elegir Nutrición
@@ -251,43 +452,44 @@
         </div>
 
         <!-- PLAN COMBO (DESTACADO) -->
-        <div class="combo-card rounded-2xl p-8 order-1 md:order-2">
-            <div class="absolute top-0 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-gradient-to-r from-infit-gold to-infit-pink text-black font-bold px-4 py-1 rounded-full text-xs uppercase tracking-widest shadow-[0_0_15px_rgba(236,72,153,0.5)]">
-                Más Vendido en USA 🇺🇸
+        <div class="combo-card rounded-2xl p-6 md:p-8 order-1 md:order-2">
+            <div class="absolute top-0 left-1/2 transform -translate-x-1/2 -translate-y-1/2 shimmer-badge font-bold px-5 py-1.5 rounded-full text-xs uppercase tracking-widest shadow-[0_0_20px_rgba(236,72,153,0.5)]">
+                ⭐ Más Vendido USA 🇺🇸
             </div>
-            <div class="text-center mb-6">
-                <i class="fas fa-fire text-4xl text-infit-gold mb-4 animate-pulse-slow"></i>
+            <div class="text-center mb-6 pt-4">
+                <i class="fas fa-fire text-4xl text-infit-pink mb-4 animate-pulse-slow"></i>
                 <h3 class="text-2xl font-heading font-bold text-white uppercase italic">Combo Total</h3>
                 <p class="text-[10px] text-infit-pink uppercase tracking-widest mt-1">La experiencia completa</p>
             </div>
-            <div class="text-center my-6 border-y border-infit-gold/20 py-4">
+            <div class="text-center my-6 border-y border-infit-pink/20 py-4">
                 <div class="flex justify-center items-center gap-2">
-                    <span class="text-gray-500 line-through text-lg">$<span id="display-price-old">118</span></span>
-                    <span class="text-5xl font-bold text-white">$<span id="display-price-combo">90</span></span>
+                    <span class="text-gray-500 line-through text-lg">$<span id="display-price-old">88</span></span>
+                    <span class="text-5xl font-bold text-white price-tag">$<span id="display-price-combo">69</span></span>
                 </div>
                 <span class="text-sm text-infit-gold font-bold">USD / Mes</span>
+                <p class="text-[10px] text-gray-500 mt-1">Ahorras $19 vs. planes separados</p>
             </div>
             <ul class="space-y-4 text-sm text-gray-300 mb-8">
                 <li class="flex flex-col gap-1">
                     <div class="flex items-start gap-3">
-                        <div class="bg-infit-gold/20 p-1 rounded text-infit-gold"><i class="fas fa-dumbbell"></i></div>
+                        <div class="bg-infit-pink/20 p-1 rounded text-infit-pink"><i class="fas fa-dumbbell"></i></div>
                         <span class="font-bold text-white">Entrenamiento Digital</span>
                     </div>
-                    <button onclick="playVideo('entreno')" class="ml-9 text-[10px] text-infit-pink hover:text-white underline text-left w-fit transition-colors"><i class="fas fa-play text-[8px] mr-1"></i>Ver preview entrenamiento</button>
+                    <button onclick="playVideo('entreno')" class="ml-9 text-[10px] text-infit-pink/70 hover:text-infit-pink underline text-left w-fit"><i class="fas fa-play text-[8px] mr-1"></i>Ver preview entrenamiento</button>
                 </li>
                 <li class="flex flex-col gap-1">
                     <div class="flex items-start gap-3">
                         <div class="bg-infit-pink/20 p-1 rounded text-infit-pink"><i class="fas fa-utensils"></i></div>
                         <span class="font-bold text-white">Plan Nutricional Completo</span>
                     </div>
-                    <button onclick="playVideo('nutri')" class="ml-9 text-[10px] text-infit-pink hover:text-white underline text-left w-fit transition-colors"><i class="fas fa-play text-[8px] mr-1"></i>Ver preview nutrición</button>
+                    <button onclick="playVideo('nutri')" class="ml-9 text-[10px] text-infit-pink/70 hover:text-infit-pink underline text-left w-fit"><i class="fas fa-play text-[8px] mr-1"></i>Ver preview nutrición</button>
                 </li>
                 <li class="flex items-start gap-3">
-                    <div class="bg-infit-gold/20 p-1 rounded text-infit-gold"><i class="fas fa-calendar-check"></i></div>
+                    <div class="bg-infit-pink/20 p-1 rounded text-infit-pink"><i class="fas fa-calendar-check"></i></div>
                     <span>Calendario del Poder + Eliminación alimentos dañinos</span>
                 </li>
             </ul>
-            <button onclick="selectPlan('Combo Total')" class="w-full bg-infit-gold hover:bg-white text-black font-bold py-4 rounded-lg uppercase tracking-widest transition-all transform hover:scale-105 shadow-[0_0_20px_rgba(255,215,0,0.3)] hover:shadow-[0_0_25px_rgba(236,72,153,0.4)]">
+            <button onclick="selectPlan('Combo Total')" class="w-full bg-gradient-to-r from-infit-pink to-pink-600 hover:from-pink-500 hover:to-infit-pink text-white font-bold py-4 rounded-lg uppercase tracking-widest transition-all transform hover:scale-105 shadow-[0_0_20px_rgba(236,72,153,0.3)]">
                 QUIERO MI MEJOR VERSIÓN
             </button>
             <p class="text-[10px] text-center text-gray-400 mt-4 italic" id="display-combo-note">
@@ -296,23 +498,32 @@
         </div>
 
         <!-- Plan Entrenamiento -->
-        <div class="glass-panel rounded-2xl p-6 relative group hover:bg-infit-pink/5 transition-all duration-300 order-3">
-            <div class="absolute -top-6 left-1/2 transform -translate-x-1/2 bg-black border border-gray-700 p-3 rounded-full">
-                <i class="fas fa-dumbbell text-2xl text-blue-400"></i>
+        <div class="plan-card glass-panel rounded-2xl p-6 relative group hover:bg-white/5 transition-all duration-300 order-3">
+            <div class="absolute -top-6 left-1/2 transform -translate-x-1/2 bg-infit-dark border border-white/10 p-3 rounded-full shadow-[0_0_15px_rgba(255,255,255,0.05)]">
+                <i class="fas fa-dumbbell text-2xl text-blue-500"></i>
             </div>
             <h3 class="mt-8 text-xl font-heading font-bold text-center text-white uppercase italic">Entrenamiento</h3>
             <div class="text-center my-4">
-                <span class="text-3xl font-bold text-infit-gold">$<span id="display-price-train">59</span></span>
+                <span class="text-3xl font-bold text-infit-gold price-tag">$<span id="display-price-train">49</span></span>
                 <span class="text-sm text-gray-500 uppercase">USD / Mes</span>
             </div>
             <!-- Botón Ver Video -->
-            <button onclick="playVideo('entreno')" class="w-full mb-4 py-2 bg-gray-800/50 hover:bg-infit-pink/10 rounded text-xs text-infit-pink border border-gray-700 hover:border-infit-pink transition-all flex items-center justify-center gap-2">
+            <button onclick="playVideo('entreno')" class="w-full mb-4 py-2 bg-gray-800/50 hover:bg-infit-pink/10 rounded text-xs text-infit-pink border border-infit-pink/30 transition-all flex items-center justify-center gap-2">
                 <i class="fas fa-play-circle text-sm"></i> Ver Preview
             </button>
             <ul class="space-y-3 text-sm text-gray-400 mb-8">
-                <li class="flex items-start gap-2"><i class="fas fa-check text-infit-pink mt-1"></i> Rutinas Gym o Casa</li>
-                <li class="flex items-start gap-2"><i class="fas fa-check text-infit-pink mt-1"></i> Videos demostrativos</li>
-                <li class="flex items-start gap-2"><i class="fas fa-check text-infit-pink mt-1"></i> Calendario de Poder</li>
+                <li class="flex items-start gap-2">
+                    <div class="check-icon p-1 rounded text-infit-pink mt-0.5"><i class="fas fa-check text-xs"></i></div>
+                    <span>Rutinas Gym o Casa</span>
+                </li>
+                <li class="flex items-start gap-2">
+                    <div class="check-icon p-1 rounded text-infit-pink mt-0.5"><i class="fas fa-check text-xs"></i></div>
+                    <span>Videos demostrativos</span>
+                </li>
+                <li class="flex items-start gap-2">
+                    <div class="check-icon p-1 rounded text-infit-pink mt-0.5"><i class="fas fa-check text-xs"></i></div>
+                    <span>Calendario de Poder</span>
+                </li>
             </ul>
             <button onclick="selectPlan('Entrenamiento')" class="w-full py-3 rounded-lg border border-gray-600 hover:border-infit-pink hover:text-infit-pink transition-colors text-sm font-bold uppercase tracking-wider">
                 Elegir Entrenamiento
@@ -321,14 +532,84 @@
 
     </main>
 
-    <!-- Footer Note -->
-    <div class="max-w-4xl mx-auto px-6 text-center pb-12">
-        <div class="bg-gray-900/50 border border-gray-800 p-4 rounded-xl inline-flex items-center gap-3">
-            <i class="fas fa-map-marker-alt text-red-500 animate-bounce"></i>
-            <p class="text-xs text-gray-400 text-left">
-                <strong class="text-white uppercase">Aviso para Paisanos de Santa Ana:</strong><br>
-                Si eres de la comunidad, puedes pagar hasta que tengas todo tu material completo.
-            </p>
+    <!-- Beneficios Destacados -->
+    <section class="max-w-4xl mx-auto px-4 pb-12">
+        <div class="glass-panel rounded-2xl p-6 md:p-8">
+            <h3 class="text-xl font-heading font-bold text-center text-white uppercase italic mb-6">
+                <i class="fas fa-star text-infit-gold mr-2"></i> ¿Por qué elegir INFIT USA?
+            </h3>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <div class="text-center group">
+                    <div class="bg-infit-pink/10 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-3 group-hover:scale-110 group-hover:bg-infit-pink/20 transition-all">
+                        <i class="fas fa-map-marker-alt text-2xl text-infit-pink"></i>
+                    </div>
+                    <h4 class="font-bold text-white mb-1">Desde Tu Tierra</h4>
+                    <p class="text-xs text-gray-500">El sabor de Santa Ana Hueytlalpan ahora llega hasta donde estés en USA</p>
+                </div>
+                <div class="text-center group">
+                    <div class="bg-infit-pink/10 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-3 group-hover:scale-110 group-hover:bg-infit-pink/20 transition-all">
+                        <i class="fas fa-shopping-cart text-2xl text-infit-pink"></i>
+                    </div>
+                    <h4 class="font-bold text-white mb-1">Ingredientes Accesibles</h4>
+                    <p class="text-xs text-gray-500">Recetas con productos de Walmart, Target, o tu tienda latina favorita</p>
+                </div>
+                <div class="text-center group">
+                    <div class="bg-infit-pink/10 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-3 group-hover:scale-110 group-hover:bg-infit-pink/20 transition-all">
+                        <i class="fas fa-paper-plane text-2xl text-infit-pink"></i>
+                    </div>
+                    <h4 class="font-bold text-white mb-1">Pago Fácil a México</h4>
+                    <p class="text-xs text-gray-500">Remitly, Western Union, Wise... ¡Como ya lo conoces!</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Sección de Comunidad -->
+    <section class="max-w-4xl mx-auto px-4 pb-12">
+        <div class="bg-gradient-to-r from-infit-pink/10 to-infit-gold/5 border border-infit-pink/20 rounded-2xl p-6 md:p-8">
+            <div class="flex flex-col md:flex-row items-center gap-6">
+                <div class="flex-shrink-0">
+                    <div class="w-24 h-24 rounded-full bg-infit-pink/20 flex items-center justify-center">
+                        <span class="text-5xl flag-wave">🇲🇽</span>
+                    </div>
+                </div>
+                <div class="text-center md:text-left">
+                    <h3 class="text-lg font-heading font-bold text-white uppercase italic mb-2">
+                        De Santa Ana Hueytlalpan a Todo USA
+                    </h3>
+                    <p class="text-gray-400 text-sm">
+                        Sabemos lo que es extrañar la comida de casita. Por eso nuestros planes están diseñados 
+                        con ese sazón que te hace sentir cerca de casa, pero con ingredientes que puedes 
+                        encontrar en cualquier súper de Estados Unidos. 
+                        <span class="text-infit-gold font-bold">¡Porque la distancia no tiene que alejarte de tu bienestar!</span>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer Notes (Bloques Separados) -->
+    <div class="max-w-4xl mx-auto px-6 pb-12">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+            
+            <!-- Bloque 1: Garantía -->
+            <div class="bg-gray-900/50 border border-infit-pink/30 p-4 rounded-xl flex flex-col items-center justify-center text-center gap-2 hover:border-infit-pink/50 transition-colors">
+                <i class="fas fa-shield-alt text-infit-pink text-2xl animate-pulse"></i>
+                <p class="text-xs text-gray-400">
+                    <strong class="text-white uppercase">Confianza INFIT:</strong><br>
+                    Solicita tu plan hoy, y realiza tu pago únicamente cuando hayas recibido tu material completo. Sin riesgos.
+                </p>
+            </div>
+
+            <!-- Bloque 2: Pago USA -->
+            <div class="bg-gray-900/80 border border-green-700/50 p-4 rounded-xl flex flex-col items-center justify-center text-center gap-2 relative overflow-hidden hover:border-green-600 transition-colors">
+                <i class="fas fa-paper-plane text-green-400 text-2xl"></i>
+                <p class="text-xs text-gray-400">
+                    <strong class="text-green-400 uppercase">💳 Pago Fácil a México</strong><br>
+                    Remitly, Western Union, Wise... ¡Envía tu pago como ya lo haces con tu familia!
+                </p>
+            </div>
+
         </div>
     </div>
 
@@ -339,11 +620,21 @@
         
         <!-- Modal Content -->
         <div class="relative min-h-screen md:min-h-0 flex items-end md:items-center justify-center p-0 md:p-4">
-            <div class="w-full md:w-[500px] bg-[#121212] border border-infit-pink/30 rounded-t-3xl md:rounded-2xl p-6 md:p-8 transition-transform duration-300 transform translate-y-full md:translate-y-0" id="modal-panel">
+            <div class="w-full md:w-[520px] bg-[#121212] border border-infit-pink/20 rounded-t-3xl md:rounded-2xl p-6 md:p-8 transition-transform duration-300 transform translate-y-full md:translate-y-0" id="modal-panel">
                 
                 <div class="flex justify-between items-center mb-4">
                     <h3 class="text-xl font-heading font-bold text-white uppercase italic">Configura tu Plan</h3>
                     <button onclick="closeModal()" class="text-gray-500 hover:text-white"><i class="fas fa-times text-xl"></i></button>
+                </div>
+
+                <!-- Indicador de progreso -->
+                <div class="flex justify-center gap-2 mb-6">
+                    <div id="step-1" class="step-indicator w-2 h-2 rounded-full bg-infit-pink active"></div>
+                    <div id="step-2" class="step-indicator w-2 h-2 rounded-full bg-gray-600"></div>
+                    <div id="step-3" class="step-indicator w-2 h-2 rounded-full bg-gray-600"></div>
+                    <div id="step-4" class="step-indicator w-2 h-2 rounded-full bg-gray-600"></div>
+                    <div id="step-5" class="step-indicator w-2 h-2 rounded-full bg-gray-600"></div>
+                    <div id="step-6" class="step-indicator w-2 h-2 rounded-full bg-gray-600"></div>
                 </div>
 
                 <!-- Resumen Selección -->
@@ -353,22 +644,289 @@
                         <p id="modal-plan-name" class="text-white font-bold text-lg leading-none">Combo Total</p>
                     </div>
                     <div class="text-right">
-                        <p id="modal-plan-price" class="text-infit-gold font-bold text-xl">$90</p>
+                        <p id="modal-plan-price" class="text-infit-gold font-bold text-xl">$69</p>
                         <p class="text-[9px] text-gray-500 uppercase">Mensual</p>
                     </div>
                 </div>
 
                 <form id="client-form" onsubmit="handleOrder(event)" class="space-y-4 max-h-[70vh] overflow-y-auto pr-2 custom-scrollbar">
-                    <!-- Datos Básicos (Siempre visibles) -->
+                    <!-- Datos Básicos -->
                     <div class="grid grid-cols-1 gap-4">
                         <div>
-                            <label class="block text-xs text-gray-500 uppercase font-bold mb-1">Nombre Completo (o Apodo)</label>
+                            <label class="block text-xs text-gray-500 uppercase font-bold mb-1">
+                                <i class="fas fa-user text-infit-pink mr-1"></i>Nombre Completo (o Apodo)
+                            </label>
                             <input type="text" id="client-name" required class="input-field w-full rounded p-3" placeholder="Ej. Alex García">
                         </div>
-                        <div>
-                            <label class="block text-xs text-gray-500 uppercase font-bold mb-1">Ciudad / Estado (USA)</label>
-                            <input type="text" id="client-origin" required class="input-field w-full rounded p-3" placeholder="Ej. Los Angeles, CA">
+                        <div class="grid grid-cols-2 gap-2">
+                            <div>
+                                <label class="block text-xs text-gray-500 uppercase font-bold mb-1">
+                                    <i class="fas fa-city text-infit-pink mr-1"></i>Ciudad (USA)
+                                </label>
+                                <input type="text" id="client-city" required class="input-field w-full rounded p-3" placeholder="Ej. Houston, TX">
+                            </div>
+                            <div>
+                                <label class="block text-xs text-gray-500 uppercase font-bold mb-1">
+                                    <i class="fas fa-home text-infit-pink mr-1"></i>Pueblo de Origen
+                                </label>
+                                <input type="text" id="client-origin" class="input-field w-full rounded p-3" placeholder="Ej. Santa Ana">
+                            </div>
                         </div>
+                    </div>
+
+                    <!-- Campo de Objetivo -->
+                    <div id="fields-goal" class="space-y-4 border-t border-gray-800 pt-4 animate-bounce-in">
+                        <p class="text-infit-pink text-xs font-bold uppercase">
+                            <i class="fas fa-bullseye mr-1"></i>¿Cuál es tu objetivo?
+                        </p>
+                        <div class="grid grid-cols-1 gap-3">
+                            <label class="cursor-pointer block">
+                                <input type="radio" name="goal" value="Bajar de grasa" class="goal-radio hidden">
+                                <div class="goal-card input-field p-3 rounded-lg flex items-center gap-3">
+                                    <div class="goal-icon bg-red-500/20 p-2 rounded-lg text-red-400 transition-transform">
+                                        <i class="fas fa-fire-flame-curved text-lg"></i>
+                                    </div>
+                                    <div>
+                                        <p class="text-white font-bold text-sm">🔥 Bajar de grasa</p>
+                                        <p class="text-gray-500 text-[10px]">Quema grasa y define tu físico</p>
+                                    </div>
+                                </div>
+                            </label>
+                            <label class="cursor-pointer block">
+                                <input type="radio" name="goal" value="Ganar masa muscular" class="goal-radio hidden">
+                                <div class="goal-card input-field p-3 rounded-lg flex items-center gap-3">
+                                    <div class="goal-icon bg-blue-500/20 p-2 rounded-lg text-blue-400 transition-transform">
+                                        <i class="fas fa-dumbbell text-lg"></i>
+                                    </div>
+                                    <div>
+                                        <p class="text-white font-bold text-sm">💪 Ganar masa muscular</p>
+                                        <p class="text-gray-500 text-[10px]">Aumenta masa y fuerza</p>
+                                    </div>
+                                </div>
+                            </label>
+                            <label class="cursor-pointer block">
+                                <input type="radio" name="goal" value="Mantenimiento/Rendimiento" class="goal-radio hidden">
+                                <div class="goal-card input-field p-3 rounded-lg flex items-center gap-3">
+                                    <div class="goal-icon bg-green-500/20 p-2 rounded-lg text-green-400 transition-transform">
+                                        <i class="fas fa-chart-line text-lg"></i>
+                                    </div>
+                                    <div>
+                                        <p class="text-white font-bold text-sm">📈 Mantenimiento/Rendimiento</p>
+                                        <p class="text-gray-500 text-[10px]">Mantén tu peso y mejora</p>
+                                    </div>
+                                </div>
+                            </label>
+                        </div>
+                    </div>
+
+                    <!-- Campo de ¿Quién te recomendó? (PARA TODOS LOS PLANES) -->
+                    <div id="fields-referrer" class="space-y-4 border-t border-gray-800 pt-4 animate-bounce-in">
+                        <p class="text-infit-pink text-xs font-bold uppercase">
+                            <i class="fas fa-heart text-pink-400 mr-1"></i>¿Quién te recomendó? (Opcional)
+                        </p>
+                        <input 
+                            type="text" 
+                            id="client-referrer" 
+                            class="input-field w-full rounded p-3" 
+                            placeholder="Ej. María García, mi prima Lupita..."
+                        >
+                        <div class="bg-pink-500/10 border border-pink-500/20 rounded-lg p-3">
+                            <p class="text-[10px] text-gray-300 leading-relaxed">
+                                <i class="fas fa-hands-helping text-pink-400 mr-1"></i>
+                                <strong class="text-pink-300">¡Apoya a quien te recomendó!</strong><br>
+                                Si alguien te recomendó INFIT, mencionarlo ayuda a esa persona a construir también su mejor versión. 🙌
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- Campo de Dónde Compras (SOLO NUTRICIÓN Y COMBO) -->
+                    <div id="fields-store" class="space-y-4 border-t border-gray-800 pt-4 animate-bounce-in">
+                        <p class="text-infit-pink text-xs font-bold uppercase">
+                            <i class="fas fa-shopping-cart mr-1"></i>¿Dónde haces tu mandado?
+                        </p>
+                        <div class="grid grid-cols-1 gap-2">
+                            <label class="cursor-pointer block">
+                                <input type="radio" name="store" value="Tienda Latina" class="store-radio hidden">
+                                <div class="store-card input-field p-3 rounded-lg flex items-center gap-3">
+                                    <div class="store-icon bg-emerald-500/20 p-2 rounded-lg text-emerald-400 transition-transform">
+                                        <i class="fas fa-store text-lg"></i>
+                                    </div>
+                                    <div>
+                                        <p class="text-white font-bold text-sm">🏪 Tienda Latina</p>
+                                        <p class="text-gray-500 text-[10px]">El Super, Vallarta, Cardenas...</p>
+                                    </div>
+                                </div>
+                            </label>
+                            <label class="cursor-pointer block">
+                                <input type="radio" name="store" value="Supermercado Americano" class="store-radio hidden">
+                                <div class="store-card input-field p-3 rounded-lg flex items-center gap-3">
+                                    <div class="store-icon bg-blue-500/20 p-2 rounded-lg text-blue-400 transition-transform">
+                                        <i class="fas fa-shopping-basket text-lg"></i>
+                                    </div>
+                                    <div>
+                                        <p class="text-white font-bold text-sm">🛒 Supermercado Americano</p>
+                                        <p class="text-gray-500 text-[10px]">Walmart, Target, Kroger...</p>
+                                    </div>
+                                </div>
+                            </label>
+                            <label class="cursor-pointer block">
+                                <input type="radio" name="store" value="Ambos" class="store-radio hidden">
+                                <div class="store-card input-field p-3 rounded-lg flex items-center gap-3">
+                                    <div class="store-icon bg-purple-500/20 p-2 rounded-lg text-purple-400 transition-transform">
+                                        <i class="fas fa-cart-shopping text-lg"></i>
+                                    </div>
+                                    <div>
+                                        <p class="text-white font-bold text-sm">🛍️ De Ambos Lugares</p>
+                                        <p class="text-gray-500 text-[10px]">Combino tiendas latinas y americanas</p>
+                                    </div>
+                                </div>
+                            </label>
+                        </div>
+                    </div>
+
+                    <!-- Campo de Alimentos a Excluir (SOLO NUTRICIÓN Y COMBO) -->
+                    <div id="fields-exclude" class="space-y-4 border-t border-gray-800 pt-4 animate-bounce-in">
+                        <p class="text-infit-pink text-xs font-bold uppercase">
+                            <i class="fas fa-ban text-red-400 mr-1"></i>Alimentos a Excluir
+                        </p>
+                        <p class="text-gray-500 text-[10px] mb-3">
+                            ¿Hay algún alimento que no te guste o te haga daño? Marca las opciones que aplican:
+                        </p>
+                        
+                        <!-- Checkboxes de alergias/intolerancias comunes -->
+                        <div class="grid grid-cols-2 gap-2">
+                            <label class="exclude-item flex items-center gap-2 p-2 rounded border border-gray-700 cursor-pointer">
+                                <input type="checkbox" name="exclude" value="Lácteos" class="exclude-checkbox">
+                                <span class="text-xs text-gray-300">🥛 Lácteos</span>
+                            </label>
+                            <label class="exclude-item flex items-center gap-2 p-2 rounded border border-gray-700 cursor-pointer">
+                                <input type="checkbox" name="exclude" value="Gluten" class="exclude-checkbox">
+                                <span class="text-xs text-gray-300">🌾 Gluten</span>
+                            </label>
+                            <label class="exclude-item flex items-center gap-2 p-2 rounded border border-gray-700 cursor-pointer">
+                                <input type="checkbox" name="exclude" value="Mariscos" class="exclude-checkbox">
+                                <span class="text-xs text-gray-300">🦐 Mariscos</span>
+                            </label>
+                            <label class="exclude-item flex items-center gap-2 p-2 rounded border border-gray-700 cursor-pointer">
+                                <input type="checkbox" name="exclude" value="Pescado" class="exclude-checkbox">
+                                <span class="text-xs text-gray-300">🐟 Pescado</span>
+                            </label>
+                            <label class="exclude-item flex items-center gap-2 p-2 rounded border border-gray-700 cursor-pointer">
+                                <input type="checkbox" name="exclude" value="Huevo" class="exclude-checkbox">
+                                <span class="text-xs text-gray-300">🥚 Huevo</span>
+                            </label>
+                            <label class="exclude-item flex items-center gap-2 p-2 rounded border border-gray-700 cursor-pointer">
+                                <input type="checkbox" name="exclude" value="Nueces" class="exclude-checkbox">
+                                <span class="text-xs text-gray-300">🥜 Nueces</span>
+                            </label>
+                            <label class="exclude-item flex items-center gap-2 p-2 rounded border border-gray-700 cursor-pointer">
+                                <input type="checkbox" name="exclude" value="Soya" class="exclude-checkbox">
+                                <span class="text-xs text-gray-300">🫘 Soya</span>
+                            </label>
+                            <label class="exclude-item flex items-center gap-2 p-2 rounded border border-gray-700 cursor-pointer">
+                                <input type="checkbox" name="exclude" value="Picante" class="exclude-checkbox">
+                                <span class="text-xs text-gray-300">🌶️ Picante</span>
+                            </label>
+                            <label class="exclude-item flex items-center gap-2 p-2 rounded border border-gray-700 cursor-pointer">
+                                <input type="checkbox" name="exclude" value="Cerdo" class="exclude-checkbox">
+                                <span class="text-xs text-gray-300">🐷 Cerdo</span>
+                            </label>
+                            <label class="exclude-item flex items-center gap-2 p-2 rounded border border-gray-700 cursor-pointer">
+                                <input type="checkbox" name="exclude" value="Pollo" class="exclude-checkbox">
+                                <span class="text-xs text-gray-300">🍗 Pollo</span>
+                            </label>
+                            <label class="exclude-item flex items-center gap-2 p-2 rounded border border-gray-700 cursor-pointer">
+                                <input type="checkbox" name="exclude" value="Res" class="exclude-checkbox">
+                                <span class="text-xs text-gray-300">🥩 Res</span>
+                            </label>
+                            <label class="exclude-item flex items-center gap-2 p-2 rounded border border-gray-700 cursor-pointer">
+                                <input type="checkbox" name="exclude" value="Cebolla" class="exclude-checkbox">
+                                <span class="text-xs text-gray-300">🧅 Cebolla</span>
+                            </label>
+                        </div>
+
+                        <!-- Campo de texto libre para otros alimentos -->
+                        <div class="mt-3">
+                            <label class="block text-[10px] text-gray-500 uppercase font-bold mb-1">
+                                <i class="fas fa-pen text-infit-pink mr-1"></i>Otros alimentos que desees excluir:
+                            </label>
+                            <textarea 
+                                id="exclude-other" 
+                                class="input-field w-full rounded p-2 text-sm min-h-[60px]" 
+                                placeholder="Ej: No me gusta el cilantro, soy alérgico al mariscos..."
+                            ></textarea>
+                        </div>
+                    </div>
+
+                    <!-- Campo de Método de Pago -->
+                    <div id="fields-payment" class="space-y-4 border-t border-gray-800 pt-4 animate-bounce-in">
+                        <p class="text-infit-pink text-xs font-bold uppercase">
+                            <i class="fas fa-paper-plane text-green-400 mr-1"></i>¿Cómo prefieres enviar tu pago?
+                        </p>
+                        
+                        <!-- Nota contextual -->
+                        <div class="bg-infit-pink/10 border border-infit-pink/20 rounded-lg p-3 mb-3">
+                            <p class="text-[11px] text-gray-300 leading-relaxed">
+                                <i class="fas fa-heart text-infit-pink mr-1"></i>
+                                <strong class="text-infit-pink">¡Envía tu pago como ya lo conoces!</strong><br>
+                                Así como envías dinero a tu familia en México, puedes enviar tu pago de la misma forma. Te daremos los datos cuando tu plan esté listo.
+                            </p>
+                        </div>
+
+                        <div class="grid grid-cols-2 gap-3">
+                            <label class="cursor-pointer block">
+                                <input type="radio" name="payment" value="Remitly" class="payment-radio hidden">
+                                <div class="payment-card input-field p-3 rounded-lg flex flex-col items-center gap-2">
+                                    <div class="payment-icon bg-emerald-500/20 p-2 rounded-lg text-emerald-400 transition-transform">
+                                        <i class="fas fa-paper-plane text-lg"></i>
+                                    </div>
+                                    <div class="text-center">
+                                        <p class="text-white font-bold text-sm">Remitly</p>
+                                        <p class="text-gray-500 text-[9px]">Rápido y fácil</p>
+                                    </div>
+                                </div>
+                            </label>
+                            <label class="cursor-pointer block">
+                                <input type="radio" name="payment" value="Western Union" class="payment-radio hidden">
+                                <div class="payment-card input-field p-3 rounded-lg flex flex-col items-center gap-2">
+                                    <div class="payment-icon bg-yellow-500/20 p-2 rounded-lg text-yellow-400 transition-transform">
+                                        <i class="fas fa-globe text-lg"></i>
+                                    </div>
+                                    <div class="text-center">
+                                        <p class="text-white font-bold text-sm">Western Union</p>
+                                        <p class="text-gray-500 text-[9px]">En cualquier tienda</p>
+                                    </div>
+                                </div>
+                            </label>
+                            <label class="cursor-pointer block">
+                                <input type="radio" name="payment" value="Wise (TransferWise)" class="payment-radio hidden">
+                                <div class="payment-card input-field p-3 rounded-lg flex flex-col items-center gap-2">
+                                    <div class="payment-icon bg-blue-500/20 p-2 rounded-lg text-blue-400 transition-transform">
+                                        <i class="fas fa-exchange-alt text-lg"></i>
+                                    </div>
+                                    <div class="text-center">
+                                        <p class="text-white font-bold text-sm">Wise</p>
+                                        <p class="text-gray-500 text-[9px]">Bajas comisiones</p>
+                                    </div>
+                                </div>
+                            </label>
+                            <label class="cursor-pointer block">
+                                <input type="radio" name="payment" value="Otro (MoneyGram, etc.)" class="payment-radio hidden">
+                                <div class="payment-card input-field p-3 rounded-lg flex flex-col items-center gap-2">
+                                    <div class="payment-icon bg-purple-500/20 p-2 rounded-lg text-purple-400 transition-transform">
+                                        <i class="fas fa-ellipsis-h text-lg"></i>
+                                    </div>
+                                    <div class="text-center">
+                                        <p class="text-white font-bold text-sm">Otro</p>
+                                        <p class="text-gray-500 text-[9px]">MoneyGram, etc.</p>
+                                    </div>
+                                </div>
+                            </label>
+                        </div>
+                        <p class="text-[10px] text-gray-600 flex items-center gap-1">
+                            <i class="fas fa-info-circle text-infit-pink"></i>
+                            Te enviaremos los datos para que envíes tu pago como siempre lo haces.
+                        </p>
                     </div>
 
                     <!-- CAMPOS DINÁMICOS: NUTRICIÓN -->
@@ -462,7 +1020,7 @@
                             <span>Finalizar Pedido en WhatsApp</span>
                         </button>
                         <p class="text-[10px] text-center text-gray-500 mt-2">
-                            <i class="fas fa-exclamation-circle text-infit-gold"></i> Es necesario hacer clic para enviar los datos por WhatsApp.
+                            <i class="fas fa-exclamation-circle text-infit-pink"></i> Es necesario hacer clic para enviar los datos por WhatsApp.
                         </p>
                     </div>
                 </form>
@@ -510,6 +1068,11 @@
         <div class="text-center">
             <p class="text-infit-pink font-heading font-bold text-xl italic tracking-widest">INFIT</p>
             <p class="text-gray-700 text-[10px] uppercase tracking-widest mt-1">Santa Ana Hueytlalpan · USA · México</p>
+            <div class="flex items-center justify-center gap-2 mt-2">
+                <span class="flag-wave">🇲🇽</span>
+                <span class="text-gray-600 text-[9px]">→</span>
+                <span class="flag-wave" style="animation-delay: 0.5s">🇺🇸</span>
+            </div>
             <p class="text-gray-800 text-[9px] mt-4">Desarrollado con ⚡ para tu Mejor Versión</p>
         </div>
     </footer>
@@ -519,11 +1082,11 @@
         //  1. CONFIGURACIÓN EDITABLE
         // ==========================================
         let config = {
-            promoText: "Promoción válida solo durante Febrero",
-            priceNutri: 59,
-            priceTrain: 59,
-            priceCombo: 90,
-            priceOld: 118,
+            promoText: "Promoción 27 de marzo al 6 de abril. Precios especiales solo para los primeros clientes. Garantía Total: Pagas hasta recibir tu plan.",
+            priceNutri: 39,
+            priceTrain: 49,
+            priceCombo: 69,
+            priceOld: 88,
             comboNote: "*La opción que genera mejores resultados estadísticamente.*"
         };
         // ==========================================
@@ -534,7 +1097,6 @@
         
         let db;
         let auth;
-        // NOTA: Si subes esto a GitHub, asegúrate de reemplazar esta configuración con la tuya real.
         const firebaseConfig = typeof __firebase_config !== 'undefined' ? JSON.parse(__firebase_config) : {
             apiKey: "AIzaSyAQGBdxeLXvFrhGSgOvDpJbswbeJ3Fi48Y",
             authDomain: "infit-bienvenida-mx.firebaseapp.com",
@@ -553,7 +1115,6 @@
                 db = firebase.firestore();
                 auth = firebase.auth();
                 
-                // Autenticación anónima para poder escribir en la base de datos
                 if (typeof __initial_auth_token !== 'undefined') {
                     auth.signInWithCustomToken(__initial_auth_token);
                 } else {
@@ -588,10 +1149,106 @@
             }
 
             loadConfig();
+            setupStepIndicators();
         });
 
         // ==========================================
-        //  LOGICA DE VIDEO (VERSIÓN MUJERES)
+        //  INDICADORES DE PASO
+        // ==========================================
+        
+        function setupStepIndicators() {
+            const nameInput = document.getElementById('client-name');
+            const cityInput = document.getElementById('client-city');
+            
+            [nameInput, cityInput].forEach(input => {
+                input.addEventListener('input', updateStepIndicators);
+            });
+            
+            // Actualizar pasos cuando se selecciona objetivo
+            document.querySelectorAll('.goal-radio').forEach(radio => {
+                radio.addEventListener('change', () => {
+                    const step2 = document.getElementById('step-2');
+                    const step3 = document.getElementById('step-3');
+                    step2.classList.remove('active');
+                    step2.classList.add('completed');
+                    step3.classList.add('active');
+                });
+            });
+
+            // Actualizar pasos cuando se selecciona tienda
+            document.querySelectorAll('.store-radio').forEach(radio => {
+                radio.addEventListener('change', () => {
+                    const step3 = document.getElementById('step-3');
+                    const step4 = document.getElementById('step-4');
+                    step3.classList.remove('active');
+                    step3.classList.add('completed');
+                    step4.classList.add('active');
+                });
+            });
+
+            // Actualizar pasos cuando se marcan alimentos
+            document.querySelectorAll('.exclude-checkbox').forEach(checkbox => {
+                checkbox.addEventListener('change', updateExcludeStep);
+            });
+
+            document.getElementById('exclude-other').addEventListener('input', updateExcludeStep);
+
+            // Actualizar pasos cuando se selecciona método de pago
+            document.querySelectorAll('.payment-radio').forEach(radio => {
+                radio.addEventListener('change', () => {
+                    const step5 = document.getElementById('step-5');
+                    const step6 = document.getElementById('step-6');
+                    step5.classList.remove('active');
+                    step5.classList.add('completed');
+                    step6.classList.add('active');
+                });
+            });
+        }
+
+        function updateExcludeStep() {
+            const step4 = document.getElementById('step-4');
+            const step5 = document.getElementById('step-5');
+            const checkedItems = document.querySelectorAll('.exclude-checkbox:checked');
+            const excludeOther = document.getElementById('exclude-other').value.trim();
+            
+            if (checkedItems.length > 0 || excludeOther !== '') {
+                step4.classList.remove('active');
+                step4.classList.add('completed');
+                step5.classList.add('active');
+            }
+        }
+
+        function updateStepIndicators() {
+            const name = document.getElementById('client-name').value;
+            const city = document.getElementById('client-city').value;
+            const step1 = document.getElementById('step-1');
+            const step2 = document.getElementById('step-2');
+            
+            if (name && city) {
+                step1.classList.remove('active');
+                step1.classList.add('completed');
+                step2.classList.add('active');
+            }
+        }
+
+        function resetStepIndicators() {
+            for (let i = 1; i <= 6; i++) {
+                const step = document.getElementById(`step-${i}`);
+                step.classList.remove('active', 'completed');
+            }
+            document.getElementById('step-1').classList.add('active');
+            
+            // Limpiar selecciones
+            document.querySelectorAll('.goal-radio').forEach(radio => radio.checked = false);
+            document.querySelectorAll('.store-radio').forEach(radio => radio.checked = false);
+            document.querySelectorAll('.exclude-checkbox').forEach(checkbox => checkbox.checked = false);
+            document.querySelectorAll('.payment-radio').forEach(radio => radio.checked = false);
+            document.getElementById('exclude-other').value = '';
+            document.getElementById('client-referrer').value = '';
+        }
+
+        // ==========================================
+        //  LOGICA DE VIDEO
         // ==========================================
         
         function playVideo(type) {
@@ -599,21 +1256,19 @@
             const video = document.getElementById('main-video-player');
             const title = document.getElementById('video-title');
             
-            // Definir rutas de video para MUJERES
             let src = '';
             
             if (type === 'nutri') {
                 src = 'PA%20+%20Eliminacion%20Mujeres.mp4';
-                title.textContent = "PREVIEW: Plan de Nutrición (Mujeres)";
+                title.textContent = "PREVIEW: Plan de Nutrición";
             } else if (type === 'entreno') {
                 src = 'PE%20+%20Reto%20Mujeres.mp4';
-                title.textContent = "PREVIEW: Entrenamiento Digital (Mujeres)";
+                title.textContent = "PREVIEW: Entrenamiento Digital";
             }
             
             video.src = src;
             modal.classList.remove('hidden');
             
-            // Intentar reproducir automáticamente
             video.play().catch(e => console.log("Auto-play prevenido por navegador", e));
         }
 
@@ -622,8 +1277,8 @@
             const video = document.getElementById('main-video-player');
             
             video.pause();
-            video.currentTime = 0; // Reiniciar video
-            video.src = ""; // Limpiar source para detener descarga de datos
+            video.currentTime = 0;
+            video.src = "";
             modal.classList.add('hidden');
         }
 
@@ -636,7 +1291,6 @@
             document.getElementById('display-price-old').textContent = config.priceOld;
             document.getElementById('display-combo-note').textContent = config.comboNote;
 
-            // Cargar valores en los inputs del editor
             document.getElementById('edit-promo').value = config.promoText;
             document.getElementById('edit-price-nutri').value = config.priceNutri;
             document.getElementById('edit-price-train').value = config.priceTrain;
@@ -671,7 +1325,7 @@
         };`;
             
             navigator.clipboard.writeText(code).then(() => {
-                alert("¡Código copiado! Pega este bloque en tu archivo index.html en GitHub reemplazando la sección 'CONFIGURACIÓN EDITABLE' para guardar los cambios.");
+                alert("¡Código copiado!");
             });
         }
 
@@ -686,9 +1340,9 @@
             const lblHeight = document.getElementById('lbl-height');
 
             if (unit === 'metric') {
-                lblMetric.classList.add('bg-infit-gold', 'text-black');
+                lblMetric.classList.add('bg-infit-pink', 'text-black');
                 lblMetric.classList.remove('text-gray-500');
-                lblImperial.classList.remove('bg-infit-gold', 'text-black');
+                lblImperial.classList.remove('bg-infit-pink', 'text-black');
                 lblImperial.classList.add('text-gray-500');
                 
                 lblWeight.textContent = "Peso (kg)";
@@ -696,9 +1350,9 @@
                 weightInput.placeholder = "70";
                 heightInput.placeholder = "170";
             } else {
-                lblImperial.classList.add('bg-infit-gold', 'text-black');
+                lblImperial.classList.add('bg-infit-pink', 'text-black');
                 lblImperial.classList.remove('text-gray-500');
-                lblMetric.classList.remove('bg-infit-gold', 'text-black');
+                lblMetric.classList.remove('bg-infit-pink', 'text-black');
                 lblMetric.classList.add('text-gray-500');
 
                 lblWeight.textContent = "Peso (lb)";
@@ -713,25 +1367,38 @@
             let price = 0;
             const fieldsNutri = document.getElementById('fields-nutrition');
             const fieldsTrain = document.getElementById('fields-training');
+            const fieldsStore = document.getElementById('fields-store');
+            const fieldsExclude = document.getElementById('fields-exclude');
 
+            // Ocultar todos los campos dinámicos por defecto
             fieldsNutri.classList.add('hidden');
             fieldsTrain.classList.add('hidden');
+            fieldsStore.classList.add('hidden');
+            fieldsExclude.classList.add('hidden');
             
             if (planName === 'Nutrición') {
                 price = config.priceNutri;
                 fieldsNutri.classList.remove('hidden');
+                fieldsStore.classList.remove('hidden');
+                fieldsExclude.classList.remove('hidden');
             } else if (planName === 'Entrenamiento') {
                 price = config.priceTrain;
                 fieldsTrain.classList.remove('hidden');
+                // NO mostrar fields-store ni fields-exclude para Entrenamiento
             } else if (planName === 'Combo Total') {
                 price = config.priceCombo;
                 fieldsNutri.classList.remove('hidden');
                 fieldsTrain.classList.remove('hidden');
+                fieldsStore.classList.remove('hidden');
+                fieldsExclude.classList.remove('hidden');
             }
 
             selectedPlan = { name: planName, price: price };
             document.getElementById('modal-plan-name').textContent = planName;
-            document.getElementById('modal-plan-price').textContent = `$${price} USD`;
+            document.getElementById('modal-plan-price').textContent = `$${price}`;
+            
+            // Resetear indicadores de paso
+            resetStepIndicators();
             
             const modal = document.getElementById('order-modal');
             const panel = document.getElementById('modal-panel');
@@ -756,7 +1423,8 @@
             // Datos Básicos
             const formData = {
                 name: document.getElementById('client-name').value,
-                origin: document.getElementById('client-origin').value,
+                city: document.getElementById('client-city').value,
+                origin: document.getElementById('client-origin').value || 'No especificado',
                 plan: selectedPlan.name,
                 price: selectedPlan.price,
                 affiliate: affiliateCode || 'Orgánico',
@@ -766,7 +1434,55 @@
             // Construcción del Mensaje
             let detailsText = "";
             let unitLabelW = currentUnit === 'metric' ? 'kg' : 'lb';
-            let unitLabelH = currentUnit === 'metric' ? 'cm' : '';
+            let unitLabelH = currentUnit === 'metric' ? 'cm' : 'ft/in';
+
+            // Capturar objetivo
+            const selectedGoal = document.querySelector('input[name="goal"]:checked');
+            if (selectedGoal) {
+                formData.goal = selectedGoal.value;
+                detailsText += `%0A%0A🎯 *OBJETIVO*%0A• ${formData.goal}`;
+            }
+
+            // Capturar quién recomendó (PARA TODOS LOS PLANES)
+            const referrerName = document.getElementById('client-referrer').value.trim();
+            if (referrerName) {
+                formData.referredBy = referrerName;
+                detailsText += `%0A%0A❤️ *RECOMENDADO POR*%0A• ${referrerName}`;
+            }
+
+            // Capturar tienda (SOLO NUTRICIÓN Y COMBO)
+            const selectedStore = document.querySelector('input[name="store"]:checked');
+            if (selectedStore) {
+                formData.store = selectedStore.value;
+                detailsText += `%0A%0A🛒 *DÓNDE HAGO MANDADO*%0A• ${formData.store}`;
+            }
+
+            // Capturar alimentos a excluir (SOLO NUTRICIÓN Y COMBO)
+            const excludedItems = [];
+            document.querySelectorAll('.exclude-checkbox:checked').forEach(checkbox => {
+                excludedItems.push(checkbox.value);
+            });
+            const excludeOtherText = document.getElementById('exclude-other').value.trim();
+            
+            if (excludedItems.length > 0 || excludeOtherText !== '') {
+                formData.excludedFoods = excludedItems;
+                formData.excludedFoodsOther = excludeOtherText;
+                
+                detailsText += `%0A%0A🚫 *ALIMENTOS A EXCLUIR*`;
+                if (excludedItems.length > 0) {
+                    detailsText += `%0A• ${excludedItems.join('%0A• ')}`;
+                }
+                if (excludeOtherText !== '') {
+                    detailsText += `%0A• Otros: ${excludeOtherText}`;
+                }
+            }
+
+            // Capturar método de pago
+            const selectedPayment = document.querySelector('input[name="payment"]:checked');
+            if (selectedPayment) {
+                formData.paymentMethod = selectedPayment.value;
+                detailsText += `%0A%0A💳 *MÉTODO DE PAGO*%0A• ${formData.paymentMethod}`;
+            }
 
             // Datos Extra (Nutrición)
             if (!document.getElementById('fields-nutrition').classList.contains('hidden')) {
@@ -789,34 +1505,32 @@
                 detailsText += `%0A%0A🏋️ *DATOS ENTRENO*%0A• Lugar: ${place}%0A• Días Disp: ${days || 'Por definir'}`;
             }
 
-            // Guardar en Firestore (Persistencia)
+            // Guardar en Firestore
             if (db) {
                 try {
-                    // Si hay usuario autenticado (aunque sea anónimo), guardar en users, si no en public
                     const user = auth.currentUser;
                     const collectionPath = user 
                         ? db.collection('artifacts').doc(appId).collection('public').doc('data').collection('leads')
-                        : null; // Fallback si no hay DB configurada
+                        : null;
 
                     if (collectionPath) await collectionPath.add(formData);
                 } catch (error) { console.error("Error guardando lead en Firebase:", error); }
             }
 
             // Texto Final WhatsApp
-            const phone = "527751056744"; // Tu número
-            const header = `Hola INFIT! 🚀 Soy *${formData.name}* (Desde ${formData.origin}).%0A%0A🔥 Quiero empezar mi *${formData.plan}* ($${formData.price} USD / Mes).`;
+            const phone = "527751056744";
+            const locationText = formData.origin !== 'No especificado' 
+                ? `de ${formData.origin}, ahora en ${formData.city}` 
+                : `de ${formData.city}`;
+            const header = `Hola INFIT! 🚀 Soy *${formData.name}* (${locationText}).%0A%0A🔥 Quiero empezar mi *${formData.plan}* ($${formData.price} USD / Mes).`;
             const footer = `%0A%0A📝 *Nota:* Soy de Santa Ana o referido. Estoy de acuerdo en realizar el pago al momento de tener todo mi material.`;
-            const deliveryNote = `%0A%0A🕒 *Entrega:* El tiempo aproximado de entrega es de 3 días hábiles.`;
             const motivation = `%0A%0A✨ *¡Bienvenido a tu mejor Versión!*`;
             const refText = affiliateCode ? `%0A%0A(Asesor: ${affiliateCode})` : '';
             
-            const fullText = `${header}${detailsText}${footer}${deliveryNote}${motivation}${refText}`;
+            const fullText = `${header}${detailsText}${footer}${motivation}${refText}`;
             const waLink = `https://wa.me/${phone}?text=${fullText}`;
 
-            // Abrir WhatsApp
             window.open(waLink, '_blank');
-
-            // UI Final
             closeModal();
             showSuccess(formData.name);
             
@@ -830,8 +1544,7 @@
             overlay.classList.remove('hidden');
             
             const end = Date.now() + 2.5 * 1000;
-            // Confetti con toque rosa
-            const colors = ['#FFD700', '#ec4899', '#ffffff'];
+            const colors = ['#ec4899', '#FFD700', '#ffffff'];
             (function frame() {
                 confetti({ particleCount: 3, angle: 60, spread: 55, origin: { x: 0 }, colors: colors });
                 confetti({ particleCount: 3, angle: 120, spread: 55, origin: { x: 1 }, colors: colors });
