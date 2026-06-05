@@ -35,6 +35,7 @@
                             pink: '#ec4899',
                             white: '#ffffff',
                             gray: '#888888',
+                            cyan: '#06b6d4',
                         }
                     },
                     fontFamily: {
@@ -153,6 +154,53 @@
         /* Ocultar elementos admin por defecto */
         .admin-only {
             display: none;
+        }
+
+        /* L-Carnitina Toggle Switch */
+        .lc-toggle-switch {
+            position: relative;
+            width: 48px;
+            height: 26px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 13px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: 2px solid rgba(255, 255, 255, 0.15);
+            flex-shrink: 0;
+        }
+        .lc-toggle-switch.active {
+            background: linear-gradient(135deg, #06b6d4 0%, #0891b2 100%);
+            border-color: #06b6d4;
+            box-shadow: 0 0 15px rgba(6, 182, 212, 0.4);
+        }
+        .lc-toggle-switch::after {
+            content: '';
+            position: absolute;
+            top: 2px;
+            left: 2px;
+            width: 18px;
+            height: 18px;
+            background: white;
+            border-radius: 50%;
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.3);
+        }
+        .lc-toggle-switch.active::after {
+            left: 24px;
+        }
+        .lc-section {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.4s ease, opacity 0.3s ease, padding 0.3s ease;
+            opacity: 0;
+            padding-top: 0;
+            padding-bottom: 0;
+        }
+        .lc-section.visible {
+            max-height: 300px;
+            opacity: 1;
+            padding-top: 12px;
+            padding-bottom: 12px;
         }
 
         /* Estilos para tarjetas de objetivo */
@@ -350,6 +398,20 @@
             </div>
 
             <div class="border-t border-gray-700 pt-4 mt-4">
+                <h4 class="text-white font-bold mb-2">L-Carnitina (USD)</h4>
+                <div class="grid grid-cols-2 gap-2">
+                    <div>
+                        <label class="block text-gray-500">Precio L-Carnitina</label>
+                        <input type="number" id="edit-price-lcarnitina" class="input-field w-full p-2 rounded" oninput="updateContent()">
+                    </div>
+                    <div>
+                        <label class="block text-gray-500">Frascos</label>
+                        <input type="number" id="edit-lc-frascos" class="input-field w-full p-2 rounded" oninput="updateContent()">
+                    </div>
+                </div>
+            </div>
+
+            <div class="border-t border-gray-700 pt-4 mt-4">
                 <label class="block text-gray-500 mb-1">Nota del Combo (Debajo del botón)</label>
                 <textarea id="edit-combo-note" class="input-field w-full p-2 rounded h-20" oninput="updateContent()"></textarea>
             </div>
@@ -432,7 +494,7 @@
             <button onclick="playVideo('nutri')" class="w-full mb-4 py-2 bg-gray-800/50 hover:bg-infit-pink/10 rounded text-xs text-infit-pink border border-infit-pink/30 transition-all flex items-center justify-center gap-2">
                 <i class="fas fa-play-circle text-sm"></i> Ver Preview
             </button>
-            <ul class="space-y-3 text-sm text-gray-400 mb-8">
+            <ul class="space-y-3 text-sm text-gray-400 mb-6">
                 <li class="flex items-start gap-2">
                     <div class="check-icon p-1 rounded text-infit-pink mt-0.5"><i class="fas fa-check text-xs"></i></div>
                     <span>Plan 100% personalizado</span>
@@ -446,9 +508,46 @@
                     <span>Recetas prácticas</span>
                 </li>
             </ul>
+
+            <!-- L-Carnitina Toggle - Nutrición -->
+            <div class="border-t border-gray-800 pt-4 mb-4">
+                <div class="flex items-center justify-between mb-2">
+                    <div class="flex items-center gap-2">
+                        <i class="fas fa-bolt text-infit-cyan text-sm"></i>
+                        <span class="text-xs font-bold text-white uppercase">+ L-Carnitina</span>
+                    </div>
+                    <div class="lc-toggle-switch" id="lc-toggle-nutri" onclick="toggleLcarnitina('nutri')"></div>
+                </div>
+                <p class="text-[10px] text-gray-500 mb-2">
+                    <i class="fas fa-info-circle text-infit-cyan mr-1"></i>
+                    Potencia tus resultados. Presentación en pastillas. Se envía desde México.
+                </p>
+                <div class="lc-section" id="lc-detail-nutri">
+                    <div class="bg-cyan-900/20 border border-cyan-500/30 rounded-lg p-3">
+                        <div class="flex items-center gap-2 mb-2">
+                            <i class="fas fa-capsules text-infit-cyan"></i>
+                            <span class="text-xs font-bold text-infit-cyan"><span id="lc-frascos-label-nutri">2</span> Frascos de L-Carnitina</span>
+                        </div>
+                        <div class="flex items-center justify-between">
+                            <span class="text-[10px] text-gray-400">$<span id="lc-price-nutri">90</span> USD (incluye envío)</span>
+                            <span class="text-[9px] text-infit-cyan bg-cyan-900/30 px-2 py-0.5 rounded-full">🇲🇽 Envío desde México</span>
+                        </div>
+                        <div class="mt-2 bg-amber-900/20 border border-amber-500/30 rounded p-2">
+                            <p class="text-[9px] text-amber-300">
+                                <i class="fas fa-exclamation-triangle mr-1"></i>
+                                <strong>Pago por anticipado requerido</strong> para procesar el envío de L-Carnitina.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
             <button onclick="selectPlan('Nutrición')" class="w-full py-3 rounded-lg border border-gray-600 hover:border-infit-pink hover:text-infit-pink transition-colors text-sm font-bold uppercase tracking-wider">
                 Elegir Nutrición
             </button>
+            <p class="text-[10px] text-center text-gray-500 mt-2 italic" id="payment-note-nutri">
+                *Pagas hasta que recibas tu material.*
+            </p>
         </div>
 
         <!-- PLAN COMBO (DESTACADO) -->
@@ -469,7 +568,7 @@
                 <span class="text-sm text-infit-gold font-bold">USD / Mes</span>
                 <p class="text-[10px] text-gray-500 mt-1">Ahorras $19 vs. planes separados</p>
             </div>
-            <ul class="space-y-4 text-sm text-gray-300 mb-8">
+            <ul class="space-y-4 text-sm text-gray-300 mb-6">
                 <li class="flex flex-col gap-1">
                     <div class="flex items-start gap-3">
                         <div class="bg-infit-pink/20 p-1 rounded text-infit-pink"><i class="fas fa-dumbbell"></i></div>
@@ -489,12 +588,47 @@
                     <span>Calendario del Poder + Eliminación alimentos dañinos</span>
                 </li>
             </ul>
+
+            <!-- L-Carnitina Toggle - Combo -->
+            <div class="border-t border-infit-pink/20 pt-4 mb-4">
+                <div class="flex items-center justify-between mb-2">
+                    <div class="flex items-center gap-2">
+                        <i class="fas fa-bolt text-infit-cyan text-sm"></i>
+                        <span class="text-xs font-bold text-white uppercase">+ L-Carnitina</span>
+                    </div>
+                    <div class="lc-toggle-switch" id="lc-toggle-combo" onclick="toggleLcarnitina('combo')"></div>
+                </div>
+                <p class="text-[10px] text-gray-500 mb-2">
+                    <i class="fas fa-info-circle text-infit-cyan mr-1"></i>
+                    Potencia tus resultados. Presentación en pastillas. Se envía desde México.
+                </p>
+                <div class="lc-section" id="lc-detail-combo">
+                    <div class="bg-cyan-900/20 border border-cyan-500/30 rounded-lg p-3">
+                        <div class="flex items-center gap-2 mb-2">
+                            <i class="fas fa-capsules text-infit-cyan"></i>
+                            <span class="text-xs font-bold text-infit-cyan"><span id="lc-frascos-label-combo">2</span> Frascos de L-Carnitina</span>
+                        </div>
+                        <div class="flex items-center justify-between">
+                            <span class="text-[10px] text-gray-400">$<span id="lc-price-combo">90</span> USD (incluye envío)</span>
+                            <span class="text-[9px] text-infit-cyan bg-cyan-900/30 px-2 py-0.5 rounded-full">🇲🇽 Envío desde México</span>
+                        </div>
+                        <div class="mt-2 bg-amber-900/20 border border-amber-500/30 rounded p-2">
+                            <p class="text-[9px] text-amber-300">
+                                <i class="fas fa-exclamation-triangle mr-1"></i>
+                                <strong>Pago por anticipado requerido</strong> para procesar el envío de L-Carnitina.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
             <button onclick="selectPlan('Combo Total')" class="w-full bg-gradient-to-r from-infit-pink to-pink-600 hover:from-pink-500 hover:to-infit-pink text-white font-bold py-4 rounded-lg uppercase tracking-widest transition-all transform hover:scale-105 shadow-[0_0_20px_rgba(236,72,153,0.3)]">
                 QUIERO MI MEJOR VERSIÓN
             </button>
             <p class="text-[10px] text-center text-gray-400 mt-4 italic" id="display-combo-note">
                 *La opción que genera mejores resultados estadísticamente.*
             </p>
+            <p class="text-[10px] text-center mt-1 italic" id="payment-note-combo"></p>
         </div>
 
         <!-- Plan Entrenamiento -->
@@ -511,7 +645,7 @@
             <button onclick="playVideo('entreno')" class="w-full mb-4 py-2 bg-gray-800/50 hover:bg-infit-pink/10 rounded text-xs text-infit-pink border border-infit-pink/30 transition-all flex items-center justify-center gap-2">
                 <i class="fas fa-play-circle text-sm"></i> Ver Preview
             </button>
-            <ul class="space-y-3 text-sm text-gray-400 mb-8">
+            <ul class="space-y-3 text-sm text-gray-400 mb-6">
                 <li class="flex items-start gap-2">
                     <div class="check-icon p-1 rounded text-infit-pink mt-0.5"><i class="fas fa-check text-xs"></i></div>
                     <span>Rutinas Gym o Casa</span>
@@ -525,9 +659,46 @@
                     <span>Calendario de Poder</span>
                 </li>
             </ul>
+
+            <!-- L-Carnitina Toggle - Entrenamiento -->
+            <div class="border-t border-gray-800 pt-4 mb-4">
+                <div class="flex items-center justify-between mb-2">
+                    <div class="flex items-center gap-2">
+                        <i class="fas fa-bolt text-infit-cyan text-sm"></i>
+                        <span class="text-xs font-bold text-white uppercase">+ L-Carnitina</span>
+                    </div>
+                    <div class="lc-toggle-switch" id="lc-toggle-train" onclick="toggleLcarnitina('train')"></div>
+                </div>
+                <p class="text-[10px] text-gray-500 mb-2">
+                    <i class="fas fa-info-circle text-infit-cyan mr-1"></i>
+                    Potencia tus resultados. Presentación en pastillas. Se envía desde México.
+                </p>
+                <div class="lc-section" id="lc-detail-train">
+                    <div class="bg-cyan-900/20 border border-cyan-500/30 rounded-lg p-3">
+                        <div class="flex items-center gap-2 mb-2">
+                            <i class="fas fa-capsules text-infit-cyan"></i>
+                            <span class="text-xs font-bold text-infit-cyan"><span id="lc-frascos-label-train">2</span> Frascos de L-Carnitina</span>
+                        </div>
+                        <div class="flex items-center justify-between">
+                            <span class="text-[10px] text-gray-400">$<span id="lc-price-train">90</span> USD (incluye envío)</span>
+                            <span class="text-[9px] text-infit-cyan bg-cyan-900/30 px-2 py-0.5 rounded-full">🇲🇽 Envío desde México</span>
+                        </div>
+                        <div class="mt-2 bg-amber-900/20 border border-amber-500/30 rounded p-2">
+                            <p class="text-[9px] text-amber-300">
+                                <i class="fas fa-exclamation-triangle mr-1"></i>
+                                <strong>Pago por anticipado requerido</strong> para procesar el envío de L-Carnitina.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
             <button onclick="selectPlan('Entrenamiento')" class="w-full py-3 rounded-lg border border-gray-600 hover:border-infit-pink hover:text-infit-pink transition-colors text-sm font-bold uppercase tracking-wider">
                 Elegir Entrenamiento
             </button>
+            <p class="text-[10px] text-center text-gray-500 mt-2 italic" id="payment-note-train">
+                *Pagas hasta que recibas tu material.*
+            </p>
         </div>
 
     </main>
@@ -638,14 +809,54 @@
                 </div>
 
                 <!-- Resumen Selección -->
-                <div class="bg-infit-pink/10 p-3 rounded border border-infit-pink/20 mb-6 flex justify-between items-center">
+                <div class="bg-infit-pink/10 p-3 rounded border border-infit-pink/20 mb-4 flex justify-between items-center">
                     <div>
                         <p class="text-[10px] text-infit-pink uppercase font-bold">Plan Seleccionado</p>
                         <p id="modal-plan-name" class="text-white font-bold text-lg leading-none">Combo Total</p>
                     </div>
                     <div class="text-right">
                         <p id="modal-plan-price" class="text-infit-gold font-bold text-xl">$69</p>
-                        <p class="text-[9px] text-gray-500 uppercase">Mensual</p>
+                        <p id="modal-payment-condition" class="text-[9px] text-gray-500 uppercase">Mensual</p>
+                    </div>
+                </div>
+
+                <!-- L-Carnitina Summary in Modal -->
+                <div id="modal-lc-summary" class="bg-cyan-900/20 border border-cyan-500/30 rounded-lg p-3 mb-4 hidden">
+                    <div class="flex items-center gap-2 mb-1">
+                        <i class="fas fa-capsules text-infit-cyan"></i>
+                        <span class="text-xs font-bold text-infit-cyan" id="modal-lc-title">+ L-Carnitina (2 frascos)</span>
+                    </div>
+                    <div class="flex justify-between items-center">
+                        <span class="text-[10px] text-gray-400" id="modal-lc-detail">2 frascos · Presentación en pastillas</span>
+                        <span class="text-xs font-bold text-infit-cyan">$<span id="modal-lc-price">90</span> USD</span>
+                    </div>
+                    <div class="mt-1">
+                        <span class="text-[9px] text-gray-500">🇲🇽 Incluye envío desde México</span>
+                    </div>
+                </div>
+
+                <!-- Price Breakdown in Modal -->
+                <div id="modal-price-breakdown" class="bg-white/5 border border-white/10 rounded-lg p-3 mb-4 hidden">
+                    <p class="text-[10px] text-gray-500 uppercase font-bold mb-2">Desglose de Precio</p>
+                    <div class="space-y-1">
+                        <div class="flex justify-between text-[11px]">
+                            <span class="text-gray-400" id="breakdown-plan-label">Combo Total</span>
+                            <span class="text-white" id="breakdown-plan-price">$69 USD</span>
+                        </div>
+                        <div class="flex justify-between text-[11px]">
+                            <span class="text-gray-400">L-Carnitina (incluye envío)</span>
+                            <span class="text-infit-cyan" id="breakdown-lc-price">$90 USD</span>
+                        </div>
+                        <div class="border-t border-gray-700 pt-1 mt-1 flex justify-between text-xs font-bold">
+                            <span class="text-white">Total</span>
+                            <span class="text-infit-gold" id="breakdown-total">$159 USD</span>
+                        </div>
+                    </div>
+                    <div id="breakdown-payment-note" class="mt-2 bg-amber-900/20 border border-amber-500/30 rounded p-2">
+                        <p class="text-[9px] text-amber-300">
+                            <i class="fas fa-exclamation-triangle mr-1"></i>
+                            <strong>Pago por anticipado requerido</strong> para procesar el envío de L-Carnitina desde México.
+                        </p>
                     </div>
                 </div>
 
@@ -865,8 +1076,8 @@
                         </p>
                         
                         <!-- Nota contextual -->
-                        <div class="bg-infit-pink/10 border border-infit-pink/20 rounded-lg p-3 mb-3">
-                            <p class="text-[11px] text-gray-300 leading-relaxed">
+                        <div class="bg-infit-pink/10 border border-infit-pink/20 rounded-lg p-3 mb-3" id="payment-context-box">
+                            <p class="text-[11px] text-gray-300 leading-relaxed" id="payment-context-text">
                                 <i class="fas fa-heart text-infit-pink mr-1"></i>
                                 <strong class="text-infit-pink">¡Envía tu pago como ya lo conoces!</strong><br>
                                 Así como envías dinero a tu familia en México, puedes enviar tu pago de la misma forma. Te daremos los datos cuando tu plan esté listo.
@@ -923,7 +1134,7 @@
                                 </div>
                             </label>
                         </div>
-                        <p class="text-[10px] text-gray-600 flex items-center gap-1">
+                        <p class="text-[10px] text-gray-600 flex items-center gap-1" id="payment-method-note">
                             <i class="fas fa-info-circle text-infit-pink"></i>
                             Te enviaremos los datos para que envíes tu pago como siempre lo haces.
                         </p>
@@ -1019,7 +1230,7 @@
                             <i class="fab fa-whatsapp text-2xl"></i>
                             <span>Finalizar Pedido en WhatsApp</span>
                         </button>
-                        <p class="text-[10px] text-center text-gray-500 mt-2">
+                        <p class="text-[10px] text-center text-gray-500 mt-2" id="modal-footer-payment-note">
                             <i class="fas fa-exclamation-circle text-infit-pink"></i> Es necesario hacer clic para enviar los datos por WhatsApp.
                         </p>
                     </div>
@@ -1082,14 +1293,25 @@
         //  1. CONFIGURACIÓN EDITABLE
         // ==========================================
         let config = {
-            promoText: "Promoción válida del 4 al 31 de mayo. Aprovecha el precio especial y los retos activos: reta a alguien que este contigo en EE. UU. para obtener descuento adicional o patrocina a alguien en México y comiencen juntos su mejor versión",
+            promoText: "Promoción válida del 01 al 30 de Junio. Aprovecha el precio especial y los retos activos: reta a alguien que este contigo en EE. UU. para obtener descuento adicional o patrocina a alguien en México y comiencen juntos su mejor versión",
             priceNutri: 39,
             priceTrain: 49,
             priceCombo: 69,
             priceOld: 88,
+            priceLcarnitina: 90,
+            lcFrascos: 2,
             comboNote: "*La opción que genera mejores resultados estadísticamente.*"
         };
         // ==========================================
+
+        // ==========================================
+        //  L-CARNITINA STATE
+        // ==========================================
+        let lcarnitinaState = {
+            nutri: false,
+            combo: false,
+            train: false
+        };
 
         // ==========================================
         //  2. LÓGICA DE FIREBASE Y NEGOCIO
@@ -1123,7 +1345,7 @@
             }
         } catch (e) { console.warn("Modo offline/demo o error config", e); }
 
-        let selectedPlan = { name: '', price: 0 };
+        let selectedPlan = { name: '', price: 0, key: '' };
         let affiliateCode = null;
         let currentUnit = 'metric';
 
@@ -1151,6 +1373,50 @@
             loadConfig();
             setupStepIndicators();
         });
+
+        // ==========================================
+        //  L-CARNITINA TOGGLE
+        // ==========================================
+        function toggleLcarnitina(planKey) {
+            lcarnitinaState[planKey] = !lcarnitinaState[planKey];
+            const toggle = document.getElementById(`lc-toggle-${planKey}`);
+            const detail = document.getElementById(`lc-detail-${planKey}`);
+            
+            if (lcarnitinaState[planKey]) {
+                toggle.classList.add('active');
+                detail.classList.add('visible');
+            } else {
+                toggle.classList.remove('active');
+                detail.classList.remove('visible');
+            }
+            
+            // Actualizar notas de pago en las tarjetas
+            updatePaymentNotes();
+        }
+        
+        function updatePaymentNotes() {
+            const nutriNote = document.getElementById('payment-note-nutri');
+            const comboNote = document.getElementById('payment-note-combo');
+            const trainNote = document.getElementById('payment-note-train');
+            
+            if (lcarnitinaState.nutri) {
+                nutriNote.innerHTML = '*Plan: pagas al recibir. L-Carnitina: <span class="text-amber-300 font-bold">pago por anticipado</span> para envío desde México.*';
+            } else {
+                nutriNote.textContent = '*Pagas hasta que recibas tu material.*';
+            }
+            
+            if (lcarnitinaState.combo) {
+                comboNote.innerHTML = '*Plan: pagas al recibir. L-Carnitina: <span class="text-amber-300 font-bold">pago por anticipado</span> para envío desde México.*';
+            } else {
+                comboNote.textContent = '';
+            }
+
+            if (lcarnitinaState.train) {
+                trainNote.innerHTML = '*Plan: pagas al recibir. L-Carnitina: <span class="text-amber-300 font-bold">pago por anticipado</span> para envío desde México.*';
+            } else {
+                trainNote.textContent = '*Pagas hasta que recibas tu material.*';
+            }
+        }
 
         // ==========================================
         //  INDICADORES DE PASO
@@ -1296,7 +1562,15 @@
             document.getElementById('edit-price-train').value = config.priceTrain;
             document.getElementById('edit-price-combo').value = config.priceCombo;
             document.getElementById('edit-price-old').value = config.priceOld;
+            document.getElementById('edit-price-lcarnitina').value = config.priceLcarnitina;
+            document.getElementById('edit-lc-frascos').value = config.lcFrascos;
             document.getElementById('edit-combo-note').value = config.comboNote;
+            
+            // Actualizar precios L-Carnitina en las tarjetas
+            ['nutri', 'combo', 'train'].forEach(key => {
+                document.getElementById(`lc-price-${key}`).textContent = config.priceLcarnitina;
+                document.getElementById(`lc-frascos-label-${key}`).textContent = config.lcFrascos;
+            });
         }
 
         function updateContent() {
@@ -1305,6 +1579,8 @@
             config.priceTrain = document.getElementById('edit-price-train').value;
             config.priceCombo = document.getElementById('edit-price-combo').value;
             config.priceOld = document.getElementById('edit-price-old').value;
+            config.priceLcarnitina = parseInt(document.getElementById('edit-price-lcarnitina').value) || 90;
+            config.lcFrascos = parseInt(document.getElementById('edit-lc-frascos').value) || 2;
             config.comboNote = document.getElementById('edit-combo-note').value;
             loadConfig();
         }
@@ -1321,6 +1597,8 @@
             priceTrain: ${config.priceTrain},
             priceCombo: ${config.priceCombo},
             priceOld: ${config.priceOld},
+            priceLcarnitina: ${config.priceLcarnitina},
+            lcFrascos: ${config.lcFrascos},
             comboNote: "${config.comboNote.replace(/\n/g, '')}"
         };`;
             
@@ -1365,6 +1643,7 @@
         // Selección de Plan
         function selectPlan(planName) {
             let price = 0;
+            let planKey = '';
             const fieldsNutri = document.getElementById('fields-nutrition');
             const fieldsTrain = document.getElementById('fields-training');
             const fieldsStore = document.getElementById('fields-store');
@@ -1378,24 +1657,29 @@
             
             if (planName === 'Nutrición') {
                 price = config.priceNutri;
+                planKey = 'nutri';
                 fieldsNutri.classList.remove('hidden');
                 fieldsStore.classList.remove('hidden');
                 fieldsExclude.classList.remove('hidden');
             } else if (planName === 'Entrenamiento') {
                 price = config.priceTrain;
+                planKey = 'train';
                 fieldsTrain.classList.remove('hidden');
-                // NO mostrar fields-store ni fields-exclude para Entrenamiento
             } else if (planName === 'Combo Total') {
                 price = config.priceCombo;
+                planKey = 'combo';
                 fieldsNutri.classList.remove('hidden');
                 fieldsTrain.classList.remove('hidden');
                 fieldsStore.classList.remove('hidden');
                 fieldsExclude.classList.remove('hidden');
             }
 
-            selectedPlan = { name: planName, price: price };
+            selectedPlan = { name: planName, price: price, key: planKey };
             document.getElementById('modal-plan-name').textContent = planName;
             document.getElementById('modal-plan-price').textContent = `$${price}`;
+            
+            // Actualizar L-Carnitina y condición de pago en modal
+            updateModalLcarnitina(planKey);
             
             // Resetear indicadores de paso
             resetStepIndicators();
@@ -1404,6 +1688,63 @@
             const panel = document.getElementById('modal-panel');
             modal.classList.remove('hidden');
             setTimeout(() => panel.classList.remove('translate-y-full'), 10);
+        }
+
+        function updateModalLcarnitina(planKey) {
+            const hasLc = lcarnitinaState[planKey];
+            const lcSummary = document.getElementById('modal-lc-summary');
+            const priceBreakdown = document.getElementById('modal-price-breakdown');
+            const paymentCondition = document.getElementById('modal-payment-condition');
+            const footerNote = document.getElementById('modal-footer-payment-note');
+            const contextText = document.getElementById('payment-context-text');
+            const methodNote = document.getElementById('payment-method-note');
+            
+            if (hasLc) {
+                // Mostrar resumen L-Carnitina
+                lcSummary.classList.remove('hidden');
+                document.getElementById('modal-lc-title').textContent = `+ L-Carnitina (${config.lcFrascos} frascos)`;
+                document.getElementById('modal-lc-detail').textContent = `${config.lcFrascos} frascos · Presentación en pastillas`;
+                document.getElementById('modal-lc-price').textContent = config.priceLcarnitina;
+                
+                // Mostrar desglose de precio
+                priceBreakdown.classList.remove('hidden');
+                document.getElementById('breakdown-plan-label').textContent = selectedPlan.name;
+                document.getElementById('breakdown-plan-price').textContent = `$${selectedPlan.price} USD`;
+                document.getElementById('breakdown-lc-price').textContent = `$${config.priceLcarnitina} USD`;
+                const total = selectedPlan.price + config.priceLcarnitina;
+                document.getElementById('breakdown-total').textContent = `$${total} USD`;
+                
+                // Cambiar condición de pago
+                paymentCondition.innerHTML = 'Mensual · <span class="text-amber-400">LC: pago anticipado</span>';
+                
+                // Cambiar nota del footer del modal
+                footerNote.innerHTML = '<i class="fas fa-exclamation-triangle text-amber-400"></i> <span class="text-amber-300">L-Carnitina requiere pago por anticipado</span> para procesar envío desde México.';
+                
+                // Cambiar nota contextual de pago
+                contextText.innerHTML = `
+                    <i class="fas fa-exclamation-triangle text-amber-400 mr-1"></i>
+                    <strong class="text-amber-400">Pago por anticipado requerido</strong><br>
+                    Al incluir L-Carnitina, necesitarás realizar tu pago por anticipado para que podamos procesar el envío desde México. El plan se te entregará al recibir tu material, pero la L-Carnitina requiere envío internacional.
+                `;
+                
+                methodNote.innerHTML = '<i class="fas fa-info-circle text-amber-400"></i> <span class="text-amber-300">Pago anticipado requerido</span> para procesar el envío de L-Carnitina desde México.';
+                
+            } else {
+                // Sin L-Carnitina
+                lcSummary.classList.add('hidden');
+                priceBreakdown.classList.add('hidden');
+                
+                paymentCondition.textContent = 'Mensual';
+                footerNote.innerHTML = '<i class="fas fa-exclamation-circle text-infit-pink"></i> Es necesario hacer clic para enviar los datos por WhatsApp.';
+                
+                contextText.innerHTML = `
+                    <i class="fas fa-heart text-infit-pink mr-1"></i>
+                    <strong class="text-infit-pink">¡Envía tu pago como ya lo conoces!</strong><br>
+                    Así como envías dinero a tu familia en México, puedes enviar tu pago de la misma forma. Te daremos los datos cuando tu plan esté listo.
+                `;
+                
+                methodNote.innerHTML = '<i class="fas fa-info-circle text-infit-pink"></i> Te enviaremos los datos para que envíes tu pago como siempre lo haces.';
+            }
         }
 
         function closeModal() {
@@ -1420,6 +1761,9 @@
             submitBtn.disabled = true;
             submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Guardando...';
 
+            const planKey = selectedPlan.key;
+            const hasLc = lcarnitinaState[planKey];
+
             // Datos Básicos
             const formData = {
                 name: document.getElementById('client-name').value,
@@ -1427,7 +1771,15 @@
                 origin: document.getElementById('client-origin').value || 'No especificado',
                 plan: selectedPlan.name,
                 price: selectedPlan.price,
+                currency: 'USD',
+                region: 'USA',
+                gender: 'F',
                 affiliate: affiliateCode || 'Orgánico',
+                lcarnitina: hasLc,
+                lcarnitinaFrascos: hasLc ? config.lcFrascos : 0,
+                lcarnitinaPrice: hasLc ? config.priceLcarnitina : 0,
+                totalPrice: hasLc ? selectedPlan.price + config.priceLcarnitina : selectedPlan.price,
+                paymentCondition: hasLc ? 'Anticipado (L-Carnitina)' : 'Al recibir',
                 timestamp: new Date().toISOString()
             };
 
@@ -1435,6 +1787,11 @@
             let detailsText = "";
             let unitLabelW = currentUnit === 'metric' ? 'kg' : 'lb';
             let unitLabelH = currentUnit === 'metric' ? 'cm' : 'ft/in';
+
+            // Sección de L-Carnitina en WhatsApp
+            if (hasLc) {
+                detailsText += `%0A💊 *L-CARNITINA*%0A• ${config.lcFrascos} frascos · Presentación en pastillas%0A• $${config.priceLcarnitina} USD (incluye envío desde México)`;
+            }
 
             // Capturar objetivo
             const selectedGoal = document.querySelector('input[name="goal"]:checked');
@@ -1522,9 +1879,25 @@
             const locationText = formData.origin !== 'No especificado' 
                 ? `de ${formData.origin}, ahora en ${formData.city}` 
                 : `de ${formData.city}`;
-            const header = `Hola INFIT! 🚀 Soy *${formData.name}* (${locationText}).%0A%0A🔥 Quiero empezar mi *${formData.plan}* ($${formData.price} USD / Mes).`;
-            const footer = `%0A%0A📝 *Nota:* Soy de Santa Ana o referido. Estoy de acuerdo en realizar el pago al momento de tener todo mi material.`;
-            const motivation = `%0A%0A✨ *¡Bienvenido a tu mejor Versión!*`;
+            
+            // Header dinámico según L-Carnitina
+            let header = '';
+            if (hasLc) {
+                const total = selectedPlan.price + config.priceLcarnitina;
+                header = `Hola INFIT! 🚀 Soy *${formData.name}* (${locationText}).%0A%0A🔥 Quiero empezar mi *${formData.plan}* + *L-Carnitina (${config.lcFrascos} frascos)*.%0A💰 Plan: $${selectedPlan.price} USD + L-Carnitina: $${config.priceLcarnitina} USD = *$${total} USD total*.`;
+            } else {
+                header = `Hola INFIT! 🚀 Soy *${formData.name}* (${locationText}).%0A%0A🔥 Quiero empezar mi *${formData.plan}* ($${formData.price} USD / Mes).`;
+            }
+            
+            // Footer dinámico según L-Carnitina
+            let footer = '';
+            if (hasLc) {
+                footer = `%0A%0A📝 *Nota:* Estoy enterada que realizaré mi pago por anticipado para que se procese el envío de la L-Carnitina desde México. El plan se me entregará al recibir mi material completo.`;
+            } else {
+                footer = `%0A%0A📝 *Nota:* Soy de Santa Ana o referido. Estoy de acuerdo en realizar el pago al momento de tener todo mi material.`;
+            }
+            
+            const motivation = `%0A%0A✨ *¡Bienvenida a tu mejor Versión!*`;
             const refText = affiliateCode ? `%0A%0A(Asesor: ${affiliateCode})` : '';
             
             const fullText = `${header}${detailsText}${footer}${motivation}${refText}`;
