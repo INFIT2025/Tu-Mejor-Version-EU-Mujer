@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Inicia Tu Mejor Versión - INFIT Combo (Mujer)</title>
+    <title>Inicia Tu Mejor Versión - INFIT Combo (Women)</title>
     
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
@@ -29,12 +29,11 @@
                     colors: {
                         infit: {
                             black: '#050505',
-                            dark: '#121212',
-                            gold: '#FFD700',
-                            golddim: '#C5A000',
-                            pink: '#ec4899',
+                            dark: '#0a0a0a',
+                            gold: '#ec4899',
+                            golddim: '#db2777',
                             white: '#ffffff',
-                            gray: '#888888',
+                            gray: '#a3a3a3',
                             cyan: '#06b6d4',
                         }
                     },
@@ -56,8 +55,8 @@
                             '50%': { transform: 'translateY(-10px)' },
                         },
                         glow: {
-                            '0%': { boxShadow: '0 0 20px rgba(236, 72, 153, 0.3)' },
-                            '100%': { boxShadow: '0 0 40px rgba(236, 72, 153, 0.6)' },
+                            '0%': { boxShadow: '0 0 20px rgba(236, 72, 153, 0.2)' },
+                            '100%': { boxShadow: '0 0 40px rgba(236, 72, 153, 0.4)' },
                         },
                         bounceIn: {
                             '0%': { transform: 'scale(0.9)', opacity: '0' },
@@ -92,9 +91,9 @@
             box-shadow: 0 4px 30px rgba(0, 0, 0, 0.5);
         }
         .combo-card {
-            background: linear-gradient(180deg, rgba(236, 72, 153, 0.08) 0%, rgba(5, 5, 5, 1) 100%);
+            background: linear-gradient(180deg, rgba(236, 72, 153, 0.05) 0%, rgba(5, 5, 5, 1) 100%);
             border: 2px solid #ec4899;
-            box-shadow: 0 0 40px rgba(236, 72, 153, 0.2);
+            box-shadow: 0 0 40px rgba(236, 72, 153, 0.15);
             transform: scale(1.02);
             position: relative;
             z-index: 10;
@@ -106,10 +105,10 @@
             left: -2px;
             right: -2px;
             bottom: -2px;
-            background: linear-gradient(45deg, #ec4899, #FFD700, #ec4899);
+            background: linear-gradient(45deg, #ec4899, #ffffff, #ec4899);
             border-radius: 1rem;
             z-index: -1;
-            opacity: 0.3;
+            opacity: 0.2;
             animation: glow 2s ease-in-out infinite alternate;
         }
         .input-field {
@@ -130,7 +129,7 @@
         /* Checkbox personalizado para días */
         .day-checkbox:checked + div {
             background-color: #ec4899;
-            color: white;
+            color: black;
             font-weight: bold;
         }
         
@@ -262,7 +261,7 @@
             top: 50%;
             left: 50%;
             transform: translate(-50%, -50%);
-            color: white;
+            color: black;
             font-size: 12px;
             font-weight: bold;
         }
@@ -284,12 +283,12 @@
         }
         .payment-card:hover {
             transform: translateY(-2px);
-            border-color: rgba(34, 197, 94, 0.5);
+            border-color: rgba(236, 72, 153, 0.5);
         }
         .payment-radio:checked + .payment-card {
-            border-color: #22c55e;
-            background: rgba(34, 197, 94, 0.1);
-            box-shadow: 0 0 15px rgba(34, 197, 94, 0.2);
+            border-color: #ec4899;
+            background: rgba(236, 72, 153, 0.1);
+            box-shadow: 0 0 15px rgba(236, 72, 153, 0.2);
         }
 
         /* Scrollbar personalizado */
@@ -325,7 +324,7 @@
             background: linear-gradient(90deg, #ec4899, #f472b6, #ec4899);
             background-size: 200% 100%;
             animation: shimmer 2s linear infinite;
-            color: white;
+            color: black;
         }
 
         /* Emoji bandera wave */
@@ -347,27 +346,65 @@
             border: 1px solid rgba(236, 72, 153, 0.3);
         }
         .price-tag {
-            text-shadow: 0 0 20px rgba(255, 215, 0, 0.5);
+            text-shadow: 0 0 20px rgba(236, 72, 153, 0.5);
+        }
+
+        /* Estilos para Retos Compartidos */
+        .reto-option {
+            transition: all 0.3s ease;
+            background: rgba(255, 255, 255, 0.03);
+            border: 2px solid rgba(255, 255, 255, 0.08);
+            cursor: pointer;
+            position: relative;
+        }
+        .reto-option:hover {
+            border-color: rgba(236, 72, 153, 0.4);
+            background: rgba(236, 72, 153, 0.05);
+            transform: translateY(-2px);
+        }
+        .reto-option.active {
+            border-color: #ec4899;
+            background: rgba(236, 72, 153, 0.15);
+            box-shadow: 0 0 25px rgba(236, 72, 153, 0.3);
+        }
+        .reto-check {
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        .reto-option.active .reto-check {
+            opacity: 1;
+        }
+        .discount-badge {
+            background: linear-gradient(135deg, rgba(34, 197, 94, 0.2) 0%, rgba(34, 197, 94, 0.1) 100%);
+            border: 1px solid rgba(34, 197, 94, 0.3);
+            color: #4ade80;
+        }
+        .reto-juntas-card {
+            transition: all 0.3s ease;
+        }
+        .reto-juntas-card:hover {
+            transform: translateY(-3px);
+            background: rgba(236, 72, 153, 0.1) !important;
         }
     </style>
 </head>
-<body class="min-h-screen flex flex-col font-sans selection:bg-infit-pink selection:text-white">
+<body class="min-h-screen flex flex-col font-sans selection:bg-infit-gold selection:text-black">
 
     <!-- Botón Flotante de Edición (SOLO ADMIN) -->
-    <button id="admin-trigger" onclick="toggleEditor()" class="admin-only fixed bottom-4 right-4 z-[90] bg-gray-800 text-gray-400 p-3 rounded-full shadow-lg hover:text-white hover:bg-gray-700 transition-all border border-infit-pink" title="Editar Contenido">
+    <button id="admin-trigger" onclick="toggleEditor()" class="admin-only fixed bottom-4 right-4 z-[90] bg-gray-800 text-gray-400 p-3 rounded-full shadow-lg hover:text-white hover:bg-gray-700 transition-all border border-infit-gold" title="Editar Contenido">
         <i class="fas fa-cog text-xl"></i>
     </button>
 
     <!-- Panel de Edición Lateral (SOLO ADMIN) -->
     <div id="editor-panel" class="admin-only fixed top-0 right-0 h-full w-80 bg-[#111] border-l border-gray-800 z-[100] shadow-2xl p-6 overflow-y-auto custom-scrollbar">
         <div class="flex justify-between items-center mb-6">
-            <h3 class="text-infit-pink font-heading font-bold uppercase">Editor de Contenido</h3>
+            <h3 class="text-infit-gold font-heading font-bold uppercase">Editor de Contenido</h3>
             <button onclick="toggleEditor()" class="text-gray-400 hover:text-white"><i class="fas fa-times"></i></button>
         </div>
         
         <div class="space-y-4 text-xs">
-            <div class="bg-pink-900/20 p-2 rounded border border-pink-500/30 mb-4">
-                <p class="text-pink-200">🔒 <strong>Modo Administrador Activo</strong><br>Este panel no es visible para los clientes.</p>
+            <div class="bg-yellow-900/20 p-2 rounded border border-yellow-500/30 mb-4">
+                <p class="text-yellow-200">🔒 <strong>Modo Administrador Activo</strong><br>Este panel no es visible para los clientes.</p>
             </div>
 
             <div>
@@ -401,14 +438,18 @@
                 <h4 class="text-white font-bold mb-2">L-Carnitina (USD)</h4>
                 <div class="grid grid-cols-2 gap-2">
                     <div>
-                        <label class="block text-gray-500">Precio L-Carnitina</label>
-                        <input type="number" id="edit-price-lcarnitina" class="input-field w-full p-2 rounded" oninput="updateContent()">
+                        <label class="block text-gray-500">Precio por Frasco</label>
+                        <input type="number" id="edit-lc-price-per-frasco" class="input-field w-full p-2 rounded" oninput="updateContent()">
                     </div>
                     <div>
-                        <label class="block text-gray-500">Frascos</label>
-                        <input type="number" id="edit-lc-frascos" class="input-field w-full p-2 rounded" oninput="updateContent()">
+                        <label class="block text-gray-500">Envío Total</label>
+                        <input type="number" id="edit-lc-shipping-total" class="input-field w-full p-2 rounded" oninput="updateContent()">
                     </div>
                 </div>
+                <p class="text-[9px] text-gray-500 mt-1 italic">
+                    <i class="fas fa-info-circle text-infit-gold mr-1"></i>
+                    Producto: 2 frascos × precio. Envío se divide entre participantes en modo reto.
+                </p>
             </div>
 
             <div class="border-t border-gray-700 pt-4 mt-4">
@@ -416,12 +457,12 @@
                 <textarea id="edit-combo-note" class="input-field w-full p-2 rounded h-20" oninput="updateContent()"></textarea>
             </div>
 
-            <div class="bg-infit-pink/10 p-3 rounded mt-6 border border-infit-pink/20">
+            <div class="bg-infit-gold/10 p-3 rounded mt-6 border border-infit-gold/20">
                 <p class="text-[10px] text-gray-300 mb-2">
-                    <i class="fas fa-info-circle text-infit-pink"></i> 
+                    <i class="fas fa-info-circle text-infit-gold"></i> 
                     Los cambios son solo visuales. Copia el código para guardarlos permanentemente.
                 </p>
-                <button onclick="copyConfig()" class="w-full bg-infit-pink text-white font-bold py-2 rounded text-[10px] uppercase hover:bg-white hover:text-infit-pink transition-colors">
+                <button onclick="copyConfig()" class="w-full bg-infit-gold text-black font-bold py-2 rounded text-[10px] uppercase hover:bg-white transition-colors">
                     Copiar Código de Configuración
                 </button>
             </div>
@@ -432,9 +473,9 @@
     <nav class="fixed top-0 w-full z-50 glass-panel border-b border-white/5">
         <div class="max-w-6xl mx-auto px-4 py-4 flex justify-between items-center">
             <div class="flex items-center gap-2">
-                <i class="fas fa-bolt text-infit-pink text-xl animate-pulse-slow"></i>
+                <i class="fas fa-bolt text-infit-gold text-xl animate-pulse-slow"></i>
                 <h1 class="text-2xl font-heading font-bold italic tracking-wider text-white">
-                    IN<span class="text-infit-gold">FIT</span>
+                    IN<span class="text-infit-gold">FIT</span> <span class="text-xs not-italic text-gray-500 ml-1">WOMEN</span>
                 </h1>
             </div>
             <div class="flex items-center gap-3">
@@ -443,7 +484,7 @@
                     <span>Para paisanas en USA</span>
                 </div>
                 <div id="affiliate-badge" class="hidden text-[10px] text-gray-500 uppercase border border-gray-800 rounded-full px-3 py-1 bg-black/50">
-                    Recomendado por: <span id="affiliate-name" class="text-infit-gold font-bold"></span>
+                    Recomendada por: <span id="affiliate-name" class="text-infit-gold font-bold"></span>
                 </div>
             </div>
         </div>
@@ -451,10 +492,10 @@
 
     <!-- Hero Section -->
     <header class="pt-32 pb-12 px-4 text-center max-w-4xl mx-auto relative">
-        <div class="absolute top-20 left-1/2 transform -translate-x-1/2 w-64 h-64 bg-infit-pink opacity-5 blur-[100px] rounded-full pointer-events-none"></div>
+        <div class="absolute top-20 left-1/2 transform -translate-x-1/2 w-64 h-64 bg-infit-gold opacity-5 blur-[100px] rounded-full pointer-events-none"></div>
         
         <!-- Badge especial para migrantes -->
-        <div class="inline-flex items-center gap-2 bg-infit-pink/10 border border-infit-pink/30 rounded-full px-4 py-2 mb-6">
+        <div class="inline-flex items-center gap-2 bg-infit-gold/10 border border-infit-gold/30 rounded-full px-4 py-2 mb-6">
             <span class="text-xl flag-wave">🇺🇸</span>
             <span class="text-white text-xs font-bold">Desde Santa Ana Hueytlalpan hasta donde estés</span>
             <span class="text-xl">🇲🇽</span>
@@ -462,7 +503,7 @@
         
         <h2 class="text-4xl md:text-6xl font-heading font-bold uppercase italic mb-4 animate-float">
             ¡Paisana, inicia<br>
-            <span class="text-infit-pink text-glow">Tu Mejor Versión!</span>
+            <span class="text-infit-gold text-glow">Tu Mejor Versión!</span>
         </h2>
         
         <p class="text-gray-400 text-sm md:text-base mb-6 max-w-2xl mx-auto">
@@ -470,12 +511,115 @@
             <span class="text-infit-gold font-bold">Recetas con ingredientes que encuentras allá.</span>
         </p>
         
-        <div class="inline-block bg-infit-pink/10 border border-infit-pink/20 rounded-lg px-6 py-2 mb-8 animate-pulse-slow">
-            <p class="text-infit-pink text-xs md:text-sm font-bold uppercase tracking-widest">
+        <div class="inline-block bg-infit-gold/10 border border-infit-gold/20 rounded-lg px-6 py-2 mb-8 animate-pulse-slow">
+            <p class="text-infit-gold text-xs md:text-sm font-bold uppercase tracking-widest">
                 <i class="fas fa-handshake mr-2"></i> <span id="display-promo">Garantía Total: Paga hasta recibir tu plan</span>
             </p>
         </div>
     </header>
+
+    <!-- SECCIÓN RETOS COMPARTIDOS -->
+    <section class="max-w-5xl mx-auto px-4 pb-12">
+        <div class="glass-panel rounded-3xl p-6 md:p-10 relative overflow-hidden">
+            <div class="absolute -top-20 -right-20 w-64 h-64 bg-infit-gold opacity-10 blur-[100px] rounded-full pointer-events-none"></div>
+            <div class="absolute -bottom-20 -left-20 w-64 h-64 bg-cyan-500 opacity-10 blur-[100px] rounded-full pointer-events-none"></div>
+
+            <div class="text-center mb-8 relative">
+                <div class="inline-flex items-center gap-2 bg-cyan-500/10 border border-cyan-500/30 rounded-full px-4 py-2 mb-4">
+                    <i class="fas fa-users text-cyan-400"></i>
+                    <span class="text-cyan-300 text-xs font-bold uppercase tracking-widest">Retos Compartidos</span>
+                </div>
+                <h2 class="text-3xl md:text-5xl font-heading font-bold uppercase italic mb-4 text-white">
+                    Comiencen el Cambio <span class="text-infit-gold">Juntas</span>
+                </h2>
+                <p class="text-gray-400 text-sm md:text-base max-w-2xl mx-auto mb-6">
+                    Invita a una amiga, hermana, comadre o compañera y comiencen el cambio juntas. Tener una compañera hace el proceso más fácil, divertido y constante.
+                </p>
+
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-3 max-w-3xl mx-auto mb-6">
+                    <div class="reto-juntas-card bg-infit-gold/5 border border-infit-gold/20 rounded-xl p-4 text-center">
+                        <i class="fas fa-heart text-infit-gold text-xl mb-2"></i>
+                        <p class="text-infit-gold font-bold text-sm uppercase tracking-wider">Juntas se motivan</p>
+                    </div>
+                    <div class="reto-juntas-card bg-infit-gold/5 border border-infit-gold/20 rounded-xl p-4 text-center">
+                        <i class="fas fa-shoe-prints text-infit-gold text-xl mb-2"></i>
+                        <p class="text-infit-gold font-bold text-sm uppercase tracking-wider">Juntas avanzan</p>
+                    </div>
+                    <div class="reto-juntas-card bg-infit-gold/5 border border-infit-gold/20 rounded-xl p-4 text-center">
+                        <i class="fas fa-star text-infit-gold text-xl mb-2"></i>
+                        <p class="text-infit-gold font-bold text-sm uppercase tracking-wider">Juntas construyen su mejor versión</p>
+                    </div>
+                </div>
+
+                <p class="text-gray-300 text-sm md:text-base max-w-2xl mx-auto">
+                    Además, contarán con una <strong class="text-white">herramienta digital</strong> para crear retos (premios y castigos) entre ustedes.
+                    <br>Porque cuando dos o más se comprometen, llegar a la meta es mucho más fácil.
+                </p>
+            </div>
+
+            <!-- Selector de participantes y descuentos -->
+            <div class="bg-gradient-to-br from-infit-gold/10 to-cyan-500/10 border border-white/10 rounded-2xl p-5 md:p-6">
+                <p class="text-center text-white font-bold text-sm uppercase mb-1">
+                    <i class="fas fa-tags text-infit-gold mr-1"></i> Entre más compañeras, más ahorro
+                </p>
+                <p class="text-center text-[10px] text-gray-500 mb-5">Selecciona cuántos van a participar y el descuento se aplica automáticamente</p>
+
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-3 max-w-3xl mx-auto" id="reto-selector">
+                    <button onclick="selectParticipantes(0)" class="reto-option active rounded-xl p-4 text-center" data-participants="0">
+                        <div class="absolute top-2 right-2 reto-check text-green-400"><i class="fas fa-check-circle"></i></div>
+                        <div class="text-3xl mb-2">👤</div>
+                        <p class="text-white font-bold text-xs uppercase">Yo sola</p>
+                        <p class="text-[10px] text-gray-500 mt-1">Sin descuento</p>
+                    </button>
+                    <button onclick="selectParticipantes(2)" class="reto-option rounded-xl p-4 text-center" data-participants="2">
+                        <div class="absolute top-2 right-2 reto-check text-green-400"><i class="fas fa-check-circle"></i></div>
+                        <div class="text-3xl mb-2">👯‍♀️</div>
+                        <p class="text-white font-bold text-xs uppercase">2 Integrantes</p>
+                        <p class="text-[11px] text-infit-gold font-bold mt-1">10% descuento</p>
+                    </button>
+                    <button onclick="selectParticipantes(3)" class="reto-option rounded-xl p-4 text-center" data-participants="3">
+                        <div class="absolute top-2 right-2 reto-check text-green-400"><i class="fas fa-check-circle"></i></div>
+                        <div class="text-3xl mb-2">👭</div>
+                        <p class="text-white font-bold text-xs uppercase">3 Integrantes</p>
+                        <p class="text-[11px] text-infit-gold font-bold mt-1">15% descuento</p>
+                    </button>
+                    <button onclick="selectParticipantes(4)" class="reto-option rounded-xl p-4 text-center" data-participants="4">
+                        <div class="absolute top-2 right-2 reto-check text-green-400"><i class="fas fa-check-circle"></i></div>
+                        <div class="text-3xl mb-2">👩‍👩‍👧‍👦</div>
+                        <p class="text-white font-bold text-xs uppercase">4 Integrantes</p>
+                        <p class="text-[11px] text-infit-gold font-bold mt-1">20% descuento</p>
+                    </button>
+                </div>
+
+                <!-- Nota: precio por integrante (aparece solo cuando se elige reto) -->
+                <div id="reto-price-info-note" class="hidden mt-4 max-w-2xl mx-auto">
+                    <div class="bg-infit-gold/10 border border-infit-gold/30 rounded-lg px-4 py-2.5 flex items-center justify-center gap-2 text-center">
+                        <i class="fas fa-info-circle text-infit-gold"></i>
+                        <p class="text-infit-gold text-xs font-bold">
+                            El precio mostrado en cada plan es <u>por integrante</u> del reto. Cada una paga lo mismo y obtiene el descuento.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="mt-5 grid grid-cols-1 md:grid-cols-2 gap-3 max-w-3xl mx-auto">
+                    <div class="bg-cyan-900/10 border border-cyan-500/20 rounded-lg p-3 flex items-start gap-2">
+                        <i class="fas fa-mobile-screen text-cyan-400 mt-0.5"></i>
+                        <div>
+                            <p class="text-cyan-300 text-[11px] font-bold uppercase">Herramienta Digital Incluida</p>
+                            <p class="text-gray-400 text-[10px] mt-0.5">Recibirán por WhatsApp una liga para crear retos con premios y castigos divertidos entre ustedes.</p>
+                        </div>
+                    </div>
+                    <div class="bg-amber-900/10 border border-amber-500/20 rounded-lg p-3 flex items-start gap-2">
+                        <i class="fas fa-pill text-amber-400 mt-0.5"></i>
+                        <div>
+                            <p class="text-amber-300 text-[11px] font-bold uppercase">L-Carnitina sin descuento</p>
+                            <p class="text-gray-400 text-[10px] mt-0.5">El precio de la L-Carnitina se mantiene fijo. El descuento solo aplica a los planes.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 
     <!-- Pricing Plans Section -->
     <main class="max-w-6xl mx-auto px-4 pb-12 grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8 items-start">
@@ -483,33 +627,43 @@
         <!-- Plan Nutrición -->
         <div class="plan-card glass-panel rounded-2xl p-6 relative group hover:bg-white/5 transition-all duration-300 order-2 md:order-1">
             <div class="absolute -top-6 left-1/2 transform -translate-x-1/2 bg-infit-dark border border-white/10 p-3 rounded-full shadow-[0_0_15px_rgba(255,255,255,0.05)]">
-                <i class="fas fa-leaf text-2xl text-infit-pink"></i>
+                <i class="fas fa-leaf text-2xl text-infit-gold"></i>
             </div>
             <h3 class="mt-8 text-xl font-heading font-bold text-center text-white uppercase italic">Nutrición</h3>
             <div class="text-center my-4">
+                <div id="nutri-original-row" class="hidden mb-1">
+                    <span class="text-gray-600 line-through text-lg">$<span id="display-price-nutri-original">39</span></span>
+                </div>
                 <span class="text-3xl font-bold text-infit-gold price-tag">$<span id="display-price-nutri">39</span></span>
                 <span class="text-sm text-gray-500 uppercase">USD / Mes</span>
+                <div id="nutri-discount-badge" class="hidden mt-2">
+                    <span class="discount-badge text-[10px] font-bold px-3 py-1 rounded-full uppercase">
+                        <i class="fas fa-tag mr-1"></i>Ahorras $<span id="nutri-savings">4</span> USD
+                    </span>
+                </div>
+                <p id="nutri-per-person-note" class="hidden text-[10px] text-infit-gold mt-2 font-bold uppercase tracking-wider">
+                    💲 Precio por integrante
+                </p>
             </div>
-            <!-- Botón Ver Video -->
-            <button onclick="playVideo('nutri')" class="w-full mb-4 py-2 bg-gray-800/50 hover:bg-infit-pink/10 rounded text-xs text-infit-pink border border-infit-pink/30 transition-all flex items-center justify-center gap-2">
+            <button onclick="playVideo('nutri')" class="w-full mb-4 py-2 bg-gray-800/50 hover:bg-infit-gold/10 rounded text-xs text-infit-gold border border-infit-gold/30 transition-all flex items-center justify-center gap-2">
                 <i class="fas fa-play-circle text-sm"></i> Ver Preview
             </button>
             <ul class="space-y-3 text-sm text-gray-400 mb-6">
                 <li class="flex items-start gap-2">
-                    <div class="check-icon p-1 rounded text-infit-pink mt-0.5"><i class="fas fa-check text-xs"></i></div>
+                    <div class="check-icon p-1 rounded text-infit-gold mt-0.5"><i class="fas fa-check text-xs"></i></div>
                     <span>Plan 100% personalizado</span>
                 </li>
                 <li class="flex items-start gap-2">
-                    <div class="check-icon p-1 rounded text-infit-pink mt-0.5"><i class="fas fa-check text-xs"></i></div>
+                    <div class="check-icon p-1 rounded text-infit-gold mt-0.5"><i class="fas fa-check text-xs"></i></div>
                     <span>Eliminación alimentos dañinos</span>
                 </li>
                 <li class="flex items-start gap-2">
-                    <div class="check-icon p-1 rounded text-infit-pink mt-0.5"><i class="fas fa-check text-xs"></i></div>
+                    <div class="check-icon p-1 rounded text-infit-gold mt-0.5"><i class="fas fa-check text-xs"></i></div>
                     <span>Recetas prácticas</span>
                 </li>
             </ul>
 
-            <!-- L-Carnitina Toggle - Nutrición -->
+            <!-- L-Carnitina Toggle -->
             <div class="border-t border-gray-800 pt-4 mb-4">
                 <div class="flex items-center justify-between mb-2">
                     <div class="flex items-center gap-2">
@@ -520,17 +674,24 @@
                 </div>
                 <p class="text-[10px] text-gray-500 mb-2">
                     <i class="fas fa-info-circle text-infit-cyan mr-1"></i>
-                    Potencia tus resultados. Presentación en pastillas. Se envía desde México.
+                    2 frascos · $19/frasco · Se envía desde México. <span id="lc-toggle-price-nutri" class="text-infit-cyan font-bold">$103 USD c/u</span>
                 </p>
                 <div class="lc-section" id="lc-detail-nutri">
                     <div class="bg-cyan-900/20 border border-cyan-500/30 rounded-lg p-3">
                         <div class="flex items-center gap-2 mb-2">
                             <i class="fas fa-capsules text-infit-cyan"></i>
-                            <span class="text-xs font-bold text-infit-cyan"><span id="lc-frascos-label-nutri">2</span> Frascos de L-Carnitina</span>
+                            <span class="text-xs font-bold text-infit-cyan">2 Frascos de L-Carnitina</span>
                         </div>
                         <div class="flex items-center justify-between">
-                            <span class="text-[10px] text-gray-400">$<span id="lc-price-nutri">90</span> USD (incluye envío)</span>
+                            <span class="text-[10px] text-gray-400" id="lc-breakdown-nutri">$103 USD (incluye envío)</span>
                             <span class="text-[9px] text-infit-cyan bg-cyan-900/30 px-2 py-0.5 rounded-full">🇲🇽 Envío desde México</span>
+                        </div>
+                        <!-- Nota división de envío (visible solo en modo reto) -->
+                        <div id="lc-shipping-note-nutri" class="hidden mt-1 bg-cyan-900/10 border border-cyan-500/20 rounded px-2 py-1">
+                            <p class="text-[9px] text-cyan-300">
+                                <i class="fas fa-truck mr-1"></i>
+                                <span id="lc-shipping-divided-nutri">Envío $65 ÷ 2 = $33 c/u</span>
+                            </p>
                         </div>
                         <div class="mt-2 bg-amber-900/20 border border-amber-500/30 rounded p-2">
                             <p class="text-[9px] text-amber-300">
@@ -542,7 +703,7 @@
                 </div>
             </div>
 
-            <button onclick="selectPlan('Nutrición')" class="w-full py-3 rounded-lg border border-gray-600 hover:border-infit-pink hover:text-infit-pink transition-colors text-sm font-bold uppercase tracking-wider">
+            <button onclick="selectPlan('Nutrición')" class="w-full py-3 rounded-lg border border-gray-600 hover:border-infit-gold hover:text-infit-gold transition-colors text-sm font-bold uppercase tracking-wider">
                 Elegir Nutrición
             </button>
             <p class="text-[10px] text-center text-gray-500 mt-2 italic" id="payment-note-nutri">
@@ -552,45 +713,54 @@
 
         <!-- PLAN COMBO (DESTACADO) -->
         <div class="combo-card rounded-2xl p-6 md:p-8 order-1 md:order-2">
-            <div class="absolute top-0 left-1/2 transform -translate-x-1/2 -translate-y-1/2 shimmer-badge font-bold px-5 py-1.5 rounded-full text-xs uppercase tracking-widest shadow-[0_0_20px_rgba(236,72,153,0.5)]">
+            <div class="absolute top-0 left-1/2 transform -translate-x-1/2 -translate-y-1/2 shimmer-badge font-bold px-5 py-1.5 rounded-full text-xs uppercase tracking-widest shadow-[0_0_20px_rgba(236, 72, 153,0.3)]">
                 ⭐ Más Vendido USA 🇺🇸
             </div>
             <div class="text-center mb-6 pt-4">
-                <i class="fas fa-fire text-4xl text-infit-pink mb-4 animate-pulse-slow"></i>
+                <i class="fas fa-fire text-4xl text-infit-gold mb-4 animate-pulse-slow"></i>
                 <h3 class="text-2xl font-heading font-bold text-white uppercase italic">Combo Total</h3>
-                <p class="text-[10px] text-infit-pink uppercase tracking-widest mt-1">La experiencia completa</p>
+                <p class="text-[10px] text-infit-gold uppercase tracking-widest mt-1">La experiencia completa</p>
             </div>
-            <div class="text-center my-6 border-y border-infit-pink/20 py-4">
-                <div class="flex justify-center items-center gap-2">
+            <div class="text-center my-6 border-y border-infit-gold/20 py-4">
+                <div class="flex justify-center items-center gap-2 flex-wrap">
                     <span class="text-gray-500 line-through text-lg">$<span id="display-price-old">88</span></span>
+                    <span id="combo-original-row" class="hidden text-gray-500 line-through text-2xl">$<span id="display-price-combo-original">69</span></span>
                     <span class="text-5xl font-bold text-white price-tag">$<span id="display-price-combo">69</span></span>
                 </div>
                 <span class="text-sm text-infit-gold font-bold">USD / Mes</span>
-                <p class="text-[10px] text-gray-500 mt-1">Ahorras $19 vs. planes separados</p>
+                <div id="combo-discount-badge" class="hidden mt-2">
+                    <span class="discount-badge text-[10px] font-bold px-3 py-1 rounded-full uppercase">
+                        <i class="fas fa-tag mr-1"></i>Ahorras $<span id="combo-savings">7</span> USD con tu reto
+                    </span>
+                </div>
+                <p class="text-[10px] text-gray-500 mt-1" id="combo-savings-text">Ahorras $19 vs. planes separados</p>
+                <p id="combo-per-person-note" class="hidden text-[10px] text-infit-gold mt-1 font-bold uppercase tracking-wider">
+                    💲 Precio por integrante
+                </p>
             </div>
             <ul class="space-y-4 text-sm text-gray-300 mb-6">
                 <li class="flex flex-col gap-1">
                     <div class="flex items-start gap-3">
-                        <div class="bg-infit-pink/20 p-1 rounded text-infit-pink"><i class="fas fa-dumbbell"></i></div>
+                        <div class="bg-infit-gold/20 p-1 rounded text-infit-gold"><i class="fas fa-dumbbell"></i></div>
                         <span class="font-bold text-white">Entrenamiento Digital</span>
                     </div>
-                    <button onclick="playVideo('entreno')" class="ml-9 text-[10px] text-infit-pink/70 hover:text-infit-pink underline text-left w-fit"><i class="fas fa-play text-[8px] mr-1"></i>Ver preview entrenamiento</button>
+                    <button onclick="playVideo('entreno')" class="ml-9 text-[10px] text-infit-gold/70 hover:text-infit-gold underline text-left w-fit"><i class="fas fa-play text-[8px] mr-1"></i>Ver preview entrenamiento</button>
                 </li>
                 <li class="flex flex-col gap-1">
                     <div class="flex items-start gap-3">
-                        <div class="bg-infit-pink/20 p-1 rounded text-infit-pink"><i class="fas fa-utensils"></i></div>
+                        <div class="bg-infit-gold/20 p-1 rounded text-infit-gold"><i class="fas fa-utensils"></i></div>
                         <span class="font-bold text-white">Plan Nutricional Completo</span>
                     </div>
-                    <button onclick="playVideo('nutri')" class="ml-9 text-[10px] text-infit-pink/70 hover:text-infit-pink underline text-left w-fit"><i class="fas fa-play text-[8px] mr-1"></i>Ver preview nutrición</button>
+                    <button onclick="playVideo('nutri')" class="ml-9 text-[10px] text-infit-gold/70 hover:text-infit-gold underline text-left w-fit"><i class="fas fa-play text-[8px] mr-1"></i>Ver preview nutrición</button>
                 </li>
                 <li class="flex items-start gap-3">
-                    <div class="bg-infit-pink/20 p-1 rounded text-infit-pink"><i class="fas fa-calendar-check"></i></div>
+                    <div class="bg-infit-gold/20 p-1 rounded text-infit-gold"><i class="fas fa-calendar-check"></i></div>
                     <span>Calendario del Poder + Eliminación alimentos dañinos</span>
                 </li>
             </ul>
 
-            <!-- L-Carnitina Toggle - Combo -->
-            <div class="border-t border-infit-pink/20 pt-4 mb-4">
+            <!-- L-Carnitina Toggle -->
+            <div class="border-t border-gray-800 pt-4 mb-4">
                 <div class="flex items-center justify-between mb-2">
                     <div class="flex items-center gap-2">
                         <i class="fas fa-bolt text-infit-cyan text-sm"></i>
@@ -600,17 +770,24 @@
                 </div>
                 <p class="text-[10px] text-gray-500 mb-2">
                     <i class="fas fa-info-circle text-infit-cyan mr-1"></i>
-                    Potencia tus resultados. Presentación en pastillas. Se envía desde México.
+                    2 frascos · $19/frasco · Se envía desde México. <span id="lc-toggle-price-combo" class="text-infit-cyan font-bold">$103 USD c/u</span>
                 </p>
                 <div class="lc-section" id="lc-detail-combo">
                     <div class="bg-cyan-900/20 border border-cyan-500/30 rounded-lg p-3">
                         <div class="flex items-center gap-2 mb-2">
                             <i class="fas fa-capsules text-infit-cyan"></i>
-                            <span class="text-xs font-bold text-infit-cyan"><span id="lc-frascos-label-combo">2</span> Frascos de L-Carnitina</span>
+                            <span class="text-xs font-bold text-infit-cyan">2 Frascos de L-Carnitina</span>
                         </div>
                         <div class="flex items-center justify-between">
-                            <span class="text-[10px] text-gray-400">$<span id="lc-price-combo">90</span> USD (incluye envío)</span>
+                            <span class="text-[10px] text-gray-400" id="lc-breakdown-combo">$103 USD (incluye envío)</span>
                             <span class="text-[9px] text-infit-cyan bg-cyan-900/30 px-2 py-0.5 rounded-full">🇲🇽 Envío desde México</span>
+                        </div>
+                        <!-- Nota división de envío (visible solo en modo reto) -->
+                        <div id="lc-shipping-note-combo" class="hidden mt-1 bg-cyan-900/10 border border-cyan-500/20 rounded px-2 py-1">
+                            <p class="text-[9px] text-cyan-300">
+                                <i class="fas fa-truck mr-1"></i>
+                                <span id="lc-shipping-divided-combo">Envío $65 ÷ 2 = $33 c/u</span>
+                            </p>
                         </div>
                         <div class="mt-2 bg-amber-900/20 border border-amber-500/30 rounded p-2">
                             <p class="text-[9px] text-amber-300">
@@ -622,7 +799,7 @@
                 </div>
             </div>
 
-            <button onclick="selectPlan('Combo Total')" class="w-full bg-gradient-to-r from-infit-pink to-pink-600 hover:from-pink-500 hover:to-infit-pink text-white font-bold py-4 rounded-lg uppercase tracking-widest transition-all transform hover:scale-105 shadow-[0_0_20px_rgba(236,72,153,0.3)]">
+            <button onclick="selectPlan('Combo Total')" class="w-full bg-gradient-to-r from-infit-gold to-yellow-500 hover:from-yellow-400 hover:to-infit-gold text-black font-bold py-4 rounded-lg uppercase tracking-widest transition-all transform hover:scale-105 shadow-[0_0_20px_rgba(236, 72, 153,0.3)]">
                 QUIERO MI MEJOR VERSIÓN
             </button>
             <p class="text-[10px] text-center text-gray-400 mt-4 italic" id="display-combo-note">
@@ -634,33 +811,43 @@
         <!-- Plan Entrenamiento -->
         <div class="plan-card glass-panel rounded-2xl p-6 relative group hover:bg-white/5 transition-all duration-300 order-3">
             <div class="absolute -top-6 left-1/2 transform -translate-x-1/2 bg-infit-dark border border-white/10 p-3 rounded-full shadow-[0_0_15px_rgba(255,255,255,0.05)]">
-                <i class="fas fa-dumbbell text-2xl text-blue-500"></i>
+                <i class="fas fa-dumbbell text-2xl text-infit-gold"></i>
             </div>
             <h3 class="mt-8 text-xl font-heading font-bold text-center text-white uppercase italic">Entrenamiento</h3>
             <div class="text-center my-4">
+                <div id="train-original-row" class="hidden mb-1">
+                    <span class="text-gray-600 line-through text-lg">$<span id="display-price-train-original">49</span></span>
+                </div>
                 <span class="text-3xl font-bold text-infit-gold price-tag">$<span id="display-price-train">49</span></span>
                 <span class="text-sm text-gray-500 uppercase">USD / Mes</span>
+                <div id="train-discount-badge" class="hidden mt-2">
+                    <span class="discount-badge text-[10px] font-bold px-3 py-1 rounded-full uppercase">
+                        <i class="fas fa-tag mr-1"></i>Ahorras $<span id="train-savings">5</span> USD
+                    </span>
+                </div>
+                <p id="train-per-person-note" class="hidden text-[10px] text-infit-gold mt-2 font-bold uppercase tracking-wider">
+                    💲 Precio por integrante
+                </p>
             </div>
-            <!-- Botón Ver Video -->
-            <button onclick="playVideo('entreno')" class="w-full mb-4 py-2 bg-gray-800/50 hover:bg-infit-pink/10 rounded text-xs text-infit-pink border border-infit-pink/30 transition-all flex items-center justify-center gap-2">
+            <button onclick="playVideo('entreno')" class="w-full mb-4 py-2 bg-gray-800/50 hover:bg-infit-gold/10 rounded text-xs text-infit-gold border border-infit-gold/30 transition-all flex items-center justify-center gap-2">
                 <i class="fas fa-play-circle text-sm"></i> Ver Preview
             </button>
             <ul class="space-y-3 text-sm text-gray-400 mb-6">
                 <li class="flex items-start gap-2">
-                    <div class="check-icon p-1 rounded text-infit-pink mt-0.5"><i class="fas fa-check text-xs"></i></div>
+                    <div class="check-icon p-1 rounded text-infit-gold mt-0.5"><i class="fas fa-check text-xs"></i></div>
                     <span>Rutinas Gym o Casa</span>
                 </li>
                 <li class="flex items-start gap-2">
-                    <div class="check-icon p-1 rounded text-infit-pink mt-0.5"><i class="fas fa-check text-xs"></i></div>
+                    <div class="check-icon p-1 rounded text-infit-gold mt-0.5"><i class="fas fa-check text-xs"></i></div>
                     <span>Videos demostrativos</span>
                 </li>
                 <li class="flex items-start gap-2">
-                    <div class="check-icon p-1 rounded text-infit-pink mt-0.5"><i class="fas fa-check text-xs"></i></div>
+                    <div class="check-icon p-1 rounded text-infit-gold mt-0.5"><i class="fas fa-check text-xs"></i></div>
                     <span>Calendario de Poder</span>
                 </li>
             </ul>
 
-            <!-- L-Carnitina Toggle - Entrenamiento -->
+            <!-- L-Carnitina Toggle -->
             <div class="border-t border-gray-800 pt-4 mb-4">
                 <div class="flex items-center justify-between mb-2">
                     <div class="flex items-center gap-2">
@@ -671,17 +858,24 @@
                 </div>
                 <p class="text-[10px] text-gray-500 mb-2">
                     <i class="fas fa-info-circle text-infit-cyan mr-1"></i>
-                    Potencia tus resultados. Presentación en pastillas. Se envía desde México.
+                    2 frascos · $19/frasco · Se envía desde México. <span id="lc-toggle-price-train" class="text-infit-cyan font-bold">$103 USD c/u</span>
                 </p>
                 <div class="lc-section" id="lc-detail-train">
                     <div class="bg-cyan-900/20 border border-cyan-500/30 rounded-lg p-3">
                         <div class="flex items-center gap-2 mb-2">
                             <i class="fas fa-capsules text-infit-cyan"></i>
-                            <span class="text-xs font-bold text-infit-cyan"><span id="lc-frascos-label-train">2</span> Frascos de L-Carnitina</span>
+                            <span class="text-xs font-bold text-infit-cyan">2 Frascos de L-Carnitina</span>
                         </div>
                         <div class="flex items-center justify-between">
-                            <span class="text-[10px] text-gray-400">$<span id="lc-price-train">90</span> USD (incluye envío)</span>
+                            <span class="text-[10px] text-gray-400" id="lc-breakdown-train">$103 USD (incluye envío)</span>
                             <span class="text-[9px] text-infit-cyan bg-cyan-900/30 px-2 py-0.5 rounded-full">🇲🇽 Envío desde México</span>
+                        </div>
+                        <!-- Nota división de envío (visible solo en modo reto) -->
+                        <div id="lc-shipping-note-train" class="hidden mt-1 bg-cyan-900/10 border border-cyan-500/20 rounded px-2 py-1">
+                            <p class="text-[9px] text-cyan-300">
+                                <i class="fas fa-truck mr-1"></i>
+                                <span id="lc-shipping-divided-train">Envío $65 ÷ 2 = $33 c/u</span>
+                            </p>
                         </div>
                         <div class="mt-2 bg-amber-900/20 border border-amber-500/30 rounded p-2">
                             <p class="text-[9px] text-amber-300">
@@ -693,7 +887,7 @@
                 </div>
             </div>
 
-            <button onclick="selectPlan('Entrenamiento')" class="w-full py-3 rounded-lg border border-gray-600 hover:border-infit-pink hover:text-infit-pink transition-colors text-sm font-bold uppercase tracking-wider">
+            <button onclick="selectPlan('Entrenamiento')" class="w-full py-3 rounded-lg border border-gray-600 hover:border-infit-gold hover:text-infit-gold transition-colors text-sm font-bold uppercase tracking-wider">
                 Elegir Entrenamiento
             </button>
             <p class="text-[10px] text-center text-gray-500 mt-2 italic" id="payment-note-train">
@@ -707,26 +901,26 @@
     <section class="max-w-4xl mx-auto px-4 pb-12">
         <div class="glass-panel rounded-2xl p-6 md:p-8">
             <h3 class="text-xl font-heading font-bold text-center text-white uppercase italic mb-6">
-                <i class="fas fa-star text-infit-gold mr-2"></i> ¿Por qué elegir INFIT USA?
+                <i class="fas fa-star text-infit-gold mr-2"></i> ¿Por qué elegir INFIT WOMEN?
             </h3>
             <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
                 <div class="text-center group">
-                    <div class="bg-infit-pink/10 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-3 group-hover:scale-110 group-hover:bg-infit-pink/20 transition-all">
-                        <i class="fas fa-map-marker-alt text-2xl text-infit-pink"></i>
+                    <div class="bg-infit-gold/10 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-3 group-hover:scale-110 group-hover:bg-infit-gold/20 transition-all">
+                        <i class="fas fa-map-marker-alt text-2xl text-infit-gold"></i>
                     </div>
                     <h4 class="font-bold text-white mb-1">Desde Tu Tierra</h4>
                     <p class="text-xs text-gray-500">El sabor de Santa Ana Hueytlalpan ahora llega hasta donde estés en USA</p>
                 </div>
                 <div class="text-center group">
-                    <div class="bg-infit-pink/10 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-3 group-hover:scale-110 group-hover:bg-infit-pink/20 transition-all">
-                        <i class="fas fa-shopping-cart text-2xl text-infit-pink"></i>
+                    <div class="bg-infit-gold/10 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-3 group-hover:scale-110 group-hover:bg-infit-gold/20 transition-all">
+                        <i class="fas fa-shopping-cart text-2xl text-infit-gold"></i>
                     </div>
                     <h4 class="font-bold text-white mb-1">Ingredientes Accesibles</h4>
                     <p class="text-xs text-gray-500">Recetas con productos de Walmart, Target, o tu tienda latina favorita</p>
                 </div>
                 <div class="text-center group">
-                    <div class="bg-infit-pink/10 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-3 group-hover:scale-110 group-hover:bg-infit-pink/20 transition-all">
-                        <i class="fas fa-paper-plane text-2xl text-infit-pink"></i>
+                    <div class="bg-infit-gold/10 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-3 group-hover:scale-110 group-hover:bg-infit-gold/20 transition-all">
+                        <i class="fas fa-paper-plane text-2xl text-infit-gold"></i>
                     </div>
                     <h4 class="font-bold text-white mb-1">Pago Fácil a México</h4>
                     <p class="text-xs text-gray-500">Remitly, Western Union, Wise... ¡Como ya lo conoces!</p>
@@ -737,10 +931,10 @@
 
     <!-- Sección de Comunidad -->
     <section class="max-w-4xl mx-auto px-4 pb-12">
-        <div class="bg-gradient-to-r from-infit-pink/10 to-infit-gold/5 border border-infit-pink/20 rounded-2xl p-6 md:p-8">
+        <div class="bg-gradient-to-r from-infit-gold/10 to-white/5 border border-infit-gold/20 rounded-2xl p-6 md:p-8">
             <div class="flex flex-col md:flex-row items-center gap-6">
                 <div class="flex-shrink-0">
-                    <div class="w-24 h-24 rounded-full bg-infit-pink/20 flex items-center justify-center">
+                    <div class="w-24 h-24 rounded-full bg-infit-gold/20 flex items-center justify-center">
                         <span class="text-5xl flag-wave">🇲🇽</span>
                     </div>
                 </div>
@@ -764,8 +958,8 @@
         <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
             
             <!-- Bloque 1: Garantía -->
-            <div class="bg-gray-900/50 border border-infit-pink/30 p-4 rounded-xl flex flex-col items-center justify-center text-center gap-2 hover:border-infit-pink/50 transition-colors">
-                <i class="fas fa-shield-alt text-infit-pink text-2xl animate-pulse"></i>
+            <div class="bg-gray-900/50 border border-infit-gold/30 p-4 rounded-xl flex flex-col items-center justify-center text-center gap-2 hover:border-infit-gold/50 transition-colors">
+                <i class="fas fa-shield-alt text-infit-gold text-2xl animate-pulse"></i>
                 <p class="text-xs text-gray-400">
                     <strong class="text-white uppercase">Confianza INFIT:</strong><br>
                     Solicita tu plan hoy, y realiza tu pago únicamente cuando hayas recibido tu material completo. Sin riesgos.
@@ -773,10 +967,10 @@
             </div>
 
             <!-- Bloque 2: Pago USA -->
-            <div class="bg-gray-900/80 border border-green-700/50 p-4 rounded-xl flex flex-col items-center justify-center text-center gap-2 relative overflow-hidden hover:border-green-600 transition-colors">
-                <i class="fas fa-paper-plane text-green-400 text-2xl"></i>
+            <div class="bg-gray-900/80 border border-infit-gold/50 p-4 rounded-xl flex flex-col items-center justify-center text-center gap-2 relative overflow-hidden hover:border-infit-gold transition-colors">
+                <i class="fas fa-paper-plane text-infit-gold text-2xl"></i>
                 <p class="text-xs text-gray-400">
-                    <strong class="text-green-400 uppercase">💳 Pago Fácil a México</strong><br>
+                    <strong class="text-infit-gold uppercase">💸 Pago con Remesas</strong><br>
                     Remitly, Western Union, Wise... ¡Envía tu pago como ya lo haces con tu familia!
                 </p>
             </div>
@@ -791,7 +985,7 @@
         
         <!-- Modal Content -->
         <div class="relative min-h-screen md:min-h-0 flex items-end md:items-center justify-center p-0 md:p-4">
-            <div class="w-full md:w-[520px] bg-[#121212] border border-infit-pink/20 rounded-t-3xl md:rounded-2xl p-6 md:p-8 transition-transform duration-300 transform translate-y-full md:translate-y-0" id="modal-panel">
+            <div class="w-full md:w-[520px] bg-[#0a0a0a] border border-infit-gold/20 rounded-t-3xl md:rounded-2xl p-6 md:p-8 transition-transform duration-300 transform translate-y-full md:translate-y-0" id="modal-panel">
                 
                 <div class="flex justify-between items-center mb-4">
                     <h3 class="text-xl font-heading font-bold text-white uppercase italic">Configura tu Plan</h3>
@@ -800,7 +994,7 @@
 
                 <!-- Indicador de progreso -->
                 <div class="flex justify-center gap-2 mb-6">
-                    <div id="step-1" class="step-indicator w-2 h-2 rounded-full bg-infit-pink active"></div>
+                    <div id="step-1" class="step-indicator w-2 h-2 rounded-full bg-infit-gold active"></div>
                     <div id="step-2" class="step-indicator w-2 h-2 rounded-full bg-gray-600"></div>
                     <div id="step-3" class="step-indicator w-2 h-2 rounded-full bg-gray-600"></div>
                     <div id="step-4" class="step-indicator w-2 h-2 rounded-full bg-gray-600"></div>
@@ -809,14 +1003,32 @@
                 </div>
 
                 <!-- Resumen Selección -->
-                <div class="bg-infit-pink/10 p-3 rounded border border-infit-pink/20 mb-4 flex justify-between items-center">
+                <div class="bg-infit-gold/10 p-3 rounded border border-infit-gold/20 mb-4 flex justify-between items-center">
                     <div>
-                        <p class="text-[10px] text-infit-pink uppercase font-bold">Plan Seleccionado</p>
+                        <p class="text-[10px] text-infit-gold uppercase font-bold">Plan Seleccionado</p>
                         <p id="modal-plan-name" class="text-white font-bold text-lg leading-none">Combo Total</p>
                     </div>
                     <div class="text-right">
                         <p id="modal-plan-price" class="text-infit-gold font-bold text-xl">$69</p>
                         <p id="modal-payment-condition" class="text-[9px] text-gray-500 uppercase">Mensual</p>
+                    </div>
+                </div>
+
+                <!-- Resumen Reto Compartido en Modal -->
+                <div id="modal-reto-summary" class="hidden bg-amber-900/15 border border-amber-500/20 p-3 rounded-lg mb-4">
+                    <div class="flex items-center justify-between">
+                        <div class="flex items-center gap-2">
+                            <i class="fas fa-users text-infit-gold"></i>
+                            <div>
+                                <p class="text-[10px] text-infit-gold uppercase font-bold">👯‍♀️ Reto Compartido</p>
+                                <p id="modal-reto-desc" class="text-white text-xs font-bold">2 integrantes - 10% descuento</p>
+                                <p class="text-[9px] text-infit-gold/80 mt-0.5">💲 Precio por integrante</p>
+                            </div>
+                        </div>
+                        <div class="text-right">
+                            <p id="modal-reto-savings" class="text-green-400 font-bold text-sm">-$7</p>
+                            <p class="text-[9px] text-gray-500">Ahorro c/u</p>
+                        </div>
                     </div>
                 </div>
 
@@ -865,20 +1077,20 @@
                     <div class="grid grid-cols-1 gap-4">
                         <div>
                             <label class="block text-xs text-gray-500 uppercase font-bold mb-1">
-                                <i class="fas fa-user text-infit-pink mr-1"></i>Nombre Completo (o Apodo)
+                                <i class="fas fa-user text-infit-gold mr-1"></i>Nombre Completo (o Apodo)
                             </label>
                             <input type="text" id="client-name" required class="input-field w-full rounded p-3" placeholder="Ej. Alex García">
                         </div>
                         <div class="grid grid-cols-2 gap-2">
                             <div>
                                 <label class="block text-xs text-gray-500 uppercase font-bold mb-1">
-                                    <i class="fas fa-city text-infit-pink mr-1"></i>Ciudad (USA)
+                                    <i class="fas fa-city text-infit-gold mr-1"></i>Ciudad (USA)
                                 </label>
                                 <input type="text" id="client-city" required class="input-field w-full rounded p-3" placeholder="Ej. Houston, TX">
                             </div>
                             <div>
                                 <label class="block text-xs text-gray-500 uppercase font-bold mb-1">
-                                    <i class="fas fa-home text-infit-pink mr-1"></i>Pueblo de Origen
+                                    <i class="fas fa-home text-infit-gold mr-1"></i>Pueblo de Origen
                                 </label>
                                 <input type="text" id="client-origin" class="input-field w-full rounded p-3" placeholder="Ej. Santa Ana">
                             </div>
@@ -887,7 +1099,7 @@
 
                     <!-- Campo de Objetivo -->
                     <div id="fields-goal" class="space-y-4 border-t border-gray-800 pt-4 animate-bounce-in">
-                        <p class="text-infit-pink text-xs font-bold uppercase">
+                        <p class="text-infit-gold text-xs font-bold uppercase">
                             <i class="fas fa-bullseye mr-1"></i>¿Cuál es tu objetivo?
                         </p>
                         <div class="grid grid-cols-1 gap-3">
@@ -930,10 +1142,10 @@
                         </div>
                     </div>
 
-                    <!-- Campo de ¿Quién te recomendó? (PARA TODOS LOS PLANES) -->
+                    <!-- Campo de ¿Quién te recomendó? -->
                     <div id="fields-referrer" class="space-y-4 border-t border-gray-800 pt-4 animate-bounce-in">
-                        <p class="text-infit-pink text-xs font-bold uppercase">
-                            <i class="fas fa-heart text-pink-400 mr-1"></i>¿Quién te recomendó? (Opcional)
+                        <p class="text-infit-gold text-xs font-bold uppercase">
+                            <i class="fas fa-heart text-yellow-400 mr-1"></i>¿Quién te recomendó? (Opcional)
                         </p>
                         <input 
                             type="text" 
@@ -941,18 +1153,18 @@
                             class="input-field w-full rounded p-3" 
                             placeholder="Ej. María García, mi prima Lupita..."
                         >
-                        <div class="bg-pink-500/10 border border-pink-500/20 rounded-lg p-3">
+                        <div class="bg-yellow-500/10 border border-yellow-500/20 rounded-lg p-3">
                             <p class="text-[10px] text-gray-300 leading-relaxed">
-                                <i class="fas fa-hands-helping text-pink-400 mr-1"></i>
-                                <strong class="text-pink-300">¡Apoya a quien te recomendó!</strong><br>
+                                <i class="fas fa-hands-helping text-yellow-400 mr-1"></i>
+                                <strong class="text-yellow-300">¡Apoya a quien te recomendó!</strong><br>
                                 Si alguien te recomendó INFIT, mencionarlo ayuda a esa persona a construir también su mejor versión. 🙌
                             </p>
                         </div>
                     </div>
 
-                    <!-- Campo de Dónde Compras (SOLO NUTRICIÓN Y COMBO) -->
+                    <!-- Campo de Dónde Compras -->
                     <div id="fields-store" class="space-y-4 border-t border-gray-800 pt-4 animate-bounce-in">
-                        <p class="text-infit-pink text-xs font-bold uppercase">
+                        <p class="text-infit-gold text-xs font-bold uppercase">
                             <i class="fas fa-shopping-cart mr-1"></i>¿Dónde haces tu mandado?
                         </p>
                         <div class="grid grid-cols-1 gap-2">
@@ -995,16 +1207,15 @@
                         </div>
                     </div>
 
-                    <!-- Campo de Alimentos a Excluir (SOLO NUTRICIÓN Y COMBO) -->
+                    <!-- Campo de Alimentos a Excluir -->
                     <div id="fields-exclude" class="space-y-4 border-t border-gray-800 pt-4 animate-bounce-in">
-                        <p class="text-infit-pink text-xs font-bold uppercase">
+                        <p class="text-infit-gold text-xs font-bold uppercase">
                             <i class="fas fa-ban text-red-400 mr-1"></i>Alimentos a Excluir
                         </p>
                         <p class="text-gray-500 text-[10px] mb-3">
                             ¿Hay algún alimento que no te guste o te haga daño? Marca las opciones que aplican:
                         </p>
                         
-                        <!-- Checkboxes de alergias/intolerancias comunes -->
                         <div class="grid grid-cols-2 gap-2">
                             <label class="exclude-item flex items-center gap-2 p-2 rounded border border-gray-700 cursor-pointer">
                                 <input type="checkbox" name="exclude" value="Lácteos" class="exclude-checkbox">
@@ -1056,10 +1267,9 @@
                             </label>
                         </div>
 
-                        <!-- Campo de texto libre para otros alimentos -->
                         <div class="mt-3">
                             <label class="block text-[10px] text-gray-500 uppercase font-bold mb-1">
-                                <i class="fas fa-pen text-infit-pink mr-1"></i>Otros alimentos que desees excluir:
+                                <i class="fas fa-pen text-infit-gold mr-1"></i>Otros alimentos que desees excluir:
                             </label>
                             <textarea 
                                 id="exclude-other" 
@@ -1071,15 +1281,14 @@
 
                     <!-- Campo de Método de Pago -->
                     <div id="fields-payment" class="space-y-4 border-t border-gray-800 pt-4 animate-bounce-in">
-                        <p class="text-infit-pink text-xs font-bold uppercase">
-                            <i class="fas fa-paper-plane text-green-400 mr-1"></i>¿Cómo prefieres enviar tu pago?
+                        <p class="text-infit-gold text-xs font-bold uppercase">
+                            <i class="fas fa-wallet text-infit-gold mr-1"></i>¿Cómo prefieres enviar tu pago?
                         </p>
                         
-                        <!-- Nota contextual -->
-                        <div class="bg-infit-pink/10 border border-infit-pink/20 rounded-lg p-3 mb-3" id="payment-context-box">
+                        <div class="bg-infit-gold/10 border border-infit-gold/20 rounded-lg p-3 mb-3" id="payment-context-box">
                             <p class="text-[11px] text-gray-300 leading-relaxed" id="payment-context-text">
-                                <i class="fas fa-heart text-infit-pink mr-1"></i>
-                                <strong class="text-infit-pink">¡Envía tu pago como ya lo conoces!</strong><br>
+                                <i class="fas fa-heart text-infit-gold mr-1"></i>
+                                <strong class="text-infit-gold">¡Envía tu pago como ya lo conoces!</strong><br>
                                 Así como envías dinero a tu familia en México, puedes enviar tu pago de la misma forma. Te daremos los datos cuando tu plan esté listo.
                             </p>
                         </div>
@@ -1087,55 +1296,39 @@
                         <div class="grid grid-cols-2 gap-3">
                             <label class="cursor-pointer block">
                                 <input type="radio" name="payment" value="Remitly" class="payment-radio hidden">
-                                <div class="payment-card input-field p-3 rounded-lg flex flex-col items-center gap-2">
-                                    <div class="payment-icon bg-emerald-500/20 p-2 rounded-lg text-emerald-400 transition-transform">
-                                        <i class="fas fa-paper-plane text-lg"></i>
-                                    </div>
-                                    <div class="text-center">
-                                        <p class="text-white font-bold text-sm">Remitly</p>
-                                        <p class="text-gray-500 text-[9px]">Rápido y fácil</p>
-                                    </div>
+                                <div class="payment-card input-field p-3 rounded-lg text-center">
+                                    <i class="fas fa-paper-plane text-infit-gold text-lg mb-1 block"></i>
+                                    <span class="text-white font-bold text-sm">Remitly</span>
+                                    <p class="text-gray-500 text-[10px]">Rápido y fácil</p>
                                 </div>
                             </label>
                             <label class="cursor-pointer block">
                                 <input type="radio" name="payment" value="Western Union" class="payment-radio hidden">
-                                <div class="payment-card input-field p-3 rounded-lg flex flex-col items-center gap-2">
-                                    <div class="payment-icon bg-yellow-500/20 p-2 rounded-lg text-yellow-400 transition-transform">
-                                        <i class="fas fa-globe text-lg"></i>
-                                    </div>
-                                    <div class="text-center">
-                                        <p class="text-white font-bold text-sm">Western Union</p>
-                                        <p class="text-gray-500 text-[9px]">En cualquier tienda</p>
-                                    </div>
+                                <div class="payment-card input-field p-3 rounded-lg text-center">
+                                    <i class="fas fa-building-columns text-infit-gold text-lg mb-1 block"></i>
+                                    <span class="text-white font-bold text-sm">Western Union</span>
+                                    <p class="text-gray-500 text-[10px]">En cualquier tienda</p>
                                 </div>
                             </label>
                             <label class="cursor-pointer block">
-                                <input type="radio" name="payment" value="Wise (TransferWise)" class="payment-radio hidden">
-                                <div class="payment-card input-field p-3 rounded-lg flex flex-col items-center gap-2">
-                                    <div class="payment-icon bg-blue-500/20 p-2 rounded-lg text-blue-400 transition-transform">
-                                        <i class="fas fa-exchange-alt text-lg"></i>
-                                    </div>
-                                    <div class="text-center">
-                                        <p class="text-white font-bold text-sm">Wise</p>
-                                        <p class="text-gray-500 text-[9px]">Bajas comisiones</p>
-                                    </div>
+                                <input type="radio" name="payment" value="Wise" class="payment-radio hidden">
+                                <div class="payment-card input-field p-3 rounded-lg text-center">
+                                    <i class="fas fa-globe text-infit-gold text-lg mb-1 block"></i>
+                                    <span class="text-white font-bold text-sm">Wise</span>
+                                    <p class="text-gray-500 text-[10px]">Bajas comisiones</p>
                                 </div>
                             </label>
                             <label class="cursor-pointer block">
                                 <input type="radio" name="payment" value="Otro (MoneyGram, etc.)" class="payment-radio hidden">
-                                <div class="payment-card input-field p-3 rounded-lg flex flex-col items-center gap-2">
-                                    <div class="payment-icon bg-purple-500/20 p-2 rounded-lg text-purple-400 transition-transform">
-                                        <i class="fas fa-ellipsis-h text-lg"></i>
-                                    </div>
-                                    <div class="text-center">
-                                        <p class="text-white font-bold text-sm">Otro</p>
-                                        <p class="text-gray-500 text-[9px]">MoneyGram, etc.</p>
-                                    </div>
+                                <div class="payment-card input-field p-3 rounded-lg text-center">
+                                    <i class="fas fa-ellipsis-h text-infit-gold text-lg mb-1 block"></i>
+                                    <span class="text-white font-bold text-sm">Otro</span>
+                                    <p class="text-gray-500 text-[10px]">MoneyGram, etc.</p>
                                 </div>
                             </label>
                         </div>
                         <p class="text-[10px] text-gray-600 flex items-center gap-1" id="payment-method-note">
-                            <i class="fas fa-info-circle text-infit-pink"></i>
+                            <i class="fas fa-info-circle text-infit-gold"></i>
                             Te enviaremos los datos para que envíes tu pago como siempre lo haces.
                         </p>
                     </div>
@@ -1143,8 +1336,7 @@
                     <!-- CAMPOS DINÁMICOS: NUTRICIÓN -->
                     <div id="fields-nutrition" class="hidden space-y-4 border-t border-gray-800 pt-4">
                         <div class="flex justify-between items-center">
-                            <p class="text-infit-pink text-xs font-bold uppercase"><i class="fas fa-apple-alt mr-1"></i> Datos Nutricionales</p>
-                            <!-- Switch Unidad -->
+                            <p class="text-infit-gold text-xs font-bold uppercase"><i class="fas fa-apple-alt mr-1"></i> Datos Nutricionales</p>
                             <div class="flex bg-gray-800 rounded p-1">
                                 <label class="cursor-pointer px-2 py-1 text-[10px] rounded transition-colors" id="label-metric">
                                     <input type="radio" name="units" value="metric" checked class="hidden" onchange="toggleUnits(this.value)">
@@ -1191,19 +1383,19 @@
 
                     <!-- CAMPOS DINÁMICOS: ENTRENAMIENTO -->
                     <div id="fields-training" class="hidden space-y-4 border-t border-gray-800 pt-4">
-                        <p class="text-infit-pink text-xs font-bold uppercase"><i class="fas fa-dumbbell mr-1"></i> Datos Entrenamiento</p>
+                        <p class="text-infit-gold text-xs font-bold uppercase"><i class="fas fa-dumbbell mr-1"></i> Datos Entrenamiento</p>
                         <div>
                             <label class="block text-xs text-gray-500 uppercase font-bold mb-2">Lugar de Entreno</label>
                             <div class="grid grid-cols-2 gap-2">
                                 <label class="cursor-pointer">
                                     <input type="radio" name="place" value="Gimnasio" class="peer hidden" checked>
-                                    <div class="input-field p-3 rounded text-center text-xs font-bold peer-checked:border-infit-pink peer-checked:text-infit-pink hover:bg-white/5">
+                                    <div class="input-field p-3 rounded text-center text-xs font-bold peer-checked:border-infit-gold peer-checked:text-infit-gold hover:bg-white/5">
                                         <i class="fas fa-building mb-1 block text-lg"></i> Gimnasio
                                     </div>
                                 </label>
                                 <label class="cursor-pointer">
                                     <input type="radio" name="place" value="Casa" class="peer hidden">
-                                    <div class="input-field p-3 rounded text-center text-xs font-bold peer-checked:border-infit-pink peer-checked:text-infit-pink hover:bg-white/5">
+                                    <div class="input-field p-3 rounded text-center text-xs font-bold peer-checked:border-infit-gold peer-checked:text-infit-gold hover:bg-white/5">
                                         <i class="fas fa-home mb-1 block text-lg"></i> Casa (Mancuernas)
                                     </div>
                                 </label>
@@ -1213,7 +1405,6 @@
                         <div>
                             <label class="block text-xs text-gray-500 uppercase font-bold mb-2">Días Disponibles</label>
                             <div class="flex justify-between gap-1">
-                                <!-- Generación de Checkboxes Lun-Dom -->
                                 <label class="cursor-pointer flex-1"><input type="checkbox" value="Lun" class="day-checkbox hidden"><div class="input-field h-8 flex items-center justify-center rounded text-[10px]">L</div></label>
                                 <label class="cursor-pointer flex-1"><input type="checkbox" value="Mar" class="day-checkbox hidden"><div class="input-field h-8 flex items-center justify-center rounded text-[10px]">M</div></label>
                                 <label class="cursor-pointer flex-1"><input type="checkbox" value="Mié" class="day-checkbox hidden"><div class="input-field h-8 flex items-center justify-center rounded text-[10px]">M</div></label>
@@ -1225,13 +1416,13 @@
                         </div>
                     </div>
 
-                    <div class="pt-4 sticky bottom-0 bg-[#121212] border-t border-gray-800">
+                    <div class="pt-4 sticky bottom-0 bg-[#0a0a0a] border-t border-gray-800">
                         <button type="submit" id="submit-btn" class="w-full bg-[#25D366] text-white font-bold py-4 rounded-lg uppercase tracking-widest hover:bg-[#20bd5a] transition-colors flex justify-center items-center gap-2 shadow-[0_0_15px_rgba(37,211,102,0.3)]">
                             <i class="fab fa-whatsapp text-2xl"></i>
                             <span>Finalizar Pedido en WhatsApp</span>
                         </button>
                         <p class="text-[10px] text-center text-gray-500 mt-2" id="modal-footer-payment-note">
-                            <i class="fas fa-exclamation-circle text-infit-pink"></i> Es necesario hacer clic para enviar los datos por WhatsApp.
+                            <i class="fas fa-exclamation-circle text-infit-gold"></i> Es necesario hacer clic para enviar los datos por WhatsApp.
                         </p>
                     </div>
                 </form>
@@ -1241,21 +1432,18 @@
 
     <!-- MODAL DE VIDEO -->
     <div id="video-modal" class="fixed inset-0 z-[120] hidden bg-black/95 flex items-center justify-center p-4">
-        <div class="relative w-full max-w-4xl bg-black rounded-lg overflow-hidden border border-infit-pink/30 shadow-2xl">
-            <!-- Botón Cerrar -->
-            <button onclick="closeVideo()" class="absolute top-2 right-2 z-10 bg-black/50 text-white hover:text-infit-pink rounded-full w-10 h-10 flex items-center justify-center text-xl backdrop-blur-sm border border-white/20">
+        <div class="relative w-full max-w-4xl bg-black rounded-lg overflow-hidden border border-infit-gold/30 shadow-2xl">
+            <button onclick="closeVideo()" class="absolute top-2 right-2 z-10 bg-black/50 text-white hover:text-infit-gold rounded-full w-10 h-10 flex items-center justify-center text-xl backdrop-blur-sm border border-white/20">
                 <i class="fas fa-times"></i>
             </button>
-            
             <div class="aspect-video w-full">
                 <video id="main-video-player" class="w-full h-full object-contain" controls controlsList="nodownload">
                     <source src="" type="video/mp4">
                     Tu navegador no soporta videos HTML5.
                 </video>
             </div>
-            
             <div class="p-4 bg-[#121212]">
-                <h4 id="video-title" class="text-infit-pink font-bold uppercase text-lg">Vista Previa</h4>
+                <h4 id="video-title" class="text-infit-gold font-bold uppercase text-lg">Vista Previa</h4>
                 <p class="text-gray-400 text-xs mt-1">Mira un poco de lo que incluye este plan.</p>
             </div>
         </div>
@@ -1263,12 +1451,12 @@
 
     <!-- Success Overlay -->
     <div id="success-overlay" class="fixed inset-0 z-[110] hidden bg-black flex flex-col items-center justify-center p-4 text-center">
-        <div class="bg-infit-pink/10 p-6 rounded-full mb-6 animate-bounce">
-            <i class="fas fa-check text-4xl text-infit-pink"></i>
+        <div class="bg-infit-gold/10 p-6 rounded-full mb-6 animate-bounce">
+            <i class="fas fa-check text-4xl text-infit-gold"></i>
         </div>
         <h2 class="text-3xl font-heading font-bold text-white uppercase italic mb-2">¡Todo Listo!</h2>
         <p class="text-gray-400 max-w-md mb-8">
-            Gracias <span id="success-name" class="text-infit-pink font-bold"></span>.
+            Gracias <span id="success-name" class="text-infit-gold font-bold"></span>.
             <br>
             Hemos abierto WhatsApp para que confirmes tu inscripción.
         </p>
@@ -1277,7 +1465,7 @@
 
     <footer class="bg-black py-8 border-t border-gray-900 mt-auto">
         <div class="text-center">
-            <p class="text-infit-pink font-heading font-bold text-xl italic tracking-widest">INFIT</p>
+            <p class="text-infit-gold font-heading font-bold text-xl italic tracking-widest">IN<span class="text-white">FIT</span> <span class="text-gray-400 text-xs">WOMEN</span></p>
             <p class="text-gray-700 text-[10px] uppercase tracking-widest mt-1">Santa Ana Hueytlalpan · USA · México</p>
             <div class="flex items-center justify-center gap-2 mt-2">
                 <span class="flag-wave">🇲🇽</span>
@@ -1293,13 +1481,17 @@
         //  1. CONFIGURACIÓN EDITABLE
         // ==========================================
         let config = {
-            promoText: "Promoción válida del 01 al 30 de Junio. Aprovecha el precio especial y los retos activos: reta a alguien que este contigo en EE. UU. para obtener descuento adicional o patrocina a alguien en México y comiencen juntos su mejor versión",
+            promoText: "Aprovecha el precio especial y los retos activos y comiencen juntas su mejor versión",
             priceNutri: 39,
             priceTrain: 49,
             priceCombo: 69,
             priceOld: 88,
-            priceLcarnitina: 90,
-            lcFrascos: 2,
+            // L-Carnitina pricing breakdown
+            lcPricePerFrasco: 19,        // $19 por frasco
+            lcFrascosPerPerson: 2,       // Siempre 2 frascos por persona
+            lcShippingTotal: 65,         // $65 envío total (se divide entre participantes en reto)
+            priceLcarnitina: 90,         // Precio base (mantenido por compatibilidad del editor)
+            lcFrascos: 2,                // Mantenida por compatibilidad
             comboNote: "*La opción que genera mejores resultados estadísticamente.*"
         };
         // ==========================================
@@ -1314,8 +1506,155 @@
         };
 
         // ==========================================
+        //  2B. ESTADO DE RETO COMPARTIDO
+        // ==========================================
+        let retoParticipantes = 0; // 0 = yo solo, 2, 3, o 4 integrantes
+
+        function getDiscountRate(participants) {
+            if (participants === 2) return 0.10;
+            if (participants === 3) return 0.15;
+            if (participants === 4) return 0.20;
+            return 0;
+        }
+
+        function getDiscountedPrice(basePrice, participants) {
+            const rate = getDiscountRate(participants);
+            return Math.round(basePrice * (1 - rate));
+        }
+
+        // ==========================================
+        //  2C. PRECIOS DINÁMICOS DE L-CARNITINA
+        //  Producto: 2 frascos × $19 = $38 por persona (fijo)
+        //  Envío: $65 total ÷ numPersonas
+        //  Total por persona = $38 + ($65 / numPersonas)
+        // ==========================================
+        function getLcarnitinaPerPerson(participants) {
+            const numPeople = participants >= 2 ? participants : 1;
+            const productCost = config.lcFrascosPerPerson * config.lcPricePerFrasco;
+            const shippingPerPerson = config.lcShippingTotal / numPeople;
+            const totalPerPerson = productCost + shippingPerPerson;
+            return Math.round(totalPerPerson);
+        }
+
+        function getLcPriceBreakdownText(participants) {
+            const numPeople = participants >= 2 ? participants : 1;
+            const productCost = config.lcFrascosPerPerson * config.lcPricePerFrasco;
+            const shippingPerPerson = Math.round(config.lcShippingTotal / numPeople);
+            const totalPerPerson = getLcarnitinaPerPerson(participants);
+            if (numPeople >= 2) {
+                return `2 frascos × $${config.lcPricePerFrasco} = $${productCost} + envío $${config.lcShippingTotal}/${numPeople} = $${shippingPerPerson} · Total: $${totalPerPerson} USD`;
+            } else {
+                return `2 frascos × $${config.lcPricePerFrasco} = $${productCost} + envío $${config.lcShippingTotal} · Total: $${totalPerPerson} USD`;
+            }
+        }
+
+        function selectParticipantes(num) {
+            retoParticipantes = num;
+            document.querySelectorAll('.reto-option').forEach(btn => {
+                if (parseInt(btn.dataset.participants) === num) {
+                    btn.classList.add('active');
+                } else {
+                    btn.classList.remove('active');
+                }
+            });
+            updatePricingDisplay();
+        }
+
+        function updatePricingDisplay() {
+            const rate = getDiscountRate(retoParticipantes);
+            const nutriDiscounted = getDiscountedPrice(config.priceNutri, retoParticipantes);
+            const trainDiscounted = getDiscountedPrice(config.priceTrain, retoParticipantes);
+            const comboDiscounted = getDiscountedPrice(config.priceCombo, retoParticipantes);
+
+            // Nota "precio por integrante" (general + por plan)
+            const priceInfoNote = document.getElementById('reto-price-info-note');
+            const nutriPerPerson = document.getElementById('nutri-per-person-note');
+            const trainPerPerson = document.getElementById('train-per-person-note');
+            const comboPerPerson = document.getElementById('combo-per-person-note');
+            if (rate > 0) {
+                priceInfoNote.classList.remove('hidden');
+                nutriPerPerson.classList.remove('hidden');
+                trainPerPerson.classList.remove('hidden');
+                comboPerPerson.classList.remove('hidden');
+            } else {
+                priceInfoNote.classList.add('hidden');
+                nutriPerPerson.classList.add('hidden');
+                trainPerPerson.classList.add('hidden');
+                comboPerPerson.classList.add('hidden');
+            }
+
+            // Plan Nutrición
+            document.getElementById('display-price-nutri').textContent = nutriDiscounted;
+            const nutriOrigRow = document.getElementById('nutri-original-row');
+            const nutriBadge = document.getElementById('nutri-discount-badge');
+            if (rate > 0) {
+                nutriOrigRow.classList.remove('hidden');
+                document.getElementById('display-price-nutri-original').textContent = config.priceNutri;
+                nutriBadge.classList.remove('hidden');
+                document.getElementById('nutri-savings').textContent = config.priceNutri - nutriDiscounted;
+            } else {
+                nutriOrigRow.classList.add('hidden');
+                nutriBadge.classList.add('hidden');
+            }
+
+            // Plan Entrenamiento
+            document.getElementById('display-price-train').textContent = trainDiscounted;
+            const trainOrigRow = document.getElementById('train-original-row');
+            const trainBadge = document.getElementById('train-discount-badge');
+            if (rate > 0) {
+                trainOrigRow.classList.remove('hidden');
+                document.getElementById('display-price-train-original').textContent = config.priceTrain;
+                trainBadge.classList.remove('hidden');
+                document.getElementById('train-savings').textContent = config.priceTrain - trainDiscounted;
+            } else {
+                trainOrigRow.classList.add('hidden');
+                trainBadge.classList.add('hidden');
+            }
+
+            // Plan Combo Total
+            document.getElementById('display-price-combo').textContent = comboDiscounted;
+            const comboOrigRow = document.getElementById('combo-original-row');
+            const comboBadge = document.getElementById('combo-discount-badge');
+            const comboSavingsText = document.getElementById('combo-savings-text');
+            if (rate > 0) {
+                comboOrigRow.classList.remove('hidden');
+                document.getElementById('display-price-combo-original').textContent = config.priceCombo;
+                comboBadge.classList.remove('hidden');
+                document.getElementById('combo-savings').textContent = config.priceCombo - comboDiscounted;
+                const comboSavings = config.priceCombo - comboDiscounted;
+                comboSavingsText.textContent = `Ahorras $${comboSavings} USD con tu reto (más $${config.priceOld - config.priceCombo} vs. separados)`;
+            } else {
+                comboOrigRow.classList.add('hidden');
+                comboBadge.classList.add('hidden');
+                comboSavingsText.textContent = `Ahorras $${config.priceOld - config.priceCombo} vs. planes separados`;
+            }
+
+            // ===== L-CARNITINA: precios dinámicos basados en reto participantes =====
+            const lcPricePerPersonNow = getLcarnitinaPerPerson(retoParticipantes);
+            const lcBreakdownText = getLcPriceBreakdownText(retoParticipantes);
+            const numPeople = retoParticipantes >= 2 ? retoParticipantes : 1;
+            ['nutri', 'combo', 'train'].forEach(key => {
+                // Toggle price label
+                document.getElementById(`lc-toggle-price-${key}`).textContent = `$${lcPricePerPersonNow} USD c/u`;
+                // Breakdown text
+                document.getElementById(`lc-breakdown-${key}`).textContent = lcBreakdownText;
+                // Shipping division note
+                const shipNote = document.getElementById(`lc-shipping-note-${key}`);
+                if (numPeople >= 2) {
+                    shipNote.classList.remove('hidden');
+                    const shipPerPerson = Math.round(config.lcShippingTotal / numPeople);
+                    document.getElementById(`lc-shipping-divided-${key}`).textContent =
+                        `Envío $${config.lcShippingTotal} ÷ ${numPeople} = $${shipPerPerson} c/u`;
+                } else {
+                    shipNote.classList.add('hidden');
+                }
+            });
+        }
+
+        // ==========================================
         //  2. LÓGICA DE FIREBASE Y NEGOCIO
         // ==========================================
+        
         
         let db;
         let auth;
@@ -1330,13 +1669,11 @@
 
         const appId = typeof __app_id !== 'undefined' ? __app_id : 'infit-web';
 
-        // Inicialización segura de Firebase
         try {
             if (typeof firebase !== 'undefined' && !firebase.apps.length) {
                 firebase.initializeApp(firebaseConfig);
                 db = firebase.firestore();
                 auth = firebase.auth();
-                
                 if (typeof __initial_auth_token !== 'undefined') {
                     auth.signInWithCustomToken(__initial_auth_token);
                 } else {
@@ -1349,11 +1686,8 @@
         let affiliateCode = null;
         let currentUnit = 'metric';
 
-        // Inicialización al Cargar
         document.addEventListener('DOMContentLoaded', () => {
             const urlParams = new URLSearchParams(window.location.search);
-            
-            // 1. Verificar Afiliado (?ref=lupita)
             const ref = urlParams.get('ref');
             if (ref) {
                 affiliateCode = ref;
@@ -1361,15 +1695,10 @@
                 document.getElementById('affiliate-badge').classList.add('inline-block');
                 document.getElementById('affiliate-name').textContent = ref;
             }
-
-            // 2. Verificar Modo Admin (?admin=true)
             const isAdmin = urlParams.get('admin') === 'true';
             if (isAdmin) {
-                const adminElements = document.querySelectorAll('.admin-only');
-                adminElements.forEach(el => el.style.display = 'block');
-                console.log("Modo Admin Activado");
+                document.querySelectorAll('.admin-only').forEach(el => el.style.display = 'block');
             }
-
             loadConfig();
             setupStepIndicators();
         });
@@ -1389,8 +1718,6 @@
                 toggle.classList.remove('active');
                 detail.classList.remove('visible');
             }
-            
-            // Actualizar notas de pago en las tarjetas
             updatePaymentNotes();
         }
         
@@ -1419,9 +1746,8 @@
         }
 
         // ==========================================
-        //  INDICADORES DE PASO
+        //  STEP INDICATORS
         // ==========================================
-        
         function setupStepIndicators() {
             const nameInput = document.getElementById('client-name');
             const cityInput = document.getElementById('client-city');
@@ -1430,70 +1756,54 @@
                 input.addEventListener('input', updateStepIndicators);
             });
             
-            // Actualizar pasos cuando se selecciona objetivo
             document.querySelectorAll('.goal-radio').forEach(radio => {
                 radio.addEventListener('change', () => {
-                    const step2 = document.getElementById('step-2');
-                    const step3 = document.getElementById('step-3');
-                    step2.classList.remove('active');
-                    step2.classList.add('completed');
-                    step3.classList.add('active');
+                    document.getElementById('step-2').classList.remove('active');
+                    document.getElementById('step-2').classList.add('completed');
+                    document.getElementById('step-3').classList.add('active');
                 });
             });
 
-            // Actualizar pasos cuando se selecciona tienda
             document.querySelectorAll('.store-radio').forEach(radio => {
                 radio.addEventListener('change', () => {
-                    const step3 = document.getElementById('step-3');
-                    const step4 = document.getElementById('step-4');
-                    step3.classList.remove('active');
-                    step3.classList.add('completed');
-                    step4.classList.add('active');
+                    document.getElementById('step-3').classList.remove('active');
+                    document.getElementById('step-3').classList.add('completed');
+                    document.getElementById('step-4').classList.add('active');
                 });
             });
 
-            // Actualizar pasos cuando se marcan alimentos
             document.querySelectorAll('.exclude-checkbox').forEach(checkbox => {
                 checkbox.addEventListener('change', updateExcludeStep);
             });
 
             document.getElementById('exclude-other').addEventListener('input', updateExcludeStep);
 
-            // Actualizar pasos cuando se selecciona método de pago
             document.querySelectorAll('.payment-radio').forEach(radio => {
                 radio.addEventListener('change', () => {
-                    const step5 = document.getElementById('step-5');
-                    const step6 = document.getElementById('step-6');
-                    step5.classList.remove('active');
-                    step5.classList.add('completed');
-                    step6.classList.add('active');
+                    document.getElementById('step-5').classList.remove('active');
+                    document.getElementById('step-5').classList.add('completed');
+                    document.getElementById('step-6').classList.add('active');
                 });
             });
         }
 
         function updateExcludeStep() {
-            const step4 = document.getElementById('step-4');
-            const step5 = document.getElementById('step-5');
             const checkedItems = document.querySelectorAll('.exclude-checkbox:checked');
             const excludeOther = document.getElementById('exclude-other').value.trim();
-            
             if (checkedItems.length > 0 || excludeOther !== '') {
-                step4.classList.remove('active');
-                step4.classList.add('completed');
-                step5.classList.add('active');
+                document.getElementById('step-4').classList.remove('active');
+                document.getElementById('step-4').classList.add('completed');
+                document.getElementById('step-5').classList.add('active');
             }
         }
 
         function updateStepIndicators() {
             const name = document.getElementById('client-name').value;
             const city = document.getElementById('client-city').value;
-            const step1 = document.getElementById('step-1');
-            const step2 = document.getElementById('step-2');
-            
             if (name && city) {
-                step1.classList.remove('active');
-                step1.classList.add('completed');
-                step2.classList.add('active');
+                document.getElementById('step-1').classList.remove('active');
+                document.getElementById('step-1').classList.add('completed');
+                document.getElementById('step-2').classList.add('active');
             }
         }
 
@@ -1503,8 +1813,6 @@
                 step.classList.remove('active', 'completed');
             }
             document.getElementById('step-1').classList.add('active');
-            
-            // Limpiar selecciones
             document.querySelectorAll('.goal-radio').forEach(radio => radio.checked = false);
             document.querySelectorAll('.store-radio').forEach(radio => radio.checked = false);
             document.querySelectorAll('.exclude-checkbox').forEach(checkbox => checkbox.checked = false);
@@ -1514,16 +1822,13 @@
         }
 
         // ==========================================
-        //  LOGICA DE VIDEO
+        //  VIDEO
         // ==========================================
-        
         function playVideo(type) {
             const modal = document.getElementById('video-modal');
             const video = document.getElementById('main-video-player');
             const title = document.getElementById('video-title');
-            
             let src = '';
-            
             if (type === 'nutri') {
                 src = 'PA%20+%20Eliminacion%20Mujeres.mp4';
                 title.textContent = "PREVIEW: Plan de Nutrición";
@@ -1531,24 +1836,22 @@
                 src = 'PE%20+%20Reto%20Mujeres.mp4';
                 title.textContent = "PREVIEW: Entrenamiento Digital";
             }
-            
             video.src = src;
             modal.classList.remove('hidden');
-            
-            video.play().catch(e => console.log("Auto-play prevenido por navegador", e));
+            video.play().catch(e => console.log("Auto-play prevenido", e));
         }
 
         function closeVideo() {
-            const modal = document.getElementById('video-modal');
             const video = document.getElementById('main-video-player');
-            
             video.pause();
             video.currentTime = 0;
             video.src = "";
-            modal.classList.add('hidden');
+            document.getElementById('video-modal').classList.add('hidden');
         }
 
-        // Funciones del Editor
+        // ==========================================
+        //  CONFIG / ADMIN
+        // ==========================================
         function loadConfig() {
             document.getElementById('display-promo').textContent = config.promoText;
             document.getElementById('display-price-nutri').textContent = config.priceNutri;
@@ -1556,7 +1859,6 @@
             document.getElementById('display-price-combo').textContent = config.priceCombo;
             document.getElementById('display-price-old').textContent = config.priceOld;
             document.getElementById('display-combo-note').textContent = config.comboNote;
-
             document.getElementById('edit-promo').value = config.promoText;
             document.getElementById('edit-price-nutri').value = config.priceNutri;
             document.getElementById('edit-price-train').value = config.priceTrain;
@@ -1564,13 +1866,12 @@
             document.getElementById('edit-price-old').value = config.priceOld;
             document.getElementById('edit-price-lcarnitina').value = config.priceLcarnitina;
             document.getElementById('edit-lc-frascos').value = config.lcFrascos;
+            document.getElementById('edit-lc-price-per-frasco').value = config.lcPricePerFrasco;
+            document.getElementById('edit-lc-shipping-total').value = config.lcShippingTotal;
             document.getElementById('edit-combo-note').value = config.comboNote;
-            
-            // Actualizar precios L-Carnitina en las tarjetas
-            ['nutri', 'combo', 'train'].forEach(key => {
-                document.getElementById(`lc-price-${key}`).textContent = config.priceLcarnitina;
-                document.getElementById(`lc-frascos-label-${key}`).textContent = config.lcFrascos;
-            });
+
+            // Aplicar descuentos de reto compartido y precios dinámicos de L-Carnitina
+            updatePricingDisplay();
         }
 
         function updateContent() {
@@ -1581,6 +1882,8 @@
             config.priceOld = document.getElementById('edit-price-old').value;
             config.priceLcarnitina = parseInt(document.getElementById('edit-price-lcarnitina').value) || 90;
             config.lcFrascos = parseInt(document.getElementById('edit-lc-frascos').value) || 2;
+            config.lcPricePerFrasco = parseInt(document.getElementById('edit-lc-price-per-frasco').value) || 19;
+            config.lcShippingTotal = parseInt(document.getElementById('edit-lc-shipping-total').value) || 65;
             config.comboNote = document.getElementById('edit-combo-note').value;
             loadConfig();
         }
@@ -1597,17 +1900,19 @@
             priceTrain: ${config.priceTrain},
             priceCombo: ${config.priceCombo},
             priceOld: ${config.priceOld},
+            lcPricePerFrasco: ${config.lcPricePerFrasco},
+            lcFrascosPerPerson: ${config.lcFrascosPerPerson},
+            lcShippingTotal: ${config.lcShippingTotal},
             priceLcarnitina: ${config.priceLcarnitina},
             lcFrascos: ${config.lcFrascos},
             comboNote: "${config.comboNote.replace(/\n/g, '')}"
         };`;
-            
-            navigator.clipboard.writeText(code).then(() => {
-                alert("¡Código copiado!");
-            });
+            navigator.clipboard.writeText(code).then(() => alert("¡Código copiado!"));
         }
 
-        // Lógica de Unidades (Imperial/Métrico)
+        // ==========================================
+        //  UNITS
+        // ==========================================
         function toggleUnits(unit) {
             currentUnit = unit;
             const lblMetric = document.getElementById('label-metric');
@@ -1618,21 +1923,19 @@
             const lblHeight = document.getElementById('lbl-height');
 
             if (unit === 'metric') {
-                lblMetric.classList.add('bg-infit-pink', 'text-black');
+                lblMetric.classList.add('bg-infit-gold', 'text-black');
                 lblMetric.classList.remove('text-gray-500');
-                lblImperial.classList.remove('bg-infit-pink', 'text-black');
+                lblImperial.classList.remove('bg-infit-gold', 'text-black');
                 lblImperial.classList.add('text-gray-500');
-                
                 lblWeight.textContent = "Peso (kg)";
                 lblHeight.textContent = "Estatura (cm)";
                 weightInput.placeholder = "70";
                 heightInput.placeholder = "170";
             } else {
-                lblImperial.classList.add('bg-infit-pink', 'text-black');
+                lblImperial.classList.add('bg-infit-gold', 'text-black');
                 lblImperial.classList.remove('text-gray-500');
-                lblMetric.classList.remove('bg-infit-pink', 'text-black');
+                lblMetric.classList.remove('bg-infit-gold', 'text-black');
                 lblMetric.classList.add('text-gray-500');
-
                 lblWeight.textContent = "Peso (lb)";
                 lblHeight.textContent = "Estatura (pies/pulg)";
                 weightInput.placeholder = "150";
@@ -1640,33 +1943,38 @@
             }
         }
 
-        // Selección de Plan
+        // ==========================================
+        //  PLAN SELECTION
+        // ==========================================
         function selectPlan(planName) {
-            let price = 0;
+            let basePrice = 0;
+            let discountedPrice = 0;
             let planKey = '';
             const fieldsNutri = document.getElementById('fields-nutrition');
             const fieldsTrain = document.getElementById('fields-training');
             const fieldsStore = document.getElementById('fields-store');
             const fieldsExclude = document.getElementById('fields-exclude');
 
-            // Ocultar todos los campos dinámicos por defecto
             fieldsNutri.classList.add('hidden');
             fieldsTrain.classList.add('hidden');
             fieldsStore.classList.add('hidden');
             fieldsExclude.classList.add('hidden');
             
             if (planName === 'Nutrición') {
-                price = config.priceNutri;
+                basePrice = parseInt(config.priceNutri);
+                discountedPrice = getDiscountedPrice(config.priceNutri, retoParticipantes);
                 planKey = 'nutri';
                 fieldsNutri.classList.remove('hidden');
                 fieldsStore.classList.remove('hidden');
                 fieldsExclude.classList.remove('hidden');
             } else if (planName === 'Entrenamiento') {
-                price = config.priceTrain;
+                basePrice = parseInt(config.priceTrain);
+                discountedPrice = getDiscountedPrice(config.priceTrain, retoParticipantes);
                 planKey = 'train';
                 fieldsTrain.classList.remove('hidden');
             } else if (planName === 'Combo Total') {
-                price = config.priceCombo;
+                basePrice = parseInt(config.priceCombo);
+                discountedPrice = getDiscountedPrice(config.priceCombo, retoParticipantes);
                 planKey = 'combo';
                 fieldsNutri.classList.remove('hidden');
                 fieldsTrain.classList.remove('hidden');
@@ -1674,14 +1982,30 @@
                 fieldsExclude.classList.remove('hidden');
             }
 
-            selectedPlan = { name: planName, price: price, key: planKey };
+            const discountAmount = basePrice - discountedPrice;
+            selectedPlan = {
+                name: planName,
+                price: discountedPrice,
+                basePrice: basePrice,
+                discountAmount: discountAmount,
+                key: planKey,
+                participantes: retoParticipantes
+            };
             document.getElementById('modal-plan-name').textContent = planName;
-            document.getElementById('modal-plan-price').textContent = `$${price}`;
+            document.getElementById('modal-plan-price').textContent = `$${discountedPrice}`;
+
+            // Gestionar resumen de Reto Compartido en el modal
+            const retoSummary = document.getElementById('modal-reto-summary');
+            if (retoParticipantes >= 2) {
+                retoSummary.classList.remove('hidden');
+                const discountPct = Math.round(getDiscountRate(retoParticipantes) * 100);
+                document.getElementById('modal-reto-desc').textContent = `${retoParticipantes} integrantes - ${discountPct}% descuento`;
+                document.getElementById('modal-reto-savings').textContent = `-$${discountAmount}`;
+            } else {
+                retoSummary.classList.add('hidden');
+            }
             
-            // Actualizar L-Carnitina y condición de pago en modal
             updateModalLcarnitina(planKey);
-            
-            // Resetear indicadores de paso
             resetStepIndicators();
             
             const modal = document.getElementById('order-modal');
@@ -1698,63 +2022,65 @@
             const footerNote = document.getElementById('modal-footer-payment-note');
             const contextText = document.getElementById('payment-context-text');
             const methodNote = document.getElementById('payment-method-note');
-            
+
+            // Precio dinámico de L-Carnitina basado en participantes
+            const lcPriceNow = getLcarnitinaPerPerson(retoParticipantes);
+            const frascos = config.lcFrascosPerPerson;
+
             if (hasLc) {
-                // Mostrar resumen L-Carnitina
                 lcSummary.classList.remove('hidden');
-                document.getElementById('modal-lc-title').textContent = `+ L-Carnitina (${config.lcFrascos} frascos)`;
-                document.getElementById('modal-lc-detail').textContent = `${config.lcFrascos} frascos · Presentación en pastillas`;
-                document.getElementById('modal-lc-price').textContent = config.priceLcarnitina;
-                
-                // Mostrar desglose de precio
+                document.getElementById('modal-lc-title').textContent = `+ L-Carnitina (${frascos} frascos)`;
+                document.getElementById('modal-lc-detail').textContent = `${frascos} frascos · Presentación en pastillas`;
+                document.getElementById('modal-lc-price').textContent = lcPriceNow;
+
                 priceBreakdown.classList.remove('hidden');
                 document.getElementById('breakdown-plan-label').textContent = selectedPlan.name;
                 document.getElementById('breakdown-plan-price').textContent = `$${selectedPlan.price} USD`;
-                document.getElementById('breakdown-lc-price').textContent = `$${config.priceLcarnitina} USD`;
-                const total = selectedPlan.price + config.priceLcarnitina;
+                document.getElementById('breakdown-lc-price').textContent = `$${lcPriceNow} USD`;
+                const total = selectedPlan.price + lcPriceNow;
                 document.getElementById('breakdown-total').textContent = `$${total} USD`;
-                
-                // Cambiar condición de pago
-                paymentCondition.innerHTML = 'Mensual · <span class="text-amber-400">LC: pago anticipado</span>';
-                
-                // Cambiar nota del footer del modal
+
+                paymentCondition.innerHTML = 'USD - <span class="text-amber-400">Pago anticipado requerido</span>';
                 footerNote.innerHTML = '<i class="fas fa-exclamation-triangle text-amber-400"></i> <span class="text-amber-300">L-Carnitina requiere pago por anticipado</span> para procesar envío desde México.';
-                
-                // Cambiar nota contextual de pago
                 contextText.innerHTML = `
                     <i class="fas fa-exclamation-triangle text-amber-400 mr-1"></i>
                     <strong class="text-amber-400">Pago por anticipado requerido</strong><br>
                     Al incluir L-Carnitina, necesitarás realizar tu pago por anticipado para que podamos procesar el envío desde México. El plan se te entregará al recibir tu material, pero la L-Carnitina requiere envío internacional.
                 `;
-                
                 methodNote.innerHTML = '<i class="fas fa-info-circle text-amber-400"></i> <span class="text-amber-300">Pago anticipado requerido</span> para procesar el envío de L-Carnitina desde México.';
-                
             } else {
-                // Sin L-Carnitina
                 lcSummary.classList.add('hidden');
-                priceBreakdown.classList.add('hidden');
-                
-                paymentCondition.textContent = 'Mensual';
-                footerNote.innerHTML = '<i class="fas fa-exclamation-circle text-infit-pink"></i> Es necesario hacer clic para enviar los datos por WhatsApp.';
-                
+                // Si hay reto compartido pero no L-Carnitina: mostrar desglose con info del descuento
+                if (retoParticipantes >= 2) {
+                    priceBreakdown.classList.remove('hidden');
+                    const discountPct = Math.round(getDiscountRate(retoParticipantes) * 100);
+                    document.getElementById('breakdown-plan-label').textContent = `${selectedPlan.name} (${discountPct}% descuento)`;
+                    document.getElementById('breakdown-plan-price').textContent = `$${selectedPlan.price} USD`;
+                    document.getElementById('breakdown-lc-price').textContent = '—';
+                    document.getElementById('breakdown-total').textContent = `$${selectedPlan.price} USD`;
+                } else {
+                    priceBreakdown.classList.add('hidden');
+                }
+                paymentCondition.textContent = 'USD - A pagar al recibir';
+                footerNote.innerHTML = '<i class="fas fa-lock text-infit-gold"></i> Pagarás hasta que recibas tu material.';
                 contextText.innerHTML = `
-                    <i class="fas fa-heart text-infit-pink mr-1"></i>
-                    <strong class="text-infit-pink">¡Envía tu pago como ya lo conoces!</strong><br>
+                    <i class="fas fa-heart text-infit-gold mr-1"></i>
+                    <strong class="text-infit-gold">¡Envía tu pago como ya lo conoces!</strong><br>
                     Así como envías dinero a tu familia en México, puedes enviar tu pago de la misma forma. Te daremos los datos cuando tu plan esté listo.
                 `;
-                
-                methodNote.innerHTML = '<i class="fas fa-info-circle text-infit-pink"></i> Te enviaremos los datos para que envíes tu pago como siempre lo haces.';
+                methodNote.innerHTML = '<i class="fas fa-info-circle text-infit-gold"></i> Te enviaremos los datos para que envíes tu pago como siempre lo haces.';
             }
         }
 
         function closeModal() {
-            const modal = document.getElementById('order-modal');
             const panel = document.getElementById('modal-panel');
             panel.classList.add('translate-y-full');
-            setTimeout(() => modal.classList.add('hidden'), 300);
+            setTimeout(() => document.getElementById('order-modal').classList.add('hidden'), 300);
         }
 
-        // Procesar Pedido y Enviar a WhatsApp
+        // ==========================================
+        //  ORDER HANDLER
+        // ==========================================
         async function handleOrder(e) {
             e.preventDefault();
             const submitBtn = document.getElementById('submit-btn');
@@ -1764,142 +2090,142 @@
             const planKey = selectedPlan.key;
             const hasLc = lcarnitinaState[planKey];
 
-            // Datos Básicos
             const formData = {
                 name: document.getElementById('client-name').value,
                 city: document.getElementById('client-city').value,
                 origin: document.getElementById('client-origin').value || 'No especificado',
                 plan: selectedPlan.name,
                 price: selectedPlan.price,
+                basePrice: selectedPlan.basePrice,
+                discountAmount: selectedPlan.discountAmount,
+                participantes: retoParticipantes,
                 currency: 'USD',
                 region: 'USA',
                 gender: 'F',
                 affiliate: affiliateCode || 'Orgánico',
                 lcarnitina: hasLc,
-                lcarnitinaFrascos: hasLc ? config.lcFrascos : 0,
-                lcarnitinaPrice: hasLc ? config.priceLcarnitina : 0,
-                totalPrice: hasLc ? selectedPlan.price + config.priceLcarnitina : selectedPlan.price,
+                lcarnitinaFrascos: hasLc ? config.lcFrascosPerPerson : 0,
+                lcarnitinaPrice: hasLc ? getLcarnitinaPerPerson(retoParticipantes) : 0,
+                lcarnitinaProductCost: hasLc ? config.lcFrascosPerPerson * config.lcPricePerFrasco : 0,
+                lcarnitinaShippingPerPerson: hasLc ? Math.round(config.lcShippingTotal / (retoParticipantes >= 2 ? retoParticipantes : 1)) : 0,
+                totalPrice: hasLc ? selectedPlan.price + getLcarnitinaPerPerson(retoParticipantes) : selectedPlan.price,
                 paymentCondition: hasLc ? 'Anticipado (L-Carnitina)' : 'Al recibir',
                 timestamp: new Date().toISOString()
             };
 
-            // Construcción del Mensaje
             let detailsText = "";
             let unitLabelW = currentUnit === 'metric' ? 'kg' : 'lb';
             let unitLabelH = currentUnit === 'metric' ? 'cm' : 'ft/in';
 
-            // Sección de L-Carnitina en WhatsApp
-            if (hasLc) {
-                detailsText += `%0A💊 *L-CARNITINA*%0A• ${config.lcFrascos} frascos · Presentación en pastillas%0A• $${config.priceLcarnitina} USD (incluye envío desde México)`;
+            // Reto Compartido en el mensaje
+            if (retoParticipantes >= 2) {
+                const discountPct = Math.round(getDiscountRate(retoParticipantes) * 100);
+                detailsText += `%0A%0A👯‍♀️ *RETO COMPARTIDO*%0A• ${retoParticipantes} integrantes%0A• Descuento: ${discountPct}% aplicado al plan%0A• Ahorro por integrante: $${selectedPlan.discountAmount} USD%0A• 📲 Herramienta digital de retos (premios y castigos) incluida`;
             }
 
-            // Capturar objetivo
+            // L-Carnitina con desglose detallado
+            if (hasLc) {
+                const frascos = config.lcFrascosPerPerson;
+                const lcPerPerson = getLcarnitinaPerPerson(retoParticipantes);
+                const numPeople = retoParticipantes >= 2 ? retoParticipantes : 1;
+                const productCost = config.lcFrascosPerPerson * config.lcPricePerFrasco;
+                const shippingPerPerson = Math.round(config.lcShippingTotal / numPeople);
+                let lcDetail = `%0A💊 *L-CARNITINA*%0A• ${frascos} frascos · Presentación en pastillas`;
+                if (numPeople >= 2) {
+                    lcDetail += `%0A• Producto: $${productCost} + Envío: $${config.lcShippingTotal} ÷ ${numPeople} = $${shippingPerPerson} c/u`;
+                } else {
+                    lcDetail += `%0A• Producto: $${productCost} + Envío: $${config.lcShippingTotal}`;
+                }
+                lcDetail += `%0A• Total por persona: *$${lcPerPerson} USD*`;
+                detailsText += lcDetail;
+            }
+
             const selectedGoal = document.querySelector('input[name="goal"]:checked');
             if (selectedGoal) {
                 formData.goal = selectedGoal.value;
                 detailsText += `%0A%0A🎯 *OBJETIVO*%0A• ${formData.goal}`;
             }
 
-            // Capturar quién recomendó (PARA TODOS LOS PLANES)
             const referrerName = document.getElementById('client-referrer').value.trim();
             if (referrerName) {
                 formData.referredBy = referrerName;
                 detailsText += `%0A%0A❤️ *RECOMENDADO POR*%0A• ${referrerName}`;
             }
 
-            // Capturar tienda (SOLO NUTRICIÓN Y COMBO)
             const selectedStore = document.querySelector('input[name="store"]:checked');
             if (selectedStore) {
                 formData.store = selectedStore.value;
                 detailsText += `%0A%0A🛒 *DÓNDE HAGO MANDADO*%0A• ${formData.store}`;
             }
 
-            // Capturar alimentos a excluir (SOLO NUTRICIÓN Y COMBO)
             const excludedItems = [];
-            document.querySelectorAll('.exclude-checkbox:checked').forEach(checkbox => {
-                excludedItems.push(checkbox.value);
-            });
+            document.querySelectorAll('.exclude-checkbox:checked').forEach(cb => excludedItems.push(cb.value));
             const excludeOtherText = document.getElementById('exclude-other').value.trim();
-            
             if (excludedItems.length > 0 || excludeOtherText !== '') {
                 formData.excludedFoods = excludedItems;
                 formData.excludedFoodsOther = excludeOtherText;
-                
                 detailsText += `%0A%0A🚫 *ALIMENTOS A EXCLUIR*`;
-                if (excludedItems.length > 0) {
-                    detailsText += `%0A• ${excludedItems.join('%0A• ')}`;
-                }
-                if (excludeOtherText !== '') {
-                    detailsText += `%0A• Otros: ${excludeOtherText}`;
-                }
+                if (excludedItems.length > 0) detailsText += `%0A• ${excludedItems.join('%0A• ')}`;
+                if (excludeOtherText !== '') detailsText += `%0A• Otros: ${excludeOtherText}`;
             }
 
-            // Capturar método de pago
             const selectedPayment = document.querySelector('input[name="payment"]:checked');
             if (selectedPayment) {
                 formData.paymentMethod = selectedPayment.value;
                 detailsText += `%0A%0A💳 *MÉTODO DE PAGO*%0A• ${formData.paymentMethod}`;
             }
 
-            // Datos Extra (Nutrición)
             if (!document.getElementById('fields-nutrition').classList.contains('hidden')) {
                 formData.age = document.getElementById('client-age').value;
                 formData.weight = document.getElementById('client-weight').value;
                 formData.height = document.getElementById('client-height').value;
                 formData.activity = document.getElementById('client-activity').value;
-                
                 detailsText += `%0A%0A🍎 *DATOS NUTRICIÓN*%0A• Edad: ${formData.age} años%0A• Peso: ${formData.weight} ${unitLabelW}%0A• Estatura: ${formData.height} ${unitLabelH}%0A• Actividad: ${formData.activity || 'No especificada'}`;
             }
 
-            // Datos Extra (Entrenamiento)
             if (!document.getElementById('fields-training').classList.contains('hidden')) {
                 const place = document.querySelector('input[name="place"]:checked').value;
                 const days = Array.from(document.querySelectorAll('.day-checkbox:checked')).map(cb => cb.value).join(', ');
-                
                 formData.place = place;
                 formData.days = days;
-                
                 detailsText += `%0A%0A🏋️ *DATOS ENTRENO*%0A• Lugar: ${place}%0A• Días Disp: ${days || 'Por definir'}`;
             }
 
-            // Guardar en Firestore
             if (db) {
                 try {
                     const user = auth.currentUser;
                     const collectionPath = user 
                         ? db.collection('artifacts').doc(appId).collection('public').doc('data').collection('leads')
                         : null;
-
                     if (collectionPath) await collectionPath.add(formData);
-                } catch (error) { console.error("Error guardando lead en Firebase:", error); }
+                } catch (error) { console.error("Error guardando lead:", error); }
             }
 
-            // Texto Final WhatsApp
             const phone = "527751056744";
             const locationText = formData.origin !== 'No especificado' 
                 ? `de ${formData.origin}, ahora en ${formData.city}` 
                 : `de ${formData.city}`;
             
-            // Header dinámico según L-Carnitina
+            const retoBadgeText = retoParticipantes >= 2 ? ` 👯‍♀️ (Reto ${retoParticipantes})` : '';
             let header = '';
             if (hasLc) {
-                const total = selectedPlan.price + config.priceLcarnitina;
-                header = `Hola INFIT! 🚀 Soy *${formData.name}* (${locationText}).%0A%0A🔥 Quiero empezar mi *${formData.plan}* + *L-Carnitina (${config.lcFrascos} frascos)*.%0A💰 Plan: $${selectedPlan.price} USD + L-Carnitina: $${config.priceLcarnitina} USD = *$${total} USD total*.`;
+                const lcPerPersonNow = getLcarnitinaPerPerson(retoParticipantes);
+                const total = selectedPlan.price + lcPerPersonNow;
+                const frascos = config.lcFrascosPerPerson;
+                header = `Hola INFIT! 🚀 Soy *${formData.name}* (${locationText}).%0A%0A🔥 Quiero empezar mi *${formData.plan}* + *L-Carnitina (${frascos} frascos)*${retoBadgeText}.%0A💰 Plan: $${selectedPlan.price} USD + L-Carnitina: $${lcPerPersonNow} USD = *$${total} USD total*.`;
             } else {
-                header = `Hola INFIT! 🚀 Soy *${formData.name}* (${locationText}).%0A%0A🔥 Quiero empezar mi *${formData.plan}* ($${formData.price} USD / Mes).`;
+                header = `Hola INFIT! 🚀 Soy *${formData.name}* (${locationText}).%0A%0A🔥 Quiero empezar mi *${formData.plan}* ($${formData.price} USD / Mes)${retoBadgeText}.`;
             }
             
-            // Footer dinámico según L-Carnitina
             let footer = '';
             if (hasLc) {
-                footer = `%0A%0A📝 *Nota:* Estoy enterada que realizaré mi pago por anticipado para que se procese el envío de la L-Carnitina desde México. El plan se me entregará al recibir mi material completo.`;
+                footer = `%0A%0A📝 *Nota:* Estoy enterado que realizaré mi pago por anticipado para que se procese el envío de la L-Carnitina desde México. El plan se me entregará al recibir mi material completo.`;
             } else {
                 footer = `%0A%0A📝 *Nota:* Soy de Santa Ana o referido. Estoy de acuerdo en realizar el pago al momento de tener todo mi material.`;
             }
             
             const motivation = `%0A%0A✨ *¡Bienvenida a tu mejor Versión!*`;
             const refText = affiliateCode ? `%0A%0A(Asesor: ${affiliateCode})` : '';
-            
             const fullText = `${header}${detailsText}${footer}${motivation}${refText}`;
             const waLink = `https://wa.me/${phone}?text=${fullText}`;
 
@@ -1915,9 +2241,8 @@
             const overlay = document.getElementById('success-overlay');
             document.getElementById('success-name').textContent = name;
             overlay.classList.remove('hidden');
-            
             const end = Date.now() + 2.5 * 1000;
-            const colors = ['#ec4899', '#FFD700', '#ffffff'];
+            const colors = ['#ec4899', '#ffffff', '#db2777'];
             (function frame() {
                 confetti({ particleCount: 3, angle: 60, spread: 55, origin: { x: 0 }, colors: colors });
                 confetti({ particleCount: 3, angle: 120, spread: 55, origin: { x: 1 }, colors: colors });
